@@ -1,0 +1,35 @@
+<div class="container">
+
+      <form class="form-signin" name="assetForm" ng-submit="submit()" novalidate>
+        <h2 class="form-signin-heading">Please Enter the Asset Details</h2>
+        <h3 class="form-signin-heading">Asset 1 : </h3>
+        <div class="form-group" ng-class="{ 'has-error' : assetForm.noa.$invalid && !assetForm.noa.$pristine }">
+            <label>Name of the Asset</label>
+            <input type="text" name="noa" class="form-control" ng-model="asset.noa" required>
+            <p ng-show="assetForm.noa.$invalid && !assetForm.noa.$pristine" class="help-block">Name of the Asset is required.</p>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : assetForm.voa.$invalid && !assetForm.voa.$pristine }">
+            <label>Value of the Asset</label>
+            <input type="number" name="voa" class="form-control currency" ng-model="asset.voa" required>
+            <p ng-show="assetForm.voa.$invalid && !assetForm.voa.$pristine" class="help-block">Value of the Asset is required.</p>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : assetForm.dr.$invalid && !assetForm.dr.$pristine }">
+            <label>Depreciation Rate</label>
+            <input type="number" name="dr" class="form-control" ng-model="asset.dr" required min="0" max="100" step="0.01">
+            <p ng-show="assetForm.dr.$invalid && !assetForm.dr.$pristine" class="help-block">Depreciation Rate required.</p>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : assetForm.mr.$invalid && !assetForm.mr.$pristine }">
+            <label>Margin Rate</label>
+            <input type="number" name="mr" class="form-control" ng-model="asset.mr" required min="0" max="100" step="0.01">
+            <p ng-show="assetForm.mr.$invalid && !assetForm.mr.$pristine" class="help-block">Margin Rate required.</p>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : assetForm.aaa.$invalid && !assetForm.aaa.$pristine }">
+            <label>Add another Asset?</label>
+            <input type="radio" name="aaa" class="form-group" value="1" ng-model="asset.aaa" required ng-selected> Yes
+            <input type="radio" name="aaa" class="form-group" value="2" ng-model="asset.aaa" required> No
+            <p ng-show="assetForm.profession.$invalid && !assetForm.profession.$pristine" class="help-block">Profession is required.</p>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" ng-disabled="assetForm.$invalid">Sign in</button>
+      </form>
+
+    </div>

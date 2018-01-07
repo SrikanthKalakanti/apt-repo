@@ -1,0 +1,136 @@
+<!-- <div class="jumbotron">
+  <h1>Hi Login Page is here</h1>
+  {{personObj}}
+  <div ng-bind="personObj"></div>
+  <!-- <div ng-model="personObj"></div> -->
+  <!-- <form>
+    <input type="text" name="userName" ng-model="personObj.userName">
+    <input type="password" name="password" ng-model="personObj.password">
+    <input type="button" name="submit" value="Submit" ng-click="submit()">
+  </form>
+</div> -->
+  
+ <div class="container">
+
+      <form class="form-register" name="registerForm" ng-submit="submit()" novalidate>
+        <h2 class="form-signin-heading">Please Register</h2>
+        <div class="form-group">
+            <label>Name Prefix</label><br/>
+            <input type="radio" name="namePrefix" class="form-group" value="Mr" ng-model="registerUser.namePrefix" required> Mr
+            <input type="radio" name="namePrefix" class="form-group" value="Mrs" ng-model="registerUser.namePrefix" required> Mrs
+            <input type="radio" name="namePrefix" class="form-group" value="Ms" ng-model="registerUser.namePrefix" required> Ms
+            <input type="radio" name="namePrefix" class="form-group" value="M/S" ng-model="registerUser.namePrefix" required> M/S
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : registerForm.firstName.$invalid && !registerForm.firstName.$pristine }">
+            <label>First Name</label>
+            <i class="fa fa-asterisk text-danger">*</i>
+            <input type="text" name="firstName" class="form-control" ng-model="registerUser.firstName" required>
+            <p ng-show="registerForm.firstName.$invalid && !registerForm.firstName.$pristine" class="help-block">First Name is required.</p>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : registerForm.lastName.$invalid && !registerForm.lastName.$pristine }">
+            <label>Last Name</label>
+            <i class="fa fa-asterisk text-danger">*</i>
+            <input type="text" name="lastName" class="form-control" ng-model="registerUser.lastName" required>
+            <p ng-show="registerForm.lastName.$invalid && !registerForm.lastName.$pristine" class="help-block">Last Name is required.</p>
+        </div>
+        <div class="form-group">
+            <label>Status</label><br/>
+            <input type="radio" name="status" class="form-group" value="Individual" ng-model="registerUser.status" required> Individual
+            <input type="radio" name="status" class="form-group" value="Firm" ng-model="registerUser.status" required> Firm
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : registerForm.doorNumber.$invalid && !registerForm.doorNumber.$pristine }">
+            <label>Address Door No/Building Name</label>
+            <i class="fa fa-asterisk text-danger">*</i>
+            <input type="text" name="doorNumber" class="form-control" ng-model="registerUser.doorNumber" required>
+            <p ng-show="registerForm.doorNumber.$invalid && !registerForm.doorNumber.$pristine" class="help-block">Door No/Building Name is required.</p>
+        </div>
+        <div class="form-group">
+            <label>Address Road</label>
+            <input type="text" name="address" class="form-control" ng-model="registerUser.roadNumber">
+        </div>
+        <div class="form-group">
+            <label>Address Locality</label>
+            <input type="text" name="address1" class="form-control" ng-model="registerUser.locality">
+        </div>
+        <div class="form-group">
+            <label>Address Land Mark</label>
+            <input type="text" name="address2" class="form-control" ng-model="registerUser.landmark">
+        </div>
+        <div class="form-group">
+            <label>Town</label>
+            <input type="text" name="town" class="form-control" ng-model="registerUser.town">
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : registerForm.pincode.$invalid && !registerForm.pincode.$pristine }">
+            <label>Pincode</label>
+            <i class="fa fa-asterisk text-danger">*</i>
+            <input type="number" name="pincode" class="form-control" ng-model="registerUser.pincode" minlength="7" maxlength="7">
+            <p ng-show="registerForm.pincode.$invalid && !registerForm.pincode.$pristine" class="help-block">Pincode is required.</p>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : registerForm.state.$invalid && !registerForm.state.$pristine }">
+            <label>State</label>
+            <i class="fa fa-asterisk text-danger">*</i>
+            <select class="form-control" name="state" ng-model="registerUser.state">
+              <option value="-1">Select State</option>
+              <option ng-repeat="state in registerUser.states">{{state}}</option>
+            </select>
+            <p ng-show="registerForm.state.$invalid && !registerForm.state.$pristine" class="help-block">State is required.</p>
+        </div>
+        <div class="form-group">
+            <label>Land Phone</label>
+            <input type="text" name="landPhone" class="form-control" ng-model="registerUser.landPhone">
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : registerForm.mobile.$invalid && !registerForm.mobile.$pristine }">
+            <label>Mobile Phone</label>
+            <i class="fa fa-asterisk text-danger">*</i>
+            <input type="number" name="mobile" class="form-control" ng-model="registerUser.mobile" minlength="10" maxlength="10">
+            <p ng-show="registerForm.mobile.$invalid && !registerForm.mobile.$pristine" class="help-block">Mobile Phone is required.</p>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : registerForm.email.$invalid && !registerForm.email.$pristine }">
+            <label>Email address</label>
+            <i class="fa fa-asterisk text-danger">*</i>
+            <input type="email" name="email" class="form-control" ng-model="registerUser.email" required>
+            <p ng-show="registerForm.email.$invalid && !registerForm.email.$pristine" class="help-block">Email is required.</p>
+        </div>
+        <div class="form-group">
+            <label>Profession</label><br/>
+            <input type="radio" name="profession" class="form-group" value="CA" ng-model="registerUser.profession" required> Chartered Accountant
+            <input type="radio" name="profession" class="form-group" value="CMA" ng-model="registerUser.profession" required> Cost and Management Accountant
+            <input type="radio" name="profession" class="form-group" value="CS" ng-model="registerUser.profession" required> Company Secretary
+            <input type="radio" name="profession" class="form-group" value="ITP" ng-model="registerUser.profession" required> Income Tax Practitioner
+            <input type="radio" name="profession" class="form-group" value="STP" ng-model="registerUser.profession" required> Sales Tax Practitioner
+            <input type="radio" name="profession" class="form-group" value="BNK" ng-model="registerUser.profession" required> Banker
+            <input type="radio" name="profession" class="form-group" value="OTH" ng-model="registerUser.profession" required> Others
+        </div>
+        <div class="form-group" ng-if="registerUser.profession === 'OTH'" ng-class="{ 'has-error' : registerForm.otherProfession.$invalid && !registerForm.otherProfession.$pristine }">
+            <label>Other Profession</label>
+            <i class="fa fa-asterisk text-danger">*</i>
+            <input type="text" name="otherProfession" class="form-control" ng-model="registerUser.otherProfession" required>
+            <p ng-show="registerForm.otherProfession.$invalid && !registerForm.otherProfession.$pristine" class="help-block">Other Profession is required.</p>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : registerForm.userName.$invalid && !registerForm.userName.$pristine }">
+            <label>User Name</label>
+            <i class="fa fa-asterisk text-danger">*</i>
+            <input type="text" name="userName" class="form-control" ng-model="registerUser.userName" required>
+            <p ng-show="registerForm.userName.$invalid && !registerForm.userName.$pristine" class="help-block">User Name is required.</p>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : registerForm.password.$invalid && !registerForm.password.$pristine }">
+            <label>Password</label>
+            <i class="fa fa-asterisk text-danger">*</i>
+            <input type="password" name="password" class="form-control" ng-model="registerUser.password" required>
+            <p ng-show="registerForm.password.$invalid && !registerForm.password.$pristine" class="help-block">Password is required.</p>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : registerForm.confirmPassword.$invalid && !registerForm.confirmPassword.$pristine }">
+            <label>Confirm Password</label>
+            <i class="fa fa-asterisk text-danger">*</i>
+            <input type="password" name="password" class="form-control" ng-model="registerUser.confirmPassword" required>
+            <p ng-show="registerForm.confirmPassword.$invalid && !registerForm.confirmPassword.$pristine" class="help-block">Confirm Password is required.</p>
+        </div>
+        <div class="form-group">
+            <label>Do you want to enjoy a 30 day free trial? Or do you want to buy a product?</label><br/>
+            <input type="radio" name="trial" class="form-group" value="1" ng-model="registerUser.trial" required ng-selected> I want 30 day free trial
+            <input type="radio" name="trial" class="form-group" value="2" ng-model="registerUser.trial" required> I want to buy a product
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" ng-disabled="registerForm.$invalid" ng-click="submit()">Register</button>
+      </form>
+
+    </div>
