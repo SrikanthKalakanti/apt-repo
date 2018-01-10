@@ -8,14 +8,25 @@
  * Controller of yapp
  */
 angular.module('myAppApp')
-  .controller('LoginCtrl', function($scope, $location) {
+  .controller('LoginCtrl', function($scope, $location, LoginDataOp) {
+
+    $scope.user = {
+      email : '',
+      password : ''
+    };
 
     $scope.submit = function() {
 
       if ($scope.loginForm.$valid) {
-		//alert('our form is amazing');
-		$location.path('/dashboard');
-	  }
+		    //alert('our form is amazing');
+        LoginDataOp.login($scope.user)
+            .success(function (studs) {
+                $location.path('/dashboard');
+            })
+            .error(function (error) {
+                $scope.status = error.message;
+            });		    
+	    }
       // $location.path('/dashboard');
 
       return false;
