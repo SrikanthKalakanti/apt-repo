@@ -1,13 +1,6 @@
-var RegisterService = angular.module('RegisterService', [])
-RegisterService.factory('RegisterDataOp', ['$http', function ($http) {
-
-    var urlBase = 'http://localhost:8080';
-    var RegisterDataOp = {};
-
-    RegisterDataOp.register = function (registerObj) {
-        console.log(registerObj);
+angular.module('myAppApp').service('RegisterService', function($http){
+    this.login = function (registerObj) {
+        var urlBase = 'http://localhost:8080';
         return $http.post(urlBase+'/apt/customer/register', registerObj);
-    };
-    return RegisterDataOp;
-
-}]);
+    }
+});

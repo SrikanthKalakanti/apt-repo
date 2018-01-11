@@ -8,7 +8,7 @@
  * Controller of myAppApp
  */
 angular.module('myAppApp')
-  .controller('RegisterCtrl', function($scope, RegisterDataOp) {
+  .controller('RegisterCtrl', function($scope, RegisterService) {
     $//scope.$state = $state;
     $scope.registerUser = {
     	namePrefix : 'Mr',
@@ -75,12 +75,13 @@ angular.module('myAppApp')
       console.log($scope.registerUser);
       if ($scope.registerForm.$valid) {
 		    //alert('our form is amazing');
-        RegisterDataOp.register($scope.registerUser)
-            .success(function (studs) {
+            RegisterService.register($scope.registerUser)
+            .then(function success(response) {
+                console.log(response);
+                //alert("");
                 $location.path('/login');
-            })
-            .error(function (error) {
-                $scope.status = error.message;
+            }, function error(response) {
+                $scope.status = error.message;          
             });		    
 	    }
     }
