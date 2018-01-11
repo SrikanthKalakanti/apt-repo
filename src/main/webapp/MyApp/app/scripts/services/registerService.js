@@ -8,6 +8,6 @@ RegisterService.factory('RegisterDataOp', ['$http', function ($http) {
         console.log(registerObj);
         return $http.post(urlBase+'/apt/customer/register', registerObj);
     };
-    return LoginDataOp;
+    return RegisterDataOp;
 
 }]);
