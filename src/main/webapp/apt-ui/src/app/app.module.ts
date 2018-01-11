@@ -16,6 +16,7 @@ import { RegisterComponent } from './components/register/register.component';
 
 import { AuthenticationService } from './services/authentication.service';
 import { AlertService } from './services/alert.service';
+import { UserService } from './services/user.service';
 import { AlertComponent } from './directives/alert/alert.component';
 
 const appRoutes: Routes = [
@@ -45,7 +46,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     AuthenticationService,
-    AlertService
+    AlertService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
