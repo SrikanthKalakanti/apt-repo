@@ -8,7 +8,7 @@
  * Controller of yapp
  */
 angular.module('myAppApp')
-  .controller('LoginCtrl', function($scope, $location, LoginDataOp) {
+  .controller('LoginCtrl', function($scope, $location, LoginService) {
 
     $scope.user = {
       email : '',
@@ -21,8 +21,9 @@ angular.module('myAppApp')
         //alert('our form is amazing');
         $scope.user.userName = $scope.user.email;
         //console.log($scope.user);
-        LoginDataOp.login($scope.user)
+        LoginService.login($scope.user)
             .success(function (studs) {
+               console.log(studs);
                 $location.path('/dashboard');
             })
             .error(function (error) {
