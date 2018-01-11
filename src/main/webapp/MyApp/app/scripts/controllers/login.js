@@ -20,7 +20,7 @@ angular.module('myAppApp')
       if ($scope.loginForm.$valid) {
         //alert('our form is amazing');
         $scope.user.userName = $scope.user.email;
-        console.log($scope.user);
+        //console.log($scope.user);
         LoginDataOp.login($scope.user)
             .success(function (studs) {
                 $location.path('/dashboard');
