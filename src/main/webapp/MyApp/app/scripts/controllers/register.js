@@ -72,6 +72,16 @@ angular.module('myAppApp')
     	tempAddress.mobile = $scope.registerUser.mobile;
     	address.push(tempAddress);
     	$scope.registerUser.address = address;
-    	console.log($scope.registerUser);
+      console.log($scope.registerUser);
+      if ($scope.registerForm.$valid) {
+		    //alert('our form is amazing');
+        RegisterDataOp.register($scope.registerUser)
+            .success(function (studs) {
+                $location.path('/login');
+            })
+            .error(function (error) {
+                $scope.status = error.message;
+            });		    
+	    }
     }
   });
