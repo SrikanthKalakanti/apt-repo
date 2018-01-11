@@ -18,7 +18,9 @@ angular.module('myAppApp')
     $scope.submit = function() {
 
       if ($scope.loginForm.$valid) {
-		    //alert('our form is amazing');
+        //alert('our form is amazing');
+        $scope.user.userName = $scope.user.email;
+        console.log($scope.user);
         LoginDataOp.login($scope.user)
             .success(function (studs) {
                 $location.path('/dashboard');
