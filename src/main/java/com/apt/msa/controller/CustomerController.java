@@ -1,15 +1,16 @@
 package com.apt.msa.controller;
 
-import javax.websocket.server.PathParam;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.ReadOnlyProperty;
+import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,7 +39,9 @@ public class CustomerController {
 	 * @return
 	 */
 
-	@PostMapping(value ="register")
+	//@PostMapping(value ="register")
+	@RequestMapping(method=RequestMethod.POST, value ="register",consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@CrossOrigin(origins = { "http://localhost:9000" })
 	public Response createCustomer(RequestEntity<Customer> requestEntity) {
 		try {
 			Customer customer = requestEntity.getBody();
@@ -62,8 +65,8 @@ public class CustomerController {
 
 	}
 	
-	@PostMapping(value ="login")
-	@ReadOnlyProperty
+	@RequestMapping(method=RequestMethod.POST, value ="login",consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@CrossOrigin(origins = { "http://localhost:9000" })
 	public Response login(RequestEntity<LoginRequest> requestEntity) {
 		try {
 			
@@ -96,7 +99,9 @@ public class CustomerController {
 
 	}
 		
-	@GetMapping(value ="getcustomerdetails")
+	//@GetMapping(value ="getcustomerdetails")
+	@RequestMapping(method=RequestMethod.GET, value ="getcustomerdetails",consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@CrossOrigin(origins = { "http://localhost:9000" })
 	public Response getCustomer(final @RequestParam("customerId") Long customerId) {
 		try {
 			

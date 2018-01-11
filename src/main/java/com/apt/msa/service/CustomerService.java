@@ -36,7 +36,7 @@ public class CustomerService implements ICustomerService {
 
 		System.out.println("::::::::::::: login username:"+userName+"  password:"+password);
 		
-		List<Customer>  customerList = customerRepository.fetchByUserName(userName);
+		List<Customer>  customerList = customerRepository.fetchByEmail(userName);
 		
 		if(null!= customerList && customerList.size() > 0 ){
 			//Customer customer = customerList.iterator().next();
@@ -46,7 +46,7 @@ public class CustomerService implements ICustomerService {
 				final String decryptedPwd = CryptoUtil.decrypt(customer.getPassword()).toString();
 				System.out.println("password::::"+decryptedPwd +" password:"+password);
 				System.out.println(decryptedPwd.equals(password));
-				if(userName.equals(customer.getUserName()) && (decryptedPwd.equals(password)) ) {
+				if(userName.equals(customer.getEmail()) && (decryptedPwd.equals(password)) ) {
 					return customer;
 				}
 			} catch (Exception e) {
