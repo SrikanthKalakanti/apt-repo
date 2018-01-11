@@ -8,7 +8,7 @@
  * Controller of myAppApp
  */
 angular.module('myAppApp')
-  .controller('RegisterCtrl', function($scope) {
+  .controller('RegisterCtrl', function($scope, RegisterDataOp) {
     $//scope.$state = $state;
     $scope.registerUser = {
     	namePrefix : 'Mr',
