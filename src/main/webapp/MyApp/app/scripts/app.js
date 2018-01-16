@@ -23,7 +23,11 @@ angular
   .config(function ($routeProvider,$locationProvider) {
     $locationProvider.hashPrefix('');
     $routeProvider
-      .when('/login', {
+    .when('/home', {
+        templateUrl: 'views/home.html'
+        //controller: 'LoginCtrl',
+        //controllerAs: 'login'
+      }).when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
         controllerAs: 'login'
@@ -45,6 +49,6 @@ angular
         controllerAs: 'assetsData'
       })
       .otherwise({
-        redirectTo: '/login'
+        redirectTo: '/home'
       });
   });

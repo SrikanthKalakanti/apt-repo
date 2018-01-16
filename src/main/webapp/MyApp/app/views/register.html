@@ -11,11 +11,11 @@
 </div> -->
   
  <div class="container">
-
+    <div class="main-w3layouts-form">
       <form class="form-register" name="registerForm" novalidate>
         <h2 class="form-signin-heading">Please Register</h2>
         <div class="form-group">
-            <label>Name Prefix</label><br/>
+            <label>Name Prefix</label>
             <input type="radio" name="namePrefix" class="form-group" value="Mr" ng-model="registerUser.namePrefix" required> Mr
             <input type="radio" name="namePrefix" class="form-group" value="Mrs" ng-model="registerUser.namePrefix" required> Mrs
             <input type="radio" name="namePrefix" class="form-group" value="Ms" ng-model="registerUser.namePrefix" required> Ms
@@ -34,7 +34,7 @@
             <p ng-show="registerForm.lastName.$invalid && !registerForm.lastName.$pristine" class="help-block">Last Name is required.</p>
         </div>
         <div class="form-group">
-            <label>Status</label><br/>
+            <label>Status</label>
             <input type="radio" name="status" class="form-group" value="Individual" ng-model="registerUser.status" required> Individual
             <input type="radio" name="status" class="form-group" value="Firm" ng-model="registerUser.status" required> Firm
         </div>
@@ -94,9 +94,9 @@
         <div class="form-group">
             <label>Profession</label><br/>
             <input type="radio" name="profession" class="form-group" value="CA" ng-model="registerUser.profession" required> Chartered Accountant
-            <input type="radio" name="profession" class="form-group" value="CMA" ng-model="registerUser.profession" required> Cost and Management Accountant
+            <input type="radio" name="profession" class="form-group" value="CMA" ng-model="registerUser.profession" required> Cost and Management Accountant<br/>
             <input type="radio" name="profession" class="form-group" value="CS" ng-model="registerUser.profession" required> Company Secretary
-            <input type="radio" name="profession" class="form-group" value="ITP" ng-model="registerUser.profession" required> Income Tax Practitioner
+            <input type="radio" name="profession" class="form-group" value="ITP" ng-model="registerUser.profession" required> Income Tax Practitioner<br/>
             <input type="radio" name="profession" class="form-group" value="STP" ng-model="registerUser.profession" required> Sales Tax Practitioner
             <input type="radio" name="profession" class="form-group" value="BNK" ng-model="registerUser.profession" required> Banker
             <input type="radio" name="profession" class="form-group" value="OTH" ng-model="registerUser.profession" required> Others
@@ -132,5 +132,5 @@
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit" ng-disabled="registerForm.$invalid" ng-click="submit()">Register</button>
       </form>
-
+    </div>
     </div>
