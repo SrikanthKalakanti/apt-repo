@@ -76,3 +76,6 @@ body {
     margin-top: 3.5rem!important;
     margin-bottom: 3.5rem !important
 }
+.pull-right{
+    float:right;
+}

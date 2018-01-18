@@ -35,6 +35,10 @@ angular
         templateUrl: 'views/dashboard.html',
         controller: 'DashboardCtrl',
         controllerAs: 'dashboard'
+      }).when('/addClient', {
+        templateUrl: 'views/addClient.html',
+        controller: 'AddClientCtrl',
+        controllerAs: 'addClient'
       }).when('/register', {
         templateUrl: 'views/register.html',
         controller: 'RegisterCtrl',
