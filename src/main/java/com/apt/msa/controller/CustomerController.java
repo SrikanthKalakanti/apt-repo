@@ -100,7 +100,7 @@ public class CustomerController {
 	}
 		
 	//@GetMapping(value ="getcustomerdetails")
-	@RequestMapping(method=RequestMethod.GET, value ="getcustomerdetails",consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(method=RequestMethod.GET, value ="getlistofclientdetails",consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@CrossOrigin(origins = { "http://localhost:9000" })
 	public Response getCustomer(final @RequestParam("customerId") Long customerId) {
 		try {

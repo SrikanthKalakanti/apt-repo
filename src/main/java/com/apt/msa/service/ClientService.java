@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.apt.msa.entity.APTInput;
 import com.apt.msa.entity.Client;
 import com.apt.msa.exception.APTException;
 import com.apt.msa.jpa.repository.ClientRespository;
@@ -35,5 +36,10 @@ public class ClientService implements IClientService {
 		List<Client> clientList = clientRepository.fetchByCustomerId(customerId);
 		return clientList;
 	}
+
+	/*@Override
+	public Client createAPTInput(APTInput aptInput) throws APTException {
+		 return clientRepository.save(aptInput);
+	}*/
 
 }

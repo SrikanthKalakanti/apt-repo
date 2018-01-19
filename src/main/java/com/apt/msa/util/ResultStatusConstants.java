@@ -8,6 +8,7 @@ public class ResultStatusConstants {
     public static final String STATUS_SUCCESS ="Success";
     public static final String STATUS_CREATE_CUSTOMER_SUCCESS ="Customer Created Successfully";
     public static final String STATUS_CREATE_CLIENT_SUCCESS ="Client Created Successfully";
+    public static final String STATUS_CREATE_APTINPUT_SUCCESS ="Client APT Input Created Successfully";
    
     public static final String STATUS_SUCCESS_LOGIN ="Login Successful";
     public static final String STATUS_MAIL_SENDED ="Mail sended successfully.Check your email id for your password.";
