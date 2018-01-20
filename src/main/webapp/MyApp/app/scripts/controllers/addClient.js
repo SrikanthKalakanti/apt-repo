@@ -68,7 +68,7 @@ angular.module('myAppApp')
         // address.push(tempAddress);
         // $scope.client.address = address;
         console.log($scope.client);
-        if ($scope.client.$valid) {
+        if ($scope.clientForm.$valid) {
           CustomerService.addCustomer($scope.client)
             .then(function success(response) {
                 console.log(response);
