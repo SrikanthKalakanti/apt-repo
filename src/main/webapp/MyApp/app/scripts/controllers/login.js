@@ -8,7 +8,7 @@
  * Controller of yapp
  */
 angular.module('myAppApp')
-  .controller('LoginCtrl', function($scope, $location, LoginService) {
+  .controller('LoginCtrl', function($scope, $location, LoginService, $window) {
 
     $scope.user = {
       email : '',
@@ -21,12 +21,23 @@ angular.module('myAppApp')
         //alert('our form is amazing');
         $scope.user.userName = $scope.user.email;
         //console.log($scope.user);
+        // $scope.errorMessage = "xyz";//response.errorMessage;
+        //         $scope.errorMessagebool = true;
+        //         $window.scrollTo(0, 0);
         LoginService.login($scope.user)
           .then(function success(response) {
               console.log(response);
-              $location.path('/dashboard');
+              if(response.status === "ok"){
+                $location.path('/dashboard');
+              } else {
+                $scope.errorMessage = response.errorMessage;
+                $scope.errorMessagebool = true;
+                $window.scrollTo(0, 0);
+              }              
           }, function error(response) {
-              $scope.status = error.message;          
+              $scope.errorMessage = response.errorMessage;
+              $scope.errorMessagebool = true;
+              $window.scrollTo(0, 0);          
           });		    
 	    }
       return false;
