@@ -89,8 +89,8 @@ angular.module('myAppApp')
             RegisterService.register($scope.registerUser)
             .then(function success(response) {
                 console.log(response);
-                if(response.status === "ok") {
-                  $scope.successMessage = response.errorMessage;
+                if(response.data.status === "ok") {
+                  $scope.successMessage = response.data.errorMessage;
                   $scope.successMessagebool = true;
                   $window.scrollTo(0, 0);
                   $scope.safeApply($timeout(function () {
@@ -99,12 +99,12 @@ angular.module('myAppApp')
                       $location.path('/login');
                   }, 3000));
                 } else {
-                  $scope.errorMessage = response.errorMessage;
+                  $scope.errorMessage = response.data.errorMessage;
                   $scope.errorMessagebool = true;
                   $window.scrollTo(0, 0);
                 }                
             }, function error(response) {
-                $scope.successMessage = response.errorMessage;
+                $scope.successMessage = response.data.errorMessage;
                 $scope.successMessagebool = true;
                 $window.scrollTo(0, 0);        
             });		    
