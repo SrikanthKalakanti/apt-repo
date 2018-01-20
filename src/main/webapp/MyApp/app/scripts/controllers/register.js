@@ -8,7 +8,7 @@
  * Controller of myAppApp
  */
 angular.module('myAppApp')
-  .controller('RegisterCtrl', function($scope, $location, RegisterService) {
+  .controller('RegisterCtrl', function($scope, $location, RegisterService, $timeout, $window, safeApply) {
     $//scope.$state = $state;
     $scope.registerUser = {
     	namePrefix : 'Mr',
@@ -74,15 +74,53 @@ angular.module('myAppApp')
     	$scope.registerUser.address = address;
       console.log($scope.registerUser);
       if ($scope.registerForm.$valid) {
-		    //alert('our form is amazing');
+        //alert('our form is amazing');
+            // var a = {
+            //   "status" : "ok",
+            //   "errorCode" : "APT1000",
+            //   "errorMessage" : "Customer Created Successfully",
+            //   "exceptionType" : "null",
+            //   "result" : "null",
+            //   "customerId" : "null"
+            // };
+            // $scope.successMessage = a.errorMessage;
+            // $scope.successMessagebool = true;
+            
             RegisterService.register($scope.registerUser)
             .then(function success(response) {
                 console.log(response);
-                //alert("");
-                $location.path('/login');
+                if(response.status === "ok") {
+                  $scope.successMessage = response.errorMessage;
+                  $scope.successMessagebool = true;
+                  $window.scrollTo(0, 0);
+                  $scope.safeApply($timeout(function () {
+                      $scope.successMessagebool = false;
+                      // $scope.$apply();
+                      $location.path('/login');
+                  }, 3000));
+                } else {
+                  $scope.errorMessage = response.errorMessage;
+                  $scope.errorMessagebool = true;
+                  $window.scrollTo(0, 0);
+                }                
             }, function error(response) {
-                $scope.status = error.message;          
+                $scope.successMessage = response.errorMessage;
+                $scope.successMessagebool = true;
+                $window.scrollTo(0, 0);        
             });		    
 	    }
     }
+    $scope.cancel = function(){
+      $location.path('/login');
+    }
+    $scope.safeApply = function(fn) {
+      var phase = this.$root.$$phase;
+      if(phase == '$apply' || phase == '$digest') {
+        if(fn && (typeof(fn) === 'function')) {
+          fn();
+        }
+      } else {
+        this.$apply(fn);
+      }
+    };
   });

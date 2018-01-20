@@ -23,7 +23,11 @@ angular
   .config(function ($routeProvider,$locationProvider) {
     $locationProvider.hashPrefix('');
     $routeProvider
-      .when('/login', {
+    .when('/home', {
+        templateUrl: 'views/home.html'
+        //controller: 'LoginCtrl',
+        //controllerAs: 'login'
+      }).when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
         controllerAs: 'login'
@@ -31,6 +35,10 @@ angular
         templateUrl: 'views/dashboard.html',
         controller: 'DashboardCtrl',
         controllerAs: 'dashboard'
+      }).when('/addClient', {
+        templateUrl: 'views/addClient.html',
+        controller: 'AddClientCtrl',
+        controllerAs: 'addClient'
       }).when('/register', {
         templateUrl: 'views/register.html',
         controller: 'RegisterCtrl',
@@ -45,6 +53,6 @@ angular
         controllerAs: 'assetsData'
       })
       .otherwise({
-        redirectTo: '/login'
+        redirectTo: '/home'
       });
   });
