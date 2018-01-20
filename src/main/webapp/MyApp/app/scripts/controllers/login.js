@@ -27,15 +27,15 @@ angular.module('myAppApp')
         LoginService.login($scope.user)
           .then(function success(response) {
               console.log(response);
-              if(response.status === "ok"){
+              if(response.data.status === "ok"){
                 $location.path('/dashboard');
               } else {
-                $scope.errorMessage = response.errorMessage;
+                $scope.errorMessage = response.data.errorMessage;
                 $scope.errorMessagebool = true;
                 $window.scrollTo(0, 0);
               }              
           }, function error(response) {
-              $scope.errorMessage = response.errorMessage;
+              $scope.errorMessage = response.data.errorMessage;
               $scope.errorMessagebool = true;
               $window.scrollTo(0, 0);          
           });		    

@@ -11,7 +11,7 @@ angular.module('myAppApp')
   .controller('AddClientCtrl', function($scope, $location, CustomerService) {
       $scope.client = {
         namePrefix : 'Mr',
-        status : 'Individual',
+        status : 'Propreitorship',
         state : "-1",
         lineofactivity : 'Manufacturing'
       }
@@ -80,7 +80,7 @@ angular.module('myAppApp')
                 //   "result" : "null",
                 //   "customerId" : "null"
                 // };
-                $scope.successMessage = response.errorMessage;
+                $scope.successMessage = response.data.errorMessage;
                 $scope.successMessagebool = true;
                 $window.scrollTo(0, 0);
                 safeApply($timeout(function () {
@@ -89,7 +89,7 @@ angular.module('myAppApp')
                     $location.path('/login');
                 }, 3000));
             }, function error(response) {
-                $scope.errorMessage = response.errorMessage;
+                $scope.errorMessage = response.data.errorMessage;
                 $scope.errorMessagebool = true;
                 $window.scrollTo(0, 0);        
             });

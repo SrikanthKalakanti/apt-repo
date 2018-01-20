@@ -3,53 +3,54 @@
       <form class="form-register" name="clientForm" novalidate>
         <h2 class="form-signin-heading">Please Enter Client Details</h2>
         <div class="form-group">
-            <label>Name Prefix</label>
+            <label><b>Salutation</b></label>
             <input type="radio" name="namePrefix" class="form-group" value="Mr" ng-model="client.namePrefix" required> Mr
             <input type="radio" name="namePrefix" class="form-group" value="Mrs" ng-model="client.namePrefix" required> Mrs
             <input type="radio" name="namePrefix" class="form-group" value="Ms" ng-model="client.namePrefix" required> Ms
             <input type="radio" name="namePrefix" class="form-group" value="M/S" ng-model="client.namePrefix" required> M/S
         </div>
         <div class="form-group" ng-class="{ 'has-error' : clientForm.name.$invalid && !clientForm.name.$pristine }">
-            <label>Name</label>
+            <label><b>Name of the Client</b></label>
             <i class="fa fa-asterisk text-danger">*</i>
             <input type="text" name="name" class="form-control" ng-model="client.name" required>
             <p ng-show="clientForm.name.$invalid && !clientForm.name.$pristine" class="help-block">Name is required.</p>
         </div>
         <div class="form-group">
-            <label>Status</label>
-            <input type="radio" name="status" class="form-group" value="Individual" ng-model="client.status" required> Individual
+            <label><b>Client Status</b></label>
+            <input type="radio" name="status" class="form-group" value="Propreitorship" ng-model="client.status" required> Propreitorship
             <input type="radio" name="status" class="form-group" value="Partnership" ng-model="client.status" required> Partnership
+            <input type="radio" name="status" class="form-group" value="LmtCompany" ng-model="client.status" required> Limited Company
         </div>
         <div class="form-group" ng-class="{ 'has-error' : clientForm.doorNo.$invalid && !clientForm.doorNo.$pristine }">
-            <label>Address Door No/Building Name</label>
+            <label><b>Door No</b></label>
             <i class="fa fa-asterisk text-danger">*</i>
             <input type="text" name="doorNo" class="form-control" ng-model="client.doorNo" required>
             <p ng-show="clientForm.doorNo.$invalid && !clientForm.doorNo.$pristine" class="help-block">Door No/Building Name is required.</p>
         </div>
         <div class="form-group">
-            <label>Address Road</label>
+            <label><b>Road</b></label>
             <input type="text" name="address" class="form-control" ng-model="client.road">
         </div>
         <div class="form-group">
-            <label>Address Locality</label>
+            <label><b>Locality</b></label>
             <input type="text" name="address1" class="form-control" ng-model="client.locality">
         </div>
         <div class="form-group">
-            <label>Address Land Mark</label>
+            <label><b>Land Mark</b></label>
             <input type="text" name="address2" class="form-control" ng-model="client.landmark">
         </div>
         <div class="form-group">
-            <label>Town</label>
+            <label><b>Town</b></label>
             <input type="text" name="town" class="form-control" ng-model="client.town">
         </div>
         <div class="form-group" ng-class="{ 'has-error' : clientForm.pincode.$invalid && !clientForm.pincode.$pristine }">
-            <label>Pincode</label>
+            <label><b>Pincode</b></label>
             <i class="fa fa-asterisk text-danger">*</i>
             <input type="number" name="pincode" class="form-control" ng-model="client.pincode" minlength="7" maxlength="7">
             <p ng-show="clientForm.pincode.$invalid && !clientForm.pincode.$pristine" class="help-block">Pincode is required.</p>
         </div>
         <div class="form-group" ng-class="{ 'has-error' : clientForm.state.$invalid && !clientForm.state.$pristine }">
-            <label>State</label>
+            <label><b>State</b></label>
             <i class="fa fa-asterisk text-danger">*</i>
             <select class="form-control" name="state" ng-model="client.state">
               <option value="-1">Select State</option>
@@ -58,28 +59,28 @@
             <p ng-show="clientForm.state.$invalid && !clientForm.state.$pristine" class="help-block">State is required.</p>
         </div>
         <div class="form-group">
-            <label>Land Phone</label>
+            <label><b>Land Phone</b></label>
             <input type="text" name="landphone" class="form-control" ng-model="client.landphone">
         </div>
         <div class="form-group" ng-class="{ 'has-error' : clientForm.mobile.$invalid && !clientForm.mobile.$pristine }">
-            <label>Mobile Phone</label>
+            <label><b>Mobile Number</b></label>
             <i class="fa fa-asterisk text-danger">*</i>
             <input type="number" name="mobile" class="form-control" ng-model="client.mobile" minlength="10" maxlength="10">
             <p ng-show="clientForm.mobile.$invalid && !clientForm.mobile.$pristine" class="help-block">Mobile Phone is required.</p>
         </div>
         <div class="form-group" ng-class="{ 'has-error' : clientForm.email.$invalid && !clientForm.email.$pristine }">
-            <label>Email address</label>
+            <label><b>Email Address</b></label>
             <i class="fa fa-asterisk text-danger">*</i>
             <input type="email" name="email" class="form-control" ng-model="client.email" required>
             <p ng-show="clientForm.email.$invalid && !clientForm.email.$pristine" class="help-block">Email is required.</p>
         </div>
         <div class="form-group">
-            <label>Line of Activity</label>
+            <label><b>Industry</b></label>
             <input type="radio" name="lineofactivity" class="form-group" value="Manufacturing" ng-model="client.lineofactivity" required> Manufacturing
             <input type="radio" name="lineofactivity" class="form-group" value="Service" ng-model="client.lineofactivity" required> Service
         </div>
         <div class="form-group" ng-class="{ 'has-error' : clientForm.dateoffirstditributionoftermloan.$invalid && !clientForm.dateoffirstditributionoftermloan.$pristine }">
-            <label>Date of first Disbursement Term Loan</label>
+            <label><b>Anticipated date of first disbursement of proposed Term Loan</b></label>
             <i class="fa fa-asterisk text-danger">*</i>
             <input type="date" name="dateoffirstditributionoftermloan" class="form-control" ng-model="client.dateoffirstditributionoftermloan" required>
             <p ng-show="clientForm.dateoffirstditributionoftermloan.$invalid && !clientForm.dateoffirstditributionoftermloan.$pristine" class="help-block">Date of first Disbursement Term Loan is required.</p>
