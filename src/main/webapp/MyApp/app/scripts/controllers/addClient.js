@@ -83,7 +83,7 @@ angular.module('myAppApp')
                 $scope.successMessage = response.data.errorMessage;
                 $scope.successMessagebool = true;
                 $window.scrollTo(0, 0);
-                safeApply($timeout(function () {
+                $scope.safeApply($timeout(function () {
                     $scope.successMessagebool = false;
                     // $scope.$apply();
                     $location.path('/login');
