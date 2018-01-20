@@ -8,7 +8,7 @@
  * Controller of yapp
  */
 angular.module('myAppApp')
-  .controller('AddClientCtrl', function($scope, $location, CustomerService, $window) {
+  .controller('AddClientCtrl', function($scope, $location, CustomerService, $window, $timeout) {
       $scope.client = {
         namePrefix : 'Mr',
         status : 'Propreitorship',
