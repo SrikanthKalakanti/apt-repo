@@ -86,7 +86,7 @@ angular.module('myAppApp')
                 $scope.safeApply($timeout(function () {
                     $scope.successMessagebool = false;
                     // $scope.$apply();
-                    $location.path('/login');
+                    $location.path('/dashboard');
                 }, 3000));
             }, function error(response) {
                 $scope.errorMessage = response.data.errorMessage;
