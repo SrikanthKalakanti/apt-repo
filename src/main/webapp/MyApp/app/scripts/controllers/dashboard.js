@@ -8,7 +8,7 @@
  * Controller of yapp
  */
 angular.module('myAppApp')
-  .controller('DashboardCtrl', function($scope, $location, $http, DashboadService, LoginService) {
+  .controller('DashboardCtrl', function($scope, $location, DashboadService, LoginService) {
     $scope.data = {};
     $scope.clients = {};
     $scope.addClient = function(){
@@ -47,7 +47,7 @@ angular.module('myAppApp')
       //   $scope.clients = data.data;
       //   $scope.gridOptions.data = $scope.clients;
       //   //$scope.filtered = $scope.gridOptions.data;
-        DashboadService.getAllClients(loginServiceData.cusomerId)
+      DashboadService.getAllClients(loginServiceData.cusomerId)
             .then(function success(response) {
                 console.log(response);
                 if(response.data.status === "ok"){
