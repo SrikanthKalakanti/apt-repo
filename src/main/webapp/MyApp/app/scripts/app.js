@@ -18,7 +18,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'LoginService'
+    'LoginService',
+    'ui.grid'
   ])
   .config(function ($routeProvider,$locationProvider) {
     $locationProvider.hashPrefix('');

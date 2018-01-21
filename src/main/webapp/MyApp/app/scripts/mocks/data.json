@@ -28,5 +28,85 @@
         "email" : "sampath@gmail.com",
         "loa" : "Manufacturing",
         "termLoadDate" : "01/20/2018"
+      },
+      {
+        "clientId": 4,
+        "clientName": "Srikanth",
+        "clientStatus": "Propreitorship",
+        "address": "XYZ",
+        "phone" : "123456789",
+        "email" : "sampath@gmail.com",
+        "loa" : "Manufacturing",
+        "termLoadDate" : "01/20/2018"
+      },
+      {
+        "clientId": 5,
+        "clientName": "Laxmi",
+        "clientStatus": "Propreitorship",
+        "address": "XYZ",
+        "phone" : "123456789",
+        "email" : "sampath@gmail.com",
+        "loa" : "Manufacturing",
+        "termLoadDate" : "01/20/2018"
+      },
+      {
+        "clientId": 6,
+        "clientName": "Naveen",
+        "clientStatus": "Propreitorship",
+        "address": "XYZ",
+        "phone" : "123456789",
+        "email" : "sampath@gmail.com",
+        "loa" : "Manufacturing",
+        "termLoadDate" : "01/20/2018"
+      },
+      {
+        "clientId": 7,
+        "clientName": "Ramu",
+        "clientStatus": "Propreitorship",
+        "address": "XYZ",
+        "phone" : "123456789",
+        "email" : "sampath@gmail.com",
+        "loa" : "Manufacturing",
+        "termLoadDate" : "01/20/2018"
+      },
+      {
+        "clientId": 8,
+        "clientName": "Kishore",
+        "clientStatus": "Propreitorship",
+        "address": "XYZ",
+        "phone" : "123456789",
+        "email" : "sampath@gmail.com",
+        "loa" : "Manufacturing",
+        "termLoadDate" : "01/20/2018"
+      },
+      {
+        "clientId": 9,
+        "clientName": "Ramya",
+        "clientStatus": "Propreitorship",
+        "address": "XYZ",
+        "phone" : "123456789",
+        "email" : "sampath@gmail.com",
+        "loa" : "Manufacturing",
+        "termLoadDate" : "01/20/2018"
+      },
+      {
+        "clientId": 10,
+        "clientName": "Manoj",
+        "clientStatus": "Propreitorship",
+        "address": "XYZ",
+        "phone" : "123456789",
+        "email" : "sampath@gmail.com",
+        "loa" : "Manufacturing",
+        "termLoadDate" : "01/20/2018"
+      },
+      {
+        "clientId": 11,
+        "clientName": "Swathi",
+        "clientStatus": "Propreitorship",
+        "address": "XYZ",
+        "phone" : "123456789",
+        "email" : "sampath@gmail.com",
+        "loa" : "Manufacturing",
+        "termLoadDate" : "01/20/2018"
       }
   ]
