@@ -14,7 +14,7 @@ angular.module('myAppApp')
     $scope.addClient = function(){
       $location.path('/addClient');
     };
-    var loginServiceData = LoginService.getLoginData();
+    $scope.loginServiceData = LoginService.getLoginData();
     $scope.gridOptions = {
       enableSorting: true,
       enableFiltering: true,
@@ -47,7 +47,7 @@ angular.module('myAppApp')
       //   $scope.clients = data.data;
       //   $scope.gridOptions.data = $scope.clients;
       //   //$scope.filtered = $scope.gridOptions.data;
-      DashboadService.getAllClients(loginServiceData.customerId)
+      DashboadService.getAllClients($scope.loginServiceData.customerId)
             .then(function success(response) {
                 console.log(response);
                 if(response.data.status === "ok"){
