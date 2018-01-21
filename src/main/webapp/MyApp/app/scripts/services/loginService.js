@@ -6,6 +6,7 @@ angular.module('myAppApp').service('LoginService', function($http){
     }
     this.saveLoginData = function(data){        
         this.loginData=data;
+        console.log(this.loginData);
     };
     this.getLoginData = function(){        
         return loginData;
