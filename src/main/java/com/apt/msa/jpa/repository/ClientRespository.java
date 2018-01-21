@@ -17,7 +17,7 @@ public interface ClientRespository extends JpaRepository<Client, Long> {
 	@Query("SELECT c FROM Client c where c.clientId=?1")
 	List<Client> fetchByUserName(@Param("clientId") Long clientId);
 	
-	@Query("SELECT clientId,customerId FROM Client c WHERE c.customerId=?1")
+	@Query("SELECT c FROM Client c WHERE c.customerId=?1")
 	List<Client> fetchByCustomerId(@Param("customerId") Long customerId);
 	
 }

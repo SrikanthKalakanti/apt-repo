@@ -47,6 +47,9 @@ public class Customer implements Serializable {
 
 	private String email;
 	
+	private boolean emailValidationflag;
+	private boolean mobileValidationflag;
+	
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "customer")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@JsonManagedReference
