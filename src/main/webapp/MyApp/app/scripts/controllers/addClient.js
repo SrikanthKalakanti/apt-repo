@@ -68,6 +68,7 @@ angular.module('myAppApp')
         // tempAddress.mobile = $scope.client.mobile;
         // address.push(tempAddress);
         // $scope.client.address = address;
+        $scope.loginServiceData = localStorage.getItem("loginData");
         $scope.client.customerId = $scope.loginServiceData.customerId;
         console.log($scope.client);
         if ($scope.clientForm.$valid) {

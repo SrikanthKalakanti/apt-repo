@@ -8,6 +8,7 @@ angular.module('myAppApp').service('LoginService', function($http){
     this.saveLoginData = function(data){        
         this.loginData = data;
         console.log(this.loginData);
+        localStorage.setItem("loginData", this.loginData);
     };
     this.getLoginData = function(){
         console.log(this.loginData);        
