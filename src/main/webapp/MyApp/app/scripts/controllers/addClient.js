@@ -8,13 +8,14 @@
  * Controller of yapp
  */
 angular.module('myAppApp')
-  .controller('AddClientCtrl', function($scope, $location, CustomerService, $window, $timeout) {
+  .controller('AddClientCtrl', function($scope, $location, CustomerService, $window, $timeout, LoginService) {
       $scope.client = {
         namePrefix : 'Mr',
         status : 'Propreitorship',
         state : "-1",
         lineofactivity : 'Manufacturing'
-      }
+      };
+      var loginServiceData = LoginService.getLoginData();
       $scope.states = {
         "AP":"Andhra Pradesh",
         "AR":"Arunachal Pradesh",
@@ -67,6 +68,7 @@ angular.module('myAppApp')
         // tempAddress.mobile = $scope.client.mobile;
         // address.push(tempAddress);
         // $scope.client.address = address;
+        $scope.client.customerId = loginServiceData.customerId;
         console.log($scope.client);
         if ($scope.clientForm.$valid) {
           CustomerService.addCustomer($scope.client)
