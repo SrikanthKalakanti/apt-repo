@@ -9,7 +9,8 @@ angular.module('myAppApp').service('LoginService', function($http){
         this.loginData = data;
         console.log(this.loginData);
     };
-    this.getLoginData = function(){        
-        return loginData;
+    this.getLoginData = function(){
+        console.log(this.loginData);        
+        return this.loginData;
     };
 });
