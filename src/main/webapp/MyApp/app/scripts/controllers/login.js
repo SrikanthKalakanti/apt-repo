@@ -28,6 +28,7 @@ angular.module('myAppApp')
           .then(function success(response) {
               console.log(response);
               if(response.data.status === "ok"){
+                LoginService.saveLoginData(response.data);
                 $location.path('/dashboard');
               } else {
                 $scope.errorMessage = response.data.errorMessage;

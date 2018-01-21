@@ -4,4 +4,10 @@ angular.module('myAppApp').service('LoginService', function($http){
         var urlBase = 'http://localhost:8080';
         return $http.post(urlBase+'/apt/customer/login', loginObj);
     }
+    this.saveLoginData = function(data){        
+        this.loginData=data;
+    };
+    this.getLoginData = function(){        
+        return loginData;
+    };
 });
