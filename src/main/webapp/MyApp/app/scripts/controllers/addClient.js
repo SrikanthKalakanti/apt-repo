@@ -15,7 +15,7 @@ angular.module('myAppApp')
         state : "-1",
         lineofactivity : 'Manufacturing'
       };
-      $scope.loginServiceData = LoginService.getLoginData();
+      $scope.loginServiceData.customerId = LoginService.getLoginData();
       $scope.states = {
         "AP":"Andhra Pradesh",
         "AR":"Arunachal Pradesh",
@@ -68,7 +68,6 @@ angular.module('myAppApp')
         // tempAddress.mobile = $scope.client.mobile;
         // address.push(tempAddress);
         // $scope.client.address = address;
-        $scope.loginServiceData = localStorage.getItem("loginData");
         $scope.client.customerId = $scope.loginServiceData.customerId;
         console.log($scope.client);
         if ($scope.clientForm.$valid) {
