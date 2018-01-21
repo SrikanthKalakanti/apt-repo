@@ -58,9 +58,9 @@ angular.module('myAppApp')
                   $scope.gridOptions.data = $scope.clients;
                 }
             }, function error(response) {
-                $scope.errorMessage = response.data.errorMessage;
-                $scope.errorMessagebool = true;
-                $window.scrollTo(0, 0);        
+                // $scope.errorMessage = response.data.errorMessage;
+                // $scope.errorMessagebool = true;
+                // $window.scrollTo(0, 0);        
             });
       // });
     };
