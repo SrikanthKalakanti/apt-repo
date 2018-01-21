@@ -8,12 +8,13 @@
  * Controller of yapp
  */
 angular.module('myAppApp')
-  .controller('DashboardCtrl', function($scope, $location, $http) {
+  .controller('DashboardCtrl', function($scope, $location, $http, DashboadService, LoginService) {
     $scope.data = {};
     $scope.clients = {};
     $scope.addClient = function(){
       $location.path('/addClient');
     };
+    var loginServiceData = LoginService.getLoginData();
     $scope.gridOptions = {
       enableSorting: true,
       enableFiltering: true,
@@ -22,13 +23,13 @@ angular.module('myAppApp')
       paginationPageSize: 10,
       columnDefs: [
           { name: 'clientId' },
-          { name: 'clientName' },
-          { name: 'clientStatus', enableSorting: false, enableFiltering: false },
+          { name: 'name' },
+          { name: 'status', enableSorting: false, enableFiltering: false },
           { name: 'address', enableSorting: false, enableFiltering: false },
-          { name: 'phone', enableSorting: false, enableFiltering: false },
+          { name: 'mobile', enableSorting: false, enableFiltering: false },
           { name: 'email', enableSorting: false, enableFiltering: false },
-          { name: 'loa', enableSorting: false, enableFiltering: false },
-          { name: 'termLoadDate', enableSorting: false, enableFiltering: false }
+          { name: 'lineofactivity', enableSorting: false, enableFiltering: false },
+          { name: 'dateoffirstditributionoftermloan', enableSorting: false, enableFiltering: false }
         ],
         onRegisterApi: function (gridApi) {
         //   gridApi.pagination.on.paginationChanged($scope, function (pageNumber, pageSize) {
@@ -40,13 +41,28 @@ angular.module('myAppApp')
       };
       
     $scope.loadData = function() {
-      $http.get('../scripts/mocks/data.json').then(function success(data){
-        //var req = JSON.parse(data);
-        console.log(data);
-        $scope.clients = data.data;
-        $scope.gridOptions.data = $scope.clients;
-        //$scope.filtered = $scope.gridOptions.data;
-      });
+      // $http.get('../scripts/mocks/data.json').then(function success(data){
+      //   //var req = JSON.parse(data);
+      //   console.log(data);
+      //   $scope.clients = data.data;
+      //   $scope.gridOptions.data = $scope.clients;
+      //   //$scope.filtered = $scope.gridOptions.data;
+        DashboadService.getAllClients(loginServiceData.cusomerId)
+            .then(function success(response) {
+                console.log(response);
+                if(response.data.status === "ok"){
+                  $scope.clients = response.data.result;
+                  $scope.gridOptions.data = $scope.clients;
+                } else {
+                  $scope.clients = {};
+                  $scope.gridOptions.data = $scope.clients;
+                }
+            }, function error(response) {
+                $scope.errorMessage = response.data.errorMessage;
+                $scope.errorMessagebool = true;
+                $window.scrollTo(0, 0);        
+            });
+      // });
     };
     $scope.loadData();
   });
