@@ -47,7 +47,8 @@ angular.module('myAppApp')
       //   $scope.clients = data.data;
       //   $scope.gridOptions.data = $scope.clients;
       //   //$scope.filtered = $scope.gridOptions.data;
-      DashboadService.getAllClients($scope.loginServiceData.customerId)
+      $scope.userData = localStorage.getItem('userData');
+      DashboadService.getAllClients($scope.userData.customerId)
             .then(function success(response) {
                 console.log(response);
                 if(response.data.status === "ok"){
