@@ -21,9 +21,15 @@ angular
     'LoginService',
     'ui.grid'
   ])
-  .config(function ($routeProvider,$locationProvider) {
+  .config(function ($routeProvider,$locationProvider,$httpProvider) {
     $locationProvider.hashPrefix('');
-    // $http.defaults.headers.common['Accept'] = 'application/json;odata=verbose';
+    // $httpProvider.defaults.useXDomain = true;
+    // $httpProvider.defaults.headers.common['Content-Type'] = 'application/json;charset=UTF-8';
+    // $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = 'http://localhost:9000';
+    // $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = 'Content-Type';
+    // $httpProvider.defaults.headers.common['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS';
+    // $httpProvider.defaults.headers.common['Access-Control-Allow-Credentials'] = 'true';
+    // delete $httpProvider.defaults.headers.common['X-Requested-With'];
     $routeProvider
     .when('/home', {
         templateUrl: 'views/home.html'

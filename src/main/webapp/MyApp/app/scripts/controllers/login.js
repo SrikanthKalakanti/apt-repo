@@ -29,7 +29,7 @@ angular.module('myAppApp')
               console.log(response);
               if(response.data.status === "ok"){
                 LoginService.saveLoginData(response.data);
-                localStorage.setItem('userData', response.data);
+                localStorage.setItem('userData', JSON.stringify(response.data));
                 $location.path('/dashboard');
               } else {
                 $scope.errorMessage = response.data.errorMessage;

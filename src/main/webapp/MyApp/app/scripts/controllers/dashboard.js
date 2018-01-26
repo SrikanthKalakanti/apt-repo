@@ -14,7 +14,6 @@ angular.module('myAppApp')
     $scope.addClient = function(){
       $location.path('/addClient');
     };
-    $scope.loginServiceData = LoginService.getLoginData();
     $scope.gridOptions = {
       enableSorting: true,
       enableFiltering: true,
@@ -47,7 +46,7 @@ angular.module('myAppApp')
       //   $scope.clients = data.data;
       //   $scope.gridOptions.data = $scope.clients;
       //   //$scope.filtered = $scope.gridOptions.data;
-      $scope.userData = localStorage.getItem('userData');
+      $scope.userData = JSON.parse(localStorage.getItem('userData'));
       DashboadService.getAllClients($scope.userData.customerId)
             .then(function success(response) {
                 console.log(response);

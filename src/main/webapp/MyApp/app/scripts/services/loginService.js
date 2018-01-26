@@ -10,8 +10,4 @@ angular.module('myAppApp').service('LoginService', function($http){
         console.log(this.loginData);
         localStorage.setItem("loginData", this.loginData);
     };
-    this.getLoginData = function(){
-        console.log(this.loginData);        
-        return this.loginData;
-    };
 });
