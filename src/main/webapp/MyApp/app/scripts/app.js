@@ -21,9 +21,9 @@ angular
     'LoginService',
     'ui.grid'
   ])
-  .config(function ($routeProvider,$locationProvider,$http) {
+  .config(function ($routeProvider,$locationProvider) {
     $locationProvider.hashPrefix('');
-    $http.defaults.headers.common['Accept'] = 'application/json;odata=verbose';
+    // $http.defaults.headers.common['Accept'] = 'application/json;odata=verbose';
     $routeProvider
     .when('/home', {
         templateUrl: 'views/home.html'
