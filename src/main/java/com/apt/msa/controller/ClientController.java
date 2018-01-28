@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.apt.msa.entity.APTInput;
 import com.apt.msa.entity.Client;
+import com.apt.msa.entity.Customer;
 import com.apt.msa.exception.APTException;
 import com.apt.msa.response.Response;
 import com.apt.msa.service.IAPTService;
@@ -25,6 +26,7 @@ import com.apt.msa.util.ResultStatusConstants;
 
 @RestController
 @RequestMapping("client")
+@CrossOrigin(origins = { "http://localhost:9000" })
 public class ClientController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ClientController.class);
@@ -44,7 +46,6 @@ public class ClientController {
 	 */
 
 	@RequestMapping(method=RequestMethod.POST, value ="createclient",consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	@CrossOrigin(origins = { "http://localhost:9000" })
 	public Response creatClient(RequestEntity<Client> requestEntity) {
 		try {
 			Client clientDetails = requestEntity.getBody();
@@ -52,7 +53,7 @@ public class ClientController {
 			clientService.createClient(clientDetails);
 			
 			return new Response(ResultStatusConstants.STATUS_OK,ResultStatusConstants.SUCCESS_CODE,
-					ResultStatusConstants.STATUS_CREATE_CLIENT_SUCCESS,null);
+								ResultStatusConstants.STATUS_CREATE_CLIENT_SUCCESS, null,clientDetails.getCustomerId());
 			
 		} catch (APTException aptException) {
 			return new Response(aptException);
@@ -68,7 +69,6 @@ public class ClientController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value ="createaptinput",consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	@CrossOrigin(origins = { "http://localhost:9000" })
 	public Response creatAptInput(RequestEntity<APTInput> requestEntity) {
 		try {
 			APTInput aptInput = requestEntity.getBody();
@@ -100,8 +100,7 @@ public class ClientController {
 	
 	
 	@RequestMapping(method=RequestMethod.GET, value ="getallclientsbycustomerid",consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	@CrossOrigin(origins = { "http://localhost:9000" })
-	public Response getAllClientsByCustomer(final @RequestParam("customerId") Long customerId) {
+	public Response getAllClientsByCustomerId(final @RequestParam("customerId") Long customerId) {
 		try {
 			
 			System.out.println("======================================== 1"+customerId);
@@ -131,8 +130,38 @@ public class ClientController {
 
 	}
 	
+	@RequestMapping(method=RequestMethod.POST, value ="getallclientsbycustomer",consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Response getAllClientsByCustomer(RequestEntity<Customer> requestEntity) {
+		try {
+			
+			System.out.println(requestEntity.getBody().getCustomerId());
+			
+			List<Client> clientList = clientService.fetchByCustomerId(requestEntity.getBody().getCustomerId());
+			
+			if(clientList!=null && clientList.size() > 0){
+				return new Response(ResultStatusConstants.STATUS_OK,ResultStatusConstants.SUCCESS_CODE,
+						ResultStatusConstants.STATUS_RETRIEVED_CLIENT_DETAILS,null,clientList);
+			} else{
+				return new Response(ResultStatusConstants.STATUS_FAIL,
+						ResultStatusConstants.ERROR_CODE_USER_NOT_EXISTS,
+						ResultStatusConstants.STATUS_NOCLIENT_DETAILS,null,null);
+			}
+		}
+		 catch (APTException aptException) {
+			
+			return new Response(aptException);
+		}
+		 catch(Exception e){
+			
+			return new Response(
+					ResultStatusConstants.STATUS_FAIL,
+					ResultStatusConstants.ERROR_CODE_UNKNOWN_ERROR,
+					ResultStatusConstants.ERROR_MESSAGE_UNKNOWN_ERROR,null);
+		}
+
+	}
+	
 	@RequestMapping(method=RequestMethod.GET, value ="getclientcetailsbyid",consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	@CrossOrigin(origins = { "http://localhost:9000" })
 	public Response getClient(final @RequestParam("clientId") Long clientId) {
 		try {
 			
