@@ -22,10 +22,10 @@ header.format-3 {
     border-right: 1px solid #eee;
 }
 .main-w3layouts-form > .astrik {
-    color: red;
+    color: red !important;
 }
 .main-w3layouts-form p {
-    color: red;
+    color: red !important;
 }
 body {
     padding-top: 54px;
@@ -79,12 +79,15 @@ body {
 .pull-right{
     float:right;
 }
-.nav .nav-pills > li.active > a, .btn-primary {
+.help-block {
+    color: red !important;
+}
+/* .nav .nav-pills > li.active > a, .btn-primary {
     background-color: #6C6C6C !important;
     /* feeling like it's a rounded corners kind of day */
-    border-color: #6C6C6C !important;
+    /* border-color: #6C6C6C !important;
     border-radius: 25px; 
-  }
+  } */
   .pageFit > .nav .nav-pills .nav-stacked > li.active {
     color: #4DC9C9 !important;
     border-radius: 25px;

@@ -21,14 +21,15 @@ angular.module('myAppApp')
       paginationPageSizes: [25, 50, 75],
       paginationPageSize: 10,
       columnDefs: [
-          { name: 'clientId' },
-          { name: 'name' },
-          { name: 'status', enableSorting: false, enableFiltering: false },
+          { field: 'clientId', name: 'Id', enableHiding: false },
+          { field: 'name', name: 'Name', enableHiding: false },
+          { name: 'status', enableSorting: false, enableFiltering: false, enableHiding: false },
           // { name: 'address', enableSorting: false, enableFiltering: false },
-          { name: 'mobile', enableSorting: false, enableFiltering: false },
-          { name: 'email', enableSorting: false, enableFiltering: false },
-          { name: 'lineofactivity', enableSorting: false, enableFiltering: false },
-          { name: 'dateoffirstditributionoftermloan', enableSorting: false, enableFiltering: false }
+          { name: 'mobile', enableSorting: false, enableFiltering: false, enableHiding: false },
+          { name: 'email', enableSorting: false, enableFiltering: false, enableHiding: false },
+          { field: 'lineofactivity', name: 'Line of Activity', enableSorting: false, enableFiltering: false, enableHiding: false },
+          { field: 'dateoffirstditributionoftermloan', name: 'Date of Loan Ditribution', enableSorting: false, enableFiltering: false, enableHiding: false, cellFilter: 'date:\'dd-MM-yyyy\'' },
+          { name: 'Add/Update Details', cellTemplate:'<div class="ui-grid-cell-contents"><a href="#/clientDetails" ng-click="grid.appScope.updateDetails(row.entity)">Click me</a></div>', enableSorting: false, enableFiltering: false, enableHiding: false }
         ],
         onRegisterApi: function (gridApi) {
         //   gridApi.pagination.on.paginationChanged($scope, function (pageNumber, pageSize) {
@@ -38,7 +39,12 @@ angular.module('myAppApp')
           $scope.grid1Api = gridApi;
         }
       };
-      
+    $scope.updateDetails = function(row){
+      // console.log(JSON.stringify(row));
+      localStorage.setItem("clientData",JSON.stringify(row));
+      $location.path('/clientDetails');
+      // $location.path("/clientDetails");
+    }; 
     $scope.loadData = function() {
       // $http.get('../scripts/mocks/data.json').then(function success(data){
       //   //var req = JSON.parse(data);

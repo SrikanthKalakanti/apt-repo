@@ -62,7 +62,7 @@ angular
       }).when('/clientDetails', {
         templateUrl: 'views/clientDetails.html',
         controller: 'ClientDetailsCtrl',
-        controllerAs: 'clientDetails'
+        controllerAs: 'clientDtl'
       })
       .otherwise({
         redirectTo: '/home'

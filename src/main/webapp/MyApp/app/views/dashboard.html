@@ -6,7 +6,7 @@
           <span ng-if="(clients | json) == '{}'">You don't have any clients. Please add the client.</span>
           <button class="btn btn-primary pull-right" ng-click="addClient()">Add Client</button>
           <h2 class="sub-header" ng-if="clients.length > 0">List Of Clients</h2>
-          <div ng-if="clients.length > 0" ui-grid="gridOptions" ui-grid-pagination class="myGrid"></div>
+          <div ng-if="clients.length > 0" ui-grid="gridOptions" external-scopes="$scope" ui-grid-pagination class="myGrid"></div>
         </div>
       </div>
     </div>
