@@ -1,0 +1,33 @@
+<div class="container pageFit">
+    <div class="row">
+        <div class="col-md-2">
+            <ul class="nav nav-pills nav-stacked">
+             <li ng-class="{ tabStyle: isSet(1), tabStyleNone : !isSet(1) }">
+                <a href ng-click="setTab(1)">Client Profile</a>
+             </li>
+             <li ng-class="{ tabStyle: isSet(2), tabStyleNone : !isSet(2) }">
+                <a href ng-click="setTab(2)">Assets</a>
+             </li>
+             <li ng-class="{ tabStyle: isSet(3), tabStyleNone : !isSet(3) }">
+                <a href ng-click="setTab(3)">Expences</a>
+             </li>
+           </ul>
+        </div>
+      <div class="col-md-10">
+            <div class="jumbotron">
+             <div ng-show="isSet(1)">
+                <h1>Home page</h1>
+                <p>Welcome to the website!</p>
+                <p><a class="btn btn-primary btn-lg" role="button">Learn more</a></p>
+              </div>
+              <div ng-show="isSet(2)">
+            <h1>Profile page</h1>
+            <p>Profile information</p>
+           </div>
+          <div ng-show="isSet(3)">
+            <h1>Messages</h1>
+            <p> Some messages </p>
+           </div>
+        </div>
+    </div>
+  </div>

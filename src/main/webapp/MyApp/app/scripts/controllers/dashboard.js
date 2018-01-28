@@ -24,7 +24,7 @@ angular.module('myAppApp')
           { name: 'clientId' },
           { name: 'name' },
           { name: 'status', enableSorting: false, enableFiltering: false },
-          { name: 'address', enableSorting: false, enableFiltering: false },
+          // { name: 'address', enableSorting: false, enableFiltering: false },
           { name: 'mobile', enableSorting: false, enableFiltering: false },
           { name: 'email', enableSorting: false, enableFiltering: false },
           { name: 'lineofactivity', enableSorting: false, enableFiltering: false },
