@@ -22,10 +22,10 @@ header.format-3 {
     border-right: 1px solid #eee;
 }
 .main-w3layouts-form > .astrik {
-    color: red;
+    color: red !important;
 }
 .main-w3layouts-form p {
-    color: red;
+    color: red !important;
 }
 body {
     padding-top: 54px;
@@ -79,3 +79,55 @@ body {
 .pull-right{
     float:right;
 }
+.help-block {
+    color: red !important;
+}
+/* .nav .nav-pills > li.active > a, .btn-primary {
+    background-color: #6C6C6C !important;
+    /* feeling like it's a rounded corners kind of day */
+    /* border-color: #6C6C6C !important;
+    border-radius: 25px; 
+  } */
+  .pageFit > .nav .nav-pills .nav-stacked > li.active {
+    color: #4DC9C9 !important;
+    border-radius: 25px;
+    background-color: #6C6C6C !important;
+    height: 100%;
+    width: 100%;
+    padding: 5px;
+  }
+  .nav .nav-pills .nav-stacked li.active {
+    color: #4DC9C9 !important;
+    border-radius: 25px;
+    background-color: #6C6C6C !important;
+    height: 100%;
+    width: 100%;
+    padding: 5px;
+    text-decoration: none;
+  }
+  .nav .nav-pills .nav-stacked > h1, p, a {
+    color: #4DC9C9 !important;
+    text-decoration: none;
+  }
+  .pageFit{
+      padding-top:50px;
+      /* border-right: 1px solid #6C6C6C; */
+  }
+  .tabStyle {
+    color: #4DC9C9 !important;
+    border-radius: 25px;
+    background-color: #6C6C6C !important;
+    height: 100%;
+    width: 100%;
+    padding: 5px 0px 5px 5px;
+    margin-bottom: 5px;
+  }
+  .tabStyleNone {
+    color: #4DC9C9 !important;
+    border-radius: 0px;
+    /* background-color: #e9ecef !important; */
+    height: 100%;
+    width: 100%;
+    padding: 5px 0px 5px 5px;
+    margin-bottom: 5px;
+  }

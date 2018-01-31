@@ -59,6 +59,10 @@ angular
         templateUrl: 'views/assets.html',
         controller: 'AssetsCtrl',
         controllerAs: 'assetsData'
+      }).when('/clientDetails', {
+        templateUrl: 'views/clientDetails.html',
+        controller: 'ClientDetailsCtrl',
+        controllerAs: 'clientDtl'
       })
       .otherwise({
         redirectTo: '/home'
