@@ -3,20 +3,13 @@ package com.apt.msa.entity;
 import java.io.Serializable;
 import java.sql.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity(name="basic_input")
@@ -29,11 +22,14 @@ public class BasicInput implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long basicInputId;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	/*@OneToOne(cascade = CascadeType.ALL)
 	@LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name = "clientId")
 	@JsonBackReference
-	private Client client;
+	private Client client;*/
+	
+	@JsonProperty("clientId")
+	private Long clientId;
 	 
 	private String nameOfTheBusiness;
 	
@@ -62,13 +58,12 @@ public class BasicInput implements Serializable {
 		
 	}
 
-	public BasicInput(Long basicInputId, Client client, String nameOfTheBusiness, Date termLoanFirstDisbursementDate,
+	public BasicInput(Long basicInputId, String nameOfTheBusiness, Date termLoanFirstDisbursementDate,
 			Date businessCommencementDate, Integer tenureOfTermLoan, double moratorium, double interestRateForCc,
 			Integer paymentDate, Integer status, Integer cashCreditAmountRequired, Integer fixedExpensesPerMonth,
 			Integer numberOfDaysInAMonth, Integer productionPerMonthInUnits) {
 		super();
 		this.basicInputId = basicInputId;
-		this.client = client;
 		this.nameOfTheBusiness = nameOfTheBusiness;
 		this.termLoanFirstDisbursementDate = termLoanFirstDisbursementDate;
 		this.businessCommencementDate = businessCommencementDate;
@@ -89,14 +84,6 @@ public class BasicInput implements Serializable {
 
 	public void setBasicInputId(Long basicInputId) {
 		this.basicInputId = basicInputId;
-	}
-
-	public Client getClient() {
-		return client;
-	}
-
-	public void setClient(Client client) {
-		this.client = client;
 	}
 
 	public String getNameOfTheBusiness() {
@@ -197,7 +184,7 @@ public class BasicInput implements Serializable {
 
 	@Override
 	public String toString() {
-		return "BasicInput [basicInputId=" + basicInputId + ", client=" + client + ", nameOfTheBusiness="
+		return "BasicInput [basicInputId=" + basicInputId +  ", nameOfTheBusiness="
 				+ nameOfTheBusiness + ", termLoanFirstDisbursementDate=" + termLoanFirstDisbursementDate
 				+ ", businessCommencementDate=" + businessCommencementDate + ", tenureOfTermLoan=" + tenureOfTermLoan
 				+ ", moratorium=" + moratorium + ", interestRateForCc=" + interestRateForCc + ", paymentDate="
@@ -220,6 +207,14 @@ public class BasicInput implements Serializable {
 
 	public void setBusinessCommencement(String businessCommencement) {
 		this.businessCommencement = businessCommencement;
+	}
+	
+	public Long getClientId() {
+		return clientId;
+	}
+
+	public void setClientId(Long clientId) {
+		this.clientId = clientId;
 	}
 	
 }

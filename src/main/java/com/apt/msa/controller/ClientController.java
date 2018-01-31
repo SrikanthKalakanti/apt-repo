@@ -1,7 +1,5 @@
 package com.apt.msa.controller;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -15,12 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.apt.msa.entity.APTInput;
 import com.apt.msa.entity.Client;
 import com.apt.msa.entity.Customer;
 import com.apt.msa.exception.APTException;
 import com.apt.msa.response.Response;
-import com.apt.msa.service.IAPTService;
 import com.apt.msa.service.IClientService;
 import com.apt.msa.util.ResultStatusConstants;
 
@@ -34,12 +30,11 @@ public class ClientController {
 	@Autowired
 	private IClientService clientService;
 	
-	@Autowired
-	private IAPTService aptService;
-	
 	/**
-	 * author srikanth
 	 * 
+	 * Create Client API
+	 * author srikanth
+	 * Create a client details of a Customer in the Database
 	 * 
 	 * @param requestEntity
 	 * @return
@@ -68,22 +63,25 @@ public class ClientController {
 
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value ="createaptinput",consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Response creatAptInput(RequestEntity<APTInput> requestEntity) {
-		try {
-			APTInput aptInput = requestEntity.getBody();
-			
+	/**
+	 * 
+	 * Create Client API
+	 * author srikanth
+	 * Create a client details of a Customer in the Database
+	 * 
+	 * @param requestEntity
+	 * @return
+	 */
 
-			Date termLoandate = new Date(new SimpleDateFormat("dd/MM/yyyy").parse(aptInput.getBasicInput().getTermLoanDisbursement()).getTime());
-			aptInput.getBasicInput().setTermLoanFirstDisbursementDate(termLoandate);
+	@RequestMapping(method=RequestMethod.POST, value ="updateclient",consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Response updateClient(RequestEntity<Client> requestEntity) {
+		try {
+			Client clientDetails = requestEntity.getBody();
 			
-			Date buisnessCommenceDate = new Date(new SimpleDateFormat("dd/MM/yyyy").parse(aptInput.getBasicInput().getBusinessCommencement()).getTime());
-			aptInput.getBasicInput().setBusinessCommencementDate(buisnessCommenceDate);
-								
-			aptService.createAPTInput(aptInput);
+			clientService.createClient(clientDetails);
 			
 			return new Response(ResultStatusConstants.STATUS_OK,ResultStatusConstants.SUCCESS_CODE,
-					ResultStatusConstants.STATUS_CREATE_APTINPUT_SUCCESS,null);
+								ResultStatusConstants.STATUS_UPDATE_CLIENT_SUCCESS, null,clientDetails.getClientId());
 			
 		} catch (APTException aptException) {
 			return new Response(aptException);

@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.apt.msa.entity.APTInput;
 import com.apt.msa.entity.Client;
 import com.apt.msa.exception.APTException;
 import com.apt.msa.jpa.repository.ClientRespository;
@@ -25,6 +24,18 @@ public class ClientService implements IClientService {
 
 	}
 	
+	/**
+	 * Update client details to DB
+	 */
+	public int updateClient(Client client) throws APTException {
+
+		return clientRepository.updateClient(client.getClientId(), client.getDateoffirstditributionoftermloan(), 
+				client.getDoorNo(), client.getEmail(), client.getLineofactivity(), client.getLandmark(), 
+				client.getLandphone(), client.getLocality(), client.getMobile(), client.getName(), client.getNamePrefix(), 
+				client.getPincode(), client.getRoad(), client.getState(), client.getStatus(), client.getTown());
+
+	}
+	
 	@Override
 	public Client findOne(Long clientId) throws APTException {
 		Client client = clientRepository.findOne(clientId);
@@ -36,10 +47,5 @@ public class ClientService implements IClientService {
 		List<Client> clientList = clientRepository.fetchByCustomerId(customerId);
 		return clientList;
 	}
-
-	/*@Override
-	public Client createAPTInput(APTInput aptInput) throws APTException {
-		 return clientRepository.save(aptInput);
-	}*/
 
 }

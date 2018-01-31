@@ -2,19 +2,13 @@ package com.apt.msa.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity(name="growth_inflation_input")
 @Table(name="growth_inflation_input")
@@ -26,11 +20,14 @@ public class GrowthInflationInput implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long growthIflationId;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	/*@OneToOne(cascade = CascadeType.ALL)
 	@LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name = "clientId")
 	@JsonBackReference
-	private Client client;
+	private Client client;*/
+	
+	@JsonProperty("clientId")
+	private Long clientId;
 	
 	private String answer1;
 	private String answer2;
@@ -43,11 +40,11 @@ public class GrowthInflationInput implements Serializable {
 		
 	}
 	
-	public GrowthInflationInput(Long growthIflationId, Client client, String answer1, String answer2,
+	public GrowthInflationInput(Long growthIflationId, Long clientId, String answer1, String answer2,
 			String answer3, Double numberOfYears, String array1, String array2) {
 		super();
 		this.growthIflationId = growthIflationId;
-		this.client = client;
+		this.clientId = clientId;
 		this.answer1 = answer1;
 		this.answer2 = answer2;
 		this.answer3 = answer3;
@@ -61,12 +58,7 @@ public class GrowthInflationInput implements Serializable {
 	public void setGrowthIflationId(Long growthIflationId) {
 		this.growthIflationId = growthIflationId;
 	}
-	public Client getClient() {
-		return client;
-	}
-	public void setClient(Client client) {
-		this.client = client;
-	}
+	
 	public String getAnswer1() {
 		return answer1;
 	}
@@ -106,9 +98,17 @@ public class GrowthInflationInput implements Serializable {
 
 	@Override
 	public String toString() {
-		return "GrowthInflationInput [growthIflationId=" + growthIflationId + ", client=" + client
+		return "GrowthInflationInput [growthIflationId=" + growthIflationId + ", clientId=" + clientId
 				+ ", answer1=" + answer1 + ", answer2=" + answer2 + ", answer3=" + answer3 + ", numberOfYears="
 				+ numberOfYears + ", array1=" + array1 + ", array2=" + array2 + "]";
+	}
+
+	public Long getClientId() {
+		return clientId;
+	}
+
+	public void setClientId(Long clientId) {
+		this.clientId = clientId;
 	}
 	
 }

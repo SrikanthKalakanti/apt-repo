@@ -2,19 +2,13 @@ package com.apt.msa.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity(name="expenses_input")
 @Table(name="expenses_input")
@@ -30,25 +24,28 @@ public class ExpensesInput implements Serializable {
 	private String expenditurePer; 
 	private double amountInINR;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	/*@ManyToOne(cascade = CascadeType.ALL)
 	@LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name = "clientId")
 	@JsonBackReference
-	private Client client;
+	private Client client;*/
+	
+	@JsonProperty("clientId")
+	private Long clientId;
 	
 	public ExpensesInput(){
 		
 	}
 	
 	public ExpensesInput(Long expensesInputId, String nomenclature, String cmaNomenclature, String expenditurePer,
-			double amountInINR, Client client) {
+			double amountInINR, Long clientId) {
 		super();
 		this.expensesInputId = expensesInputId;
 		this.nomenclature = nomenclature;
 		this.cmaNomenclature = cmaNomenclature;
 		this.expenditurePer = expenditurePer;
 		this.amountInINR = amountInINR;
-		this.client = client;
+		this.clientId = clientId;
 	}
 	
 	public Long getExpensesInputId() {
@@ -65,14 +62,6 @@ public class ExpensesInput implements Serializable {
 
 	public void setNomenclature(String nomenclature) {
 		this.nomenclature = nomenclature;
-	}
-
-	public Client getClient() {
-		return client;
-	}
-
-	public void setClient(Client client) {
-		this.client = client;
 	}
 
 	public String getCmaNomenclature() {
@@ -103,7 +92,15 @@ public class ExpensesInput implements Serializable {
 	public String toString() {
 		return "ExpensesInput [expensesInputId=" + expensesInputId + ", nomenclature=" + nomenclature
 				+ ", cmaNomenclature=" + cmaNomenclature + ", expenditurePer=" + expenditurePer + ", amountInINR="
-				+ amountInINR + ", client=" + client + "]";
+				+ amountInINR + ", clientId=" + clientId + "]";
+	}
+
+	public Long getClientId() {
+		return clientId;
+	}
+
+	public void setClientId(Long clientId) {
+		this.clientId = clientId;
 	}
 
 }

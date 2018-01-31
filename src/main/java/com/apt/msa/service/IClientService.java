@@ -8,6 +8,7 @@ import com.apt.msa.exception.APTException;
 public interface IClientService {
 	
      Client createClient(Client client) throws APTException;
+     int updateClient(Client client) throws APTException;
      //Client createAPTInput(APTInput aptInput) throws APTException;
      Client findOne(Long clientId) throws APTException;
      List<Client> fetchByCustomerId(Long customerId) throws APTException;

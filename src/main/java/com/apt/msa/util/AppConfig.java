@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.apt.msa")
+//@ComponentScan("com.apt.msa")
 public class AppConfig extends WebMvcConfigurerAdapter {
  
 	@Override
