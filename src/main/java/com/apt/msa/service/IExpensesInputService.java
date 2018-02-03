@@ -8,6 +8,6 @@ import com.apt.msa.exception.APTException;
 public interface IExpensesInputService {
 	
 	boolean createExpensesInput(List<ExpensesInput> expensesList) throws APTException;
-	//List<ExpensesInput> fetchByClientId(Long clientId) throws APTException;
+	List<ExpensesInput> fetchByClientId(Long clientId) throws APTException;
      
 }

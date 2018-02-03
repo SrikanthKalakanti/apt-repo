@@ -25,10 +25,20 @@ public class AssetInputService implements IAssetInputService {
 		return flag;
 	}
 	
-	/*@Override
+	@Override
+	public boolean updateAssetInput(AssetInput assetInput) throws APTException {
+		
+		boolean flag = false;
+		assetRepository.save(assetInput);
+		flag = true;
+		
+		return flag;
+	}
+	
+	@Override
 	public List<AssetInput> fetchByClientId(Long clientId) throws APTException {
 		List<AssetInput> assetInputList = assetRepository.fetchByClientId(clientId);
 		return assetInputList;
-	}*/
+	}
 
 }

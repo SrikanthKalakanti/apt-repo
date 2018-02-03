@@ -8,7 +8,8 @@ import com.apt.msa.exception.APTException;
 public interface IAssetInputService {
 	
 	boolean createAssetInput(List<AssetInput> assetList) throws APTException;
+	boolean updateAssetInput(AssetInput assetInput) throws APTException;
 	
-	//List<AssetInput> fetchByClientId(Long clientId) throws APTException;
+	List<AssetInput> fetchByClientId(Long clientId) throws APTException;
      
 }

@@ -78,7 +78,7 @@ public class ClientController {
 		try {
 			Client clientDetails = requestEntity.getBody();
 			
-			clientService.createClient(clientDetails);
+			clientService.updateClient(clientDetails);
 			
 			return new Response(ResultStatusConstants.STATUS_OK,ResultStatusConstants.SUCCESS_CODE,
 								ResultStatusConstants.STATUS_UPDATE_CLIENT_SUCCESS, null,clientDetails.getClientId());

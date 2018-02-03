@@ -14,8 +14,8 @@ import com.apt.msa.entity.AssetInput;
 @Transactional
 public interface AssetInputRespository extends JpaRepository<AssetInput, Long> {
 	
-	/*@Query("SELECT a FROM AssetInput a where a.Client.clientId=?1")
-	List<AssetInput> fetchByClientId(@Param("clientId") Long clientId);*/
+	@Query("FROM asset_input where client_id=?1")
+	List<AssetInput> fetchByClientId(@Param("clientId") Long clientId);
 	
 	
 }

@@ -24,10 +24,10 @@ public class ExpensesInputService implements IExpensesInputService {
 		return flag;
 	}
 	
-	/*@Override
+	@Override
 	public List<ExpensesInput> fetchByClientId(Long clientId) throws APTException {
 		List<ExpensesInput> expensesInputList = expensesInputRepository.fetchByClientId(clientId);
 		return expensesInputList;
-	}*/
+	}
 
 }

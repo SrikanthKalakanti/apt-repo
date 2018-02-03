@@ -232,15 +232,15 @@ public class APTController {
 
 			System.out.println(requestEntity.getBody().getClientId());
 
-			List<AssetInput> assetInputList = new ArrayList<AssetInput>();//TO-DO assetService.fetchByClientId(requestEntity.getBody().getClientId());
+			List<AssetInput> assetInputList = assetService.fetchByClientId(requestEntity.getBody().getClientId());
 
 			if(null!= assetInputList && assetInputList.size() >0){
 				return new Response(ResultStatusConstants.STATUS_OK,ResultStatusConstants.SUCCESS_CODE,
 						ResultStatusConstants.STATUS_RETRIEVED_ASSETINPUT_DETAILS,null,assetInputList);
 			} else{
 				return new Response(ResultStatusConstants.STATUS_FAIL,
-						ResultStatusConstants.ERROR_CODE_USER_NOT_EXISTS,
-						ResultStatusConstants.STATUS_NOCLIENT_DETAILS,null,null);
+						ResultStatusConstants.ERROR_CODE_ASSETINPUT_NOT_EXISTS,
+						ResultStatusConstants.STATUS_NOASSETINPUT_DETAILS,null);
 			}
 		}
 		/*catch (APTException aptException) {
@@ -252,7 +252,8 @@ public class APTController {
 			return new Response(
 					ResultStatusConstants.STATUS_FAIL,
 					ResultStatusConstants.ERROR_CODE_UNKNOWN_ERROR,
-					ResultStatusConstants.ERROR_MESSAGE_UNKNOWN_ERROR,null);
+					ResultStatusConstants.ERROR_MESSAGE_UNKNOWN_ERROR,
+					ResultStatusConstants.ERROR_MESSAGE_UNKNOWN_EXCPETION);
 		}
 
 	}
@@ -277,8 +278,8 @@ public class APTController {
 						ResultStatusConstants.STATUS_RETRIEVED_BASIC_DETAILS,null,basicInput);
 			} else{
 				return new Response(ResultStatusConstants.STATUS_FAIL,
-						ResultStatusConstants.ERROR_CODE_USER_NOT_EXISTS,
-						ResultStatusConstants.STATUS_NOCLIENT_DETAILS,null,null);
+						ResultStatusConstants.ERROR_CODE_BASICINPUT_NOT_EXISTS,
+						ResultStatusConstants.STATUS_NOBASICINPUT_DETAILS,null);
 			}
 		}
 		catch (APTException aptException) {
@@ -314,8 +315,8 @@ public class APTController {
 						ResultStatusConstants.STATUS_RETRIEVED_GROWTHINPUT_DETAILS,null,growthInput);
 			} else{
 				return new Response(ResultStatusConstants.STATUS_FAIL,
-						ResultStatusConstants.ERROR_CODE_USER_NOT_EXISTS,
-						ResultStatusConstants.STATUS_NOCLIENT_DETAILS,null,null);
+						ResultStatusConstants.STATUS_NOGROWTHINFLATION_DETAILS,
+						ResultStatusConstants.STATUS_NOCLIENT_DETAILS,null);
 			}
 		}
 		catch (APTException aptException) {
@@ -345,7 +346,7 @@ public class APTController {
 
 			System.out.println(requestEntity.getBody().getClientId());
 
-			List<ExpensesInput> expensesInputList = new ArrayList<ExpensesInput>();//expensesService.fetchByClientId(requestEntity.getBody().getClientId());
+			List<ExpensesInput> expensesInputList = expensesService.fetchByClientId(requestEntity.getBody().getClientId());
 
 			if(null!= expensesInputList && expensesInputList.size() >0){
 				return new Response(ResultStatusConstants.STATUS_OK,ResultStatusConstants.SUCCESS_CODE,
@@ -353,7 +354,7 @@ public class APTController {
 			} else{
 				return new Response(ResultStatusConstants.STATUS_FAIL,
 						ResultStatusConstants.ERROR_CODE_USER_NOT_EXISTS,
-						ResultStatusConstants.STATUS_NOCLIENT_DETAILS,null,null);
+						ResultStatusConstants.STATUS_NOEXPENSES_DETAILS,null);
 			}
 		}
 		/*catch (APTException aptException) {
@@ -366,6 +367,48 @@ public class APTController {
 					ResultStatusConstants.STATUS_FAIL,
 					ResultStatusConstants.ERROR_CODE_UNKNOWN_ERROR,
 					ResultStatusConstants.ERROR_MESSAGE_UNKNOWN_ERROR,null);
+		}
+
+	}
+	
+	
+	/**
+	 * 9 Update API AssetInput 
+	 * API which Updates the Asset input details to the Mysql DB asset_input table
+	 * @param requestEntity
+	 * @author SrikanthKalakanti
+	 * @return
+	 */
+	@RequestMapping(method=RequestMethod.POST, value ="updateassetinput",consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Response updateAssetInput(RequestEntity<AssetInput> assetInputReq) {
+		try {
+
+
+				//AssetInput assetInput = assetInputReq.getBody().getAssetInputList();
+
+				if(null != assetInputReq.getBody()) {
+
+					assetService.updateAssetInput(assetInputReq.getBody());
+					
+					return new Response(ResultStatusConstants.STATUS_OK,ResultStatusConstants.SUCCESS_CODE,
+							ResultStatusConstants.STATUS_UPDATE_ASSETINPUT_SUCCESS,null);
+
+				} else {
+
+				return new Response(ResultStatusConstants.STATUS_FAIL,ResultStatusConstants.FAIL_CODE,
+						ResultStatusConstants.STATUS_UPDATE_ASSETINPUT_FAILURE,null);
+
+			}
+
+		} catch (APTException aptException) {
+			return new Response(aptException);
+
+		} catch(Exception e) {
+			return new Response(
+					ResultStatusConstants.STATUS_FAIL,
+					ResultStatusConstants.ERROR_CODE_UNKNOWN_ERROR,
+					ResultStatusConstants.ERROR_MESSAGE_UNKNOWN_ERROR,
+					ResultStatusConstants.ERROR_MESSAGE_UNKNOWN_EXCPETION);
 		}
 
 	}

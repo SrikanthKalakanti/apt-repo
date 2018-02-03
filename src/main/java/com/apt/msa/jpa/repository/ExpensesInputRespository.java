@@ -14,9 +14,7 @@ import com.apt.msa.entity.ExpensesInput;
 @Transactional
 public interface ExpensesInputRespository extends JpaRepository<ExpensesInput, Long> {
 	
-	/*@Query("SELECT a FROM ExpensesInput a where a.Client.clientId=?1")
+	@Query("FROM expenses_input where client_id=?1")
 	List<ExpensesInput> fetchByClientId(@Param("clientId") Long clientId);
-	*/
-	
 	
 }
