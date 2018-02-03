@@ -333,7 +333,6 @@ public class APTController {
 
 	}
 
-
 	/**
 	 * 8 Get Expenses Input By Client Id 
 	 * @author SrikanthKalakanti
@@ -382,9 +381,6 @@ public class APTController {
 	@RequestMapping(method=RequestMethod.POST, value ="updateassetinput",consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Response updateAssetInput(RequestEntity<AssetInput> assetInputReq) {
 		try {
-
-
-				//AssetInput assetInput = assetInputReq.getBody().getAssetInputList();
 
 				if(null != assetInputReq.getBody()) {
 

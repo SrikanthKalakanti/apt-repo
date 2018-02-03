@@ -3,6 +3,7 @@ package com.apt.msa.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import com.apt.msa.entity.AssetInput;
@@ -26,13 +27,12 @@ public class AssetInputService implements IAssetInputService {
 	}
 	
 	@Override
-	public boolean updateAssetInput(AssetInput assetInput) throws APTException {
+	public int updateAssetInput(AssetInput assetInput) throws APTException {
+
+		int result  = assetRepository.updateAssetByClient(assetInput.getName(), assetInput.getValue(), assetInput.getDepreciationRate(), 
+															assetInput.getPromoterMargin(), assetInput.getClientId(), assetInput.getAssetId() );
 		
-		boolean flag = false;
-		assetRepository.save(assetInput);
-		flag = true;
-		
-		return flag;
+		return result;
 	}
 	
 	@Override
