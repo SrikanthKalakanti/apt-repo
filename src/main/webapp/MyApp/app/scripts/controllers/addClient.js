@@ -55,34 +55,11 @@ angular.module('myAppApp')
         $location.path('/dashboard');
       }
       $scope.submit = function(){
-        var address = [];
-        // var tempAddress = {};
-        // tempAddress.doorNumber = $scope.client.doorNumber;
-        // tempAddress.roadNumber = $scope.client.roadNumber;
-        // tempAddress.locality = $scope.client.locality;
-        // tempAddress.landmark = $scope.client.landmark;
-        // tempAddress.town = $scope.client.town;
-        // tempAddress.pincode = $scope.client.pincode;
-        // tempAddress.state = $scope.client.state;
-        // tempAddress.landPhone = $scope.client.landPhone;
-        // tempAddress.mobile = $scope.client.mobile;
-        // address.push(tempAddress);
-        // $scope.client.address = address;
         $scope.userData = JSON.parse(localStorage.getItem('userData'));
         $scope.client.customerId = $scope.userData.customerId;
-        console.log($scope.client);
         if ($scope.clientForm.$valid) {
           CustomerService.addCustomer($scope.client)
             .then(function success(response) {
-                console.log(response);
-                // var a = {
-                //   "status" : "ok",
-                //   "errorCode" : "APT1000",
-                //   "errorMessage" : "Customer Created Successfully",
-                //   "exceptionType" : "null",
-                //   "result" : "null",
-                //   "customerId" : "null"
-                // };
                 $scope.successMessage = response.data.errorMessage;
                 $scope.successMessagebool = true;
                 $window.scrollTo(0, 0);

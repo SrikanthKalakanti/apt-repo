@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>Charted Accounting</title>
     <meta name="description" content="">
@@ -17,64 +18,67 @@
     <link href="vendor/bootstrap/css/ui-grid.css" rel="stylesheet">
 
     <!-- endbuild -->
-  </head>
-  <body ng-app="myAppApp">
+</head>
+
+<body ng-app="myAppApp">
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="#"><img class="img-fluid rounded" src="../images/a.png" alt="" style="width:200px;height:70px;"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img class="img-fluid rounded" src="../images/a.png" alt="" style="width:200px;height:70px;"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home
                 <span class="sr-only">(current)</span>
               </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#/login">Login</a>
-            </li>
-          </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#/login">Login</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
     </nav>
 
     <div class="container">
-    <div ng-view=""></div>
+        <div ng-view=""></div>
     </div>
 
     <footer class="bg-dark footer footer-alignment">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; 2018</p>
-      </div>
-      <!-- /.container -->
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; 2018</p>
+        </div>
+        <!-- /.container -->
     </footer>
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-     <script>
-       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
-       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
-       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
-       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    <script>
+        ! function(A, n, g, u, l, a, r) {
+            A.GoogleAnalyticsObject = l, A[l] = A[l] || function() {
+                    (A[l].q = A[l].q || []).push(arguments)
+                }, A[l].l = +new Date, a = n.createElement(g),
+                r = n.getElementsByTagName(g)[0], a.src = u, r.parentNode.insertBefore(a, r)
+        }(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-       ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');
+        ga('create', 'UA-XXXXX-X');
+        ga('send', 'pageview');
     </script>
 
     <!-- build:js(.) scripts/vendor.js -->
@@ -93,24 +97,26 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="vendor/bootstrap/js/ui-grid.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/login.js"></script>
-        <script src="scripts/controllers/dashboard.js"></script>
-        <script src="scripts/controllers/register.js"></script>
-        <script src="scripts/controllers/basicdata.js"></script>
-        <script src="scripts/controllers/assets.js"></script>
-        <script src="scripts/controllers/addClient.js"></script>
-        <script src="scripts/controllers/clientDetails.js"></script>
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="vendor/bootstrap/js/ui-grid.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/controllers/dashboard.js"></script>
+    <script src="scripts/controllers/register.js"></script>
+    <script src="scripts/controllers/basicdata.js"></script>
+    <script src="scripts/controllers/assets.js"></script>
+    <script src="scripts/controllers/addClient.js"></script>
+    <script src="scripts/controllers/clientDetails.js"></script>
 
-        <script src="scripts/services/loginService.js"></script>
-        <script src="scripts/services/registerService.js"></script>
-        <script src="scripts/services/addCustomer.js"></script>
-        <script src="scripts/services/dashboardService.js"></script>
+    <script src="scripts/services/loginService.js"></script>
+    <script src="scripts/services/registerService.js"></script>
+    <script src="scripts/services/addCustomer.js"></script>
+    <script src="scripts/services/dashboardService.js"></script>
+    <script src="scripts/services/assetService.js"></script>
 
-        <script src="scripts/factories/safeApply.js"></script>
-        <!-- endbuild -->
+    <script src="scripts/factories/safeApply.js"></script>
+    <!-- endbuild -->
 </body>
+
 </html>
