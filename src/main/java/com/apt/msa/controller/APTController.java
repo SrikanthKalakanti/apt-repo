@@ -243,10 +243,10 @@ public class APTController {
 						ResultStatusConstants.STATUS_NOASSETINPUT_DETAILS,null);
 			}
 		}
-		/*catch (APTException aptException) {
+		catch (APTException aptException) {
 
 			return new Response(aptException);
-		}*/
+		}
 		catch(Exception e){
 
 			return new Response(
@@ -362,10 +362,10 @@ public class APTController {
 						ResultStatusConstants.STATUS_NOEXPENSES_DETAILS,null);
 			}
 		}
-		/*catch (APTException aptException) {
+		catch (APTException aptException) {
 
 			return new Response(aptException);
-		}*/
+		}
 		catch(Exception e){
 
 			return new Response(
@@ -416,8 +416,8 @@ public class APTController {
 	}
 	
 	/**
-	 * 10 Update API ExpensesInput 
-	 * API which Updates the Asset input details to the Mysql DB asset_input table
+	 * 10 Update API BasicInput 
+	 * API which Updates the Basic input details to the Mysql DB basic_input table
 	 * @param requestEntity
 	 * @author SrikanthKalakanti
 	 * @return
@@ -437,12 +437,12 @@ public class APTController {
 					basicInputService.updateBasicInput(basicInputReq.getBody());
 					
 					return new Response(ResultStatusConstants.STATUS_OK,ResultStatusConstants.SUCCESS_CODE,
-							ResultStatusConstants.STATUS_UPDATE_EXPENSESINPUT_SUCCESS,null);
+							ResultStatusConstants.STATUS_UPDATE_BASICINPUT_SUCCESS,null);
 
 				} else {
 
 				return new Response(ResultStatusConstants.STATUS_FAIL,ResultStatusConstants.FAIL_CODE,
-						ResultStatusConstants.STATUS_UPDATE_EXPENSESINPUT_FAILURE,null);
+						ResultStatusConstants.STATUS_UPDATE_BASICINPUT_FAILURE,null);
 
 			}
 
@@ -459,11 +459,9 @@ public class APTController {
 
 	}
 	
-	
-	
 	/**
 	 * 11 Update API ExpensesInput 
-	 * API which Updates the Asset input details to the Mysql DB asset_input table
+	 * API which Updates the Expenses input details to the Mysql DB expenses_input table
 	 * @param requestEntity
 	 * @author SrikanthKalakanti
 	 * @return
@@ -499,6 +497,196 @@ public class APTController {
 
 	}
 	
+	
+	/**
+	 * 12 Update API GrowthInput 
+	 * API which Updates the Growth & Inflation input details to the Mysql DB growth_inflation_input table
+	 * @param requestEntity
+	 * @author SrikanthKalakanti
+	 * @return
+	 */
+	@RequestMapping(method=RequestMethod.POST, value ="updategrowthinput",consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Response updateGrowthInput(RequestEntity<GrowthInflationInput> growthInputReq) {
+		try {
+
+				if(null != growthInputReq.getBody()) {
+
+					growthService.updateGrowthInput(growthInputReq.getBody());
+					
+					return new Response(ResultStatusConstants.STATUS_OK,ResultStatusConstants.SUCCESS_CODE,
+							ResultStatusConstants.STATUS_UPDATE_GROWTHINPUT_SUCCESS,null);
+
+				} else {
+
+				return new Response(ResultStatusConstants.STATUS_FAIL,ResultStatusConstants.FAIL_CODE,
+						ResultStatusConstants.STATUS_UPDATE_GROWTHINPUT_FAILURE,null);
+
+			}
+
+		} catch (APTException aptException) {
+			return new Response(aptException);
+
+		} catch(Exception e) {
+			return new Response(
+					ResultStatusConstants.STATUS_FAIL,
+					ResultStatusConstants.ERROR_CODE_UNKNOWN_ERROR,
+					ResultStatusConstants.ERROR_MESSAGE_UNKNOWN_ERROR,
+					ResultStatusConstants.ERROR_MESSAGE_UNKNOWN_EXCPETION);
+		}
+
+	}
+
+	/**
+	 * 13 Delete API AssetInput 
+	 * API which Delete an Asset input details from the Mysql DB asset_input table
+	 * @param requestEntity
+	 * @author SrikanthKalakanti
+	 * @return
+	 */
+	@RequestMapping(method=RequestMethod.POST, value ="deleteasset",consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Response deleteAssetInput(RequestEntity<AssetInput> assetInputReq) {
+		try {
+
+				if(null != assetInputReq.getBody()) {
+
+					assetService.deleteAsset(assetInputReq.getBody());
+					
+					return new Response(ResultStatusConstants.STATUS_OK,ResultStatusConstants.SUCCESS_CODE,
+							ResultStatusConstants.STATUS_DELETE_ASSETINPUT_SUCCESS,null);
+
+				} else {
+
+				return new Response(ResultStatusConstants.STATUS_FAIL,ResultStatusConstants.FAIL_CODE,
+						ResultStatusConstants.STATUS_DELETE_ASSETINPUT_FAILURE,null);
+
+			}
+
+		} catch (APTException aptException) {
+			return new Response(aptException);
+
+		} catch(Exception e) {
+			return new Response(
+					ResultStatusConstants.STATUS_FAIL,
+					ResultStatusConstants.ERROR_CODE_UNKNOWN_ERROR,
+					ResultStatusConstants.ERROR_MESSAGE_UNKNOWN_ERROR,
+					ResultStatusConstants.ERROR_MESSAGE_UNKNOWN_EXCPETION);
+		}
+
+	}
+	
+	/**
+	 * 14 Delete API BasicInput 
+	 * API which Delete an Basic input details from the Mysql DB basic_input table
+	 * @param assetInputReq
+	 * @author SrikanthKalakanti
+	 * @return
+	 */
+	@RequestMapping(method=RequestMethod.POST, value ="deletebasicinput",consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Response deleteBasicInput(RequestEntity<BasicInput> basicInputReq) {
+		try {
+
+				if(null != basicInputReq.getBody()) {
+
+					basicInputService.deleteBasicInput(basicInputReq.getBody());
+					
+					return new Response(ResultStatusConstants.STATUS_OK,ResultStatusConstants.SUCCESS_CODE,
+							ResultStatusConstants.STATUS_DELETE_BASICINPUT_SUCCESS,null);
+
+				} else {
+
+				return new Response(ResultStatusConstants.STATUS_FAIL,ResultStatusConstants.FAIL_CODE,
+						ResultStatusConstants.STATUS_DELETE_BASICINPUT_FAILURE,null);
+
+			}
+
+		} catch (APTException aptException) {
+			return new Response(aptException);
+
+		} catch(Exception e) {
+			return new Response(
+					ResultStatusConstants.STATUS_FAIL,
+					ResultStatusConstants.ERROR_CODE_UNKNOWN_ERROR,
+					ResultStatusConstants.ERROR_MESSAGE_UNKNOWN_ERROR,
+					ResultStatusConstants.ERROR_MESSAGE_UNKNOWN_EXCPETION);
+		}
+
+	}
+	
+	/**
+	 * 15 Delete API ExpensesInput 
+	 * API which Delete an Expenses input details from the Mysql DB expenses_input table
+	 * @param expensesInputReq
+	 * @author SrikanthKalakanti
+	 * @return
+	 */
+	@RequestMapping(method=RequestMethod.POST, value ="deleteexpesesinput",consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Response deleteExpensesInput(RequestEntity<ExpensesInput> expesnseInputReq) {
+		try {
+
+				if(null != expesnseInputReq.getBody()) {
+
+					expensesService.deleteExpensesInput(expesnseInputReq.getBody());
+					
+					return new Response(ResultStatusConstants.STATUS_OK,ResultStatusConstants.SUCCESS_CODE,
+							ResultStatusConstants.STATUS_DELETE_EXPENSESINPUT_SUCCESS,null);
+
+				} else {
+
+				return new Response(ResultStatusConstants.STATUS_FAIL,ResultStatusConstants.FAIL_CODE,
+						ResultStatusConstants.STATUS_DELETE_EXPENSESINPUT_FAILURE,null);
+
+			}
+
+		} catch (APTException aptException) {
+			return new Response(aptException);
+
+		} catch(Exception e) {
+			return new Response(
+					ResultStatusConstants.STATUS_FAIL,
+					ResultStatusConstants.ERROR_CODE_UNKNOWN_ERROR,
+					ResultStatusConstants.ERROR_MESSAGE_UNKNOWN_ERROR,
+					ResultStatusConstants.ERROR_MESSAGE_UNKNOWN_EXCPETION);
+		}
+
+	}
+	
+	/**
+	 * 16 Delete API Growth & Inflation Input 
+	 * API which Delete an Growth & Inflation input details from the Mysql DB growth_inflation_input table
+	 * @param expensesInputReq
+	 * @author SrikanthKalakanti
+	 * @return
+	 */
+	@RequestMapping(method=RequestMethod.POST, value ="deletegrowthinput",consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Response deleteGrowthInput(RequestEntity<GrowthInflationInput> growthInputReq) {
+		try {
+
+				if(null != growthInputReq.getBody()) {
+
+					growthService.deleteGrowthInput(growthInputReq.getBody());
+					
+					return new Response(ResultStatusConstants.STATUS_OK,ResultStatusConstants.SUCCESS_CODE,
+							ResultStatusConstants.STATUS_DELETE_GROWTHINPUT_SUCCESS,null);
+
+				} else {
+
+				return new Response(ResultStatusConstants.STATUS_FAIL,ResultStatusConstants.FAIL_CODE,
+						ResultStatusConstants.STATUS_DELETE_GROWTHINPUT_FAILURE,null);
+
+			}
+
+		} catch (APTException aptException) {
+			return new Response(aptException);
+
+		} catch(Exception e) {
+			return new Response(
+					ResultStatusConstants.STATUS_FAIL,
+					ResultStatusConstants.ERROR_CODE_UNKNOWN_ERROR,
+					ResultStatusConstants.ERROR_MESSAGE_UNKNOWN_ERROR,
+					ResultStatusConstants.ERROR_MESSAGE_UNKNOWN_EXCPETION);
+		}
+
+	}
 	
 
 }

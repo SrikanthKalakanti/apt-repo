@@ -23,5 +23,8 @@ public interface AssetInputRespository extends JpaRepository<AssetInput, Long> {
 	int updateAssetByClient(@Param("name") String name, @Param("value") Double value,
 			@Param("depreciationRate") Double depreciationRate, @Param("promoterMargin") Double promoterMargin, @Param("clientId") Long clientId,@Param("assetId") Long assetId );
 	
+	@Modifying
+	@Query("delete from asset_input WHERE client_id = :clientId and asset_id =:assetId")
+	int deleteAssetByIdAndClient(@Param("clientId") Long clientId, @Param("assetId") Long assetId);		
 	
 }

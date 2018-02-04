@@ -35,5 +35,9 @@ public interface BasicInputRespository extends JpaRepository<BasicInput, Long> {
 									
 									@Param("clientId") Long clientId,
 									@Param("basicInputId") Long basicInputId );
+
+	@Modifying
+	@Query("delete from basic_input WHERE client_id = :clientId and basic_input_id = :basicInputId")
+	int deleteBasicByIdAndClient(@Param("clientId") Long clientId, @Param("basicInputId") Long basicInputId);
 	
 }

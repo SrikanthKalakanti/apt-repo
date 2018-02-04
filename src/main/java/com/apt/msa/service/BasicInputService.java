@@ -33,5 +33,11 @@ public class BasicInputService implements IBasicInputService {
 				basicInput.getProductionPerMonthInUnits(), basicInput.getStatus(), basicInput.getTenureOfTermLoan(), basicInput.getTermLoanFirstDisbursementDate(), basicInput.getClientId(), basicInput.getBasicInputId());
 	}
 
+	@Override
+	public int deleteBasicInput(BasicInput basicInput) throws APTException {
+		basicInputRepository.deleteBasicByIdAndClient(basicInput.getBasicInputId(), basicInput.getClientId());
+		return 0;
+	}
+
 	
 }

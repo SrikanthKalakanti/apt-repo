@@ -1,7 +1,5 @@
 package com.apt.msa.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +25,18 @@ public class GrowthInflationInputService implements IGrowthInflationInputService
 	public GrowthInflationInput findOne(Long clientId) throws APTException {
 		GrowthInflationInput growthInflation = growthInflationRepository.findOne(clientId);
 		return growthInflation;
+	}
+
+	@Override
+	public int updateGrowthInput(GrowthInflationInput growthInflationInput) throws APTException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteGrowthInput(GrowthInflationInput growthInflationInput) throws APTException {
+		growthInflationRepository.deleteAssetByIdAndClient(growthInflationInput.getClientId(), growthInflationInput.getGrowthIflationId());
+		return 0;
 	}
 
 }

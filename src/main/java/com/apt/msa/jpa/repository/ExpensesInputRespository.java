@@ -23,4 +23,9 @@ public interface ExpensesInputRespository extends JpaRepository<ExpensesInput, L
 	int updateExpensesByIdClient( @Param("amountInINR") Double amountInINR, @Param("expenditurePer") String expenditurePer,
 			@Param("cmaNomenclature") String cmaNomenclature, @Param("nomenclature") String nomenclature, @Param("clientId") Long clientId,@Param("expensesInputId") Long expensesInputId );
 	
+	@Modifying
+	@Query("delete from expenses_input WHERE client_id = :clientId and expenses_input_id =:expensesInputId")
+	int deleteAssetByIdAndClient(@Param("clientId") Long clientId, @Param("expensesInputId") Long expensesInputId);		
+	
+	
 }

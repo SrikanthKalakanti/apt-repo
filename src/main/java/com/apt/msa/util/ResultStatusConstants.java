@@ -18,25 +18,37 @@ public class ResultStatusConstants {
     public static final String STATUS_RETRIEVED_BASIC_DETAILS ="Retrieved Basic Input details Successfully";
     public static final String STATUS_UPDATE_BASICINPUT_SUCCESS ="Client Basic Input Updated Successfully";
     public static final String STATUS_UPDATE_BASICINPUT_FAILURE ="Client Basic Input Update Failed";
+    public static final String STATUS_DELETE_BASICINPUT_SUCCESS ="Client Basic Input Deleted Successfully";
+    public static final String STATUS_DELETE_BASICINPUT_FAILURE ="Client Basic Input Delete Failed";
+
+    
     
     public static final String STATUS_CREATE_GROWTHINPUT_SUCCESS ="Client Growth and Inflation Input Created Successfully";
     public static final String STATUS_CREATE_GROWTHINPUT_FAILURE ="Client Growth and Inflation Creation Failed";
     public static final String STATUS_RETRIEVED_GROWTHINPUT_DETAILS ="Retrieved Growth and Inflation Input details Successfully";
     public static final String STATUS_UPDATE_GROWTHINPUT_SUCCESS ="Client Growth and Inflation Updated Successfully";
     public static final String STATUS_UPDATE_GROWTHINPUT_FAILURE ="Client Growth and Inflation Updated Failed";
+    public static final String STATUS_DELETE_GROWTHINPUT_SUCCESS ="Client Growth and Inflation Deleted Successfully";
+    public static final String STATUS_DELETE_GROWTHINPUT_FAILURE ="Client Growth and Inflation Delete Failed";
+    
     
     public static final String STATUS_CREATE_ASSETINPUT_SUCCESS ="Client Asset Input Created Successfully";
     public static final String STATUS_CREATE_ASSETINPUT_FAILURE ="Client Asset Input Creation Failed";
     public static final String STATUS_RETRIEVED_ASSETINPUT_DETAILS ="Retrieved Asset Input details Successfully";
     public static final String STATUS_UPDATE_ASSETINPUT_SUCCESS ="Client Asset Input Updated Successfully";
     public static final String STATUS_UPDATE_ASSETINPUT_FAILURE ="Client Asset Input Update Failed";
+    public static final String STATUS_DELETE_ASSETINPUT_SUCCESS ="Client Asset Input Deleted Successfully";
+    public static final String STATUS_DELETE_ASSETINPUT_FAILURE ="Client Asset Input Delete Failed";
     
     public static final String STATUS_CREATE_EXPENSESINPUT_SUCCESS ="Client Expenses Input Created Successfully";
     public static final String STATUS_CREATE_EXPENSESINPUT_FAILURE ="Client Expenses Input Creation Failed";
     public static final String STATUS_RETRIEVED_EXPENSESINPUT_DETAILS ="Retrieved Expenses Input details Successfully";
     public static final String STATUS_UPDATE_EXPENSESINPUT_SUCCESS ="Client Expenses Input Updated Successfully";
     public static final String STATUS_UPDATE_EXPENSESINPUT_FAILURE ="Client Expenses Input Update Failed";
-       
+    public static final String STATUS_DELETE_EXPENSESINPUT_SUCCESS ="Client Expenses Input Deleted Successfully";
+    public static final String STATUS_DELETE_EXPENSESINPUT_FAILURE ="Client Expenses Input Delete Failed";
+    
+    
     public static final String STATUS_SUCCESS_LOGIN ="Login Successful";
     public static final String STATUS_MAIL_SENDED ="Mail sended successfully.Check your email id for your password.";
     

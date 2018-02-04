@@ -11,5 +11,7 @@ public interface IAssetInputService {
 	int updateAssetInput(AssetInput assetInput) throws APTException;
 	
 	List<AssetInput> fetchByClientId(Long clientId) throws APTException;
+	boolean deleteAsset(AssetInput assetInput) throws APTException;
+	boolean createAssetInput(AssetInput assetInput) throws APTException;
      
 }

@@ -36,4 +36,18 @@ public class ExpensesInputService implements IExpensesInputService {
 		
 	}
 
+	@Override
+	public int deleteExpensesInput(ExpensesInput expensesInput) throws APTException {
+		return expensesInputRepository.deleteAssetByIdAndClient(expensesInput.getClientId(), expensesInput.getExpensesInputId());
+		
+	}
+
+	@Override
+	public boolean createExpensesInput(ExpensesInput expensesInput) throws APTException {
+		boolean flag = false;
+		expensesInputRepository.save(expensesInput);
+		flag = true;
+		return flag;
+	}
+
 }

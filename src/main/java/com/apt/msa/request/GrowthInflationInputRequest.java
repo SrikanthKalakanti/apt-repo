@@ -19,6 +19,5 @@ public class GrowthInflationInputRequest implements Serializable{
 	public void setGrowthInflationInput(GrowthInflationInput growthInflationInput) {
 		this.growthInflationInput = growthInflationInput;
 	}
-
 	
 }

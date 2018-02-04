@@ -41,4 +41,20 @@ public class AssetInputService implements IAssetInputService {
 		return assetInputList;
 	}
 
+	@Override
+	public boolean deleteAsset(AssetInput assetInput) throws APTException {
+		
+		assetRepository.deleteAssetByIdAndClient(assetInput.getClientId(), assetInput.getAssetId());
+		return false;
+	}
+
+	@Override
+	public boolean createAssetInput(AssetInput assetInput) throws APTException {
+		boolean flag = false;
+		assetRepository.save(assetInput);
+		flag = true;
+		
+		return flag;
+	}
+
 }
