@@ -1,8 +1,8 @@
 package com.apt.msa.controller;
 
 import java.sql.Date;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -274,6 +274,12 @@ public class APTController {
 			BasicInput basicInput = basicInputService.findOne(requestEntity.getBody().getClientId());
 
 			if(basicInput!=null){
+				
+				DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+				
+				basicInput.setTermLoanDisbursement(df.format(basicInput.getTermLoanFirstDisbursementDate()));
+				basicInput.setBusinessCommencement(df.format(basicInput.getBusinessCommencementDate()));
+				
 				return new Response(ResultStatusConstants.STATUS_OK,ResultStatusConstants.SUCCESS_CODE,
 						ResultStatusConstants.STATUS_RETRIEVED_BASIC_DETAILS,null,basicInput);
 			} else{
