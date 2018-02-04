@@ -7,5 +7,6 @@ public interface IBasicInputService {
 	
 	BasicInput createBasicInput(BasicInput basicInput) throws APTException;
 	public BasicInput findOne(Long clientId) throws APTException;
+	int  updateBasicInput(BasicInput body) throws APTException;
      
 }

@@ -408,5 +408,83 @@ public class APTController {
 		}
 
 	}
+	
+	/**
+	 * 10 Update API ExpensesInput 
+	 * API which Updates the Asset input details to the Mysql DB asset_input table
+	 * @param requestEntity
+	 * @author SrikanthKalakanti
+	 * @return
+	 */
+	@RequestMapping(method=RequestMethod.POST, value ="updatebasicinput",consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Response updateBasicInput(RequestEntity<BasicInput> basicInputReq) {
+		try {
+
+				if(null != basicInputReq.getBody()) {
+
+					basicInputService.updateBasicInput(basicInputReq.getBody());
+					
+					return new Response(ResultStatusConstants.STATUS_OK,ResultStatusConstants.SUCCESS_CODE,
+							ResultStatusConstants.STATUS_UPDATE_EXPENSESINPUT_SUCCESS,null);
+
+				} else {
+
+				return new Response(ResultStatusConstants.STATUS_FAIL,ResultStatusConstants.FAIL_CODE,
+						ResultStatusConstants.STATUS_UPDATE_EXPENSESINPUT_FAILURE,null);
+
+			}
+
+		} catch (APTException aptException) {
+			return new Response(aptException);
+
+		} catch(Exception e) {
+			return new Response(
+					ResultStatusConstants.STATUS_FAIL,
+					ResultStatusConstants.ERROR_CODE_UNKNOWN_ERROR,
+					ResultStatusConstants.ERROR_MESSAGE_UNKNOWN_ERROR,
+					ResultStatusConstants.ERROR_MESSAGE_UNKNOWN_EXCPETION);
+		}
+
+	}
+	
+	
+	
+	/**
+	 * 11 Update API ExpensesInput 
+	 * API which Updates the Asset input details to the Mysql DB asset_input table
+	 * @param requestEntity
+	 * @author SrikanthKalakanti
+	 * @return
+	 */
+	@RequestMapping(method=RequestMethod.POST, value ="updateexpensesinput",consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Response updateExpensesInput(RequestEntity<ExpensesInput> expensesInputReq) {
+		try {
+
+				if(null != expensesInputReq.getBody()) {
+
+					expensesService.updateExpensesInput(expensesInputReq.getBody());
+					
+					return new Response(ResultStatusConstants.STATUS_OK,ResultStatusConstants.SUCCESS_CODE,
+							ResultStatusConstants.STATUS_UPDATE_EXPENSESINPUT_SUCCESS,null);
+
+				} else {
+
+				return new Response(ResultStatusConstants.STATUS_FAIL,ResultStatusConstants.FAIL_CODE,
+						ResultStatusConstants.STATUS_UPDATE_EXPENSESINPUT_FAILURE,null);
+
+			}
+
+		} catch (APTException aptException) {
+			return new Response(aptException);
+
+		} catch(Exception e) {
+			return new Response(
+					ResultStatusConstants.STATUS_FAIL,
+					ResultStatusConstants.ERROR_CODE_UNKNOWN_ERROR,
+					ResultStatusConstants.ERROR_MESSAGE_UNKNOWN_ERROR,
+					ResultStatusConstants.ERROR_MESSAGE_UNKNOWN_EXCPETION);
+		}
+
+	}
 
 }

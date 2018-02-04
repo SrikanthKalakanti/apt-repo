@@ -10,9 +10,5 @@ import com.apt.msa.entity.BasicInput;
 @Transactional
 public interface BasicInputRespository extends JpaRepository<BasicInput, Long> {
 	
-	/*@Query("SELECT a FROM BasicInput a where a.Client.clientId=?1")
-	BasicInput fetchByClientId(@Param("clientId") Long clientId);*/
-	
-	
 	
 }

@@ -30,4 +30,10 @@ public class ExpensesInputService implements IExpensesInputService {
 		return expensesInputList;
 	}
 
+	@Override
+	public int updateExpensesInput(ExpensesInput expensesInput) throws APTException {
+		return expensesInputRepository.updateExpensesByIdClient(expensesInput.getAmountInINR(), expensesInput.getExpenditurePer(), expensesInput.getCmaNomenclature(), expensesInput.getNomenclature(), expensesInput.getClientId(), expensesInput.getExpensesInputId());
+		
+	}
+
 }

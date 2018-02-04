@@ -9,5 +9,6 @@ public interface IExpensesInputService {
 	
 	boolean createExpensesInput(List<ExpensesInput> expensesList) throws APTException;
 	List<ExpensesInput> fetchByClientId(Long clientId) throws APTException;
+	int updateExpensesInput(ExpensesInput body) throws APTException;
      
 }

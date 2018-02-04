@@ -26,5 +26,11 @@ public class BasicInputService implements IBasicInputService {
 		return basicInput;
 	}
 
+	@Override
+	public int updateBasicInput(BasicInput body) throws APTException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	
 }
