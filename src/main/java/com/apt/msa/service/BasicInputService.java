@@ -27,9 +27,10 @@ public class BasicInputService implements IBasicInputService {
 	}
 
 	@Override
-	public int updateBasicInput(BasicInput body) throws APTException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateBasicInput(BasicInput basicInput) throws APTException {
+		return basicInputRepository.updateBasicInputByIdAndClient(basicInput.getBusinessCommencementDate(), basicInput.getCashCreditAmountRequired(), basicInput.getFixedExpensesPerMonth(), 
+				basicInput.getInterestRateForCc(), basicInput.getMoratorium(), basicInput.getNameOfTheBusiness(), basicInput.getNumberOfDaysInAMonth(), basicInput.getPaymentDate(), 
+				basicInput.getProductionPerMonthInUnits(), basicInput.getStatus(), basicInput.getTenureOfTermLoan(), basicInput.getTermLoanFirstDisbursementDate(), basicInput.getClientId(), basicInput.getBasicInputId());
 	}
 
 	

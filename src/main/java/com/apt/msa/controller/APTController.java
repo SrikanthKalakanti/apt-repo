@@ -421,6 +421,12 @@ public class APTController {
 		try {
 
 				if(null != basicInputReq.getBody()) {
+					
+					Date termLoandate = new Date(new SimpleDateFormat("dd/MM/yyyy").parse(basicInputReq.getBody().getTermLoanDisbursement()).getTime());
+					basicInputReq.getBody().setTermLoanFirstDisbursementDate(termLoandate);
+
+					Date buisnessCommenceDate = new Date(new SimpleDateFormat("dd/MM/yyyy").parse(basicInputReq.getBody().getBusinessCommencement()).getTime());
+					basicInputReq.getBody().setBusinessCommencementDate(buisnessCommenceDate);
 
 					basicInputService.updateBasicInput(basicInputReq.getBody());
 					
@@ -486,5 +492,7 @@ public class APTController {
 		}
 
 	}
+	
+	
 
 }
