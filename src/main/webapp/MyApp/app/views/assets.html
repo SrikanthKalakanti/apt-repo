@@ -1,35 +1,67 @@
-<div class="container">
-
-      <form class="form-signin" name="assetForm" ng-submit="submit()" novalidate>
-        <h2 class="form-signin-heading">Please Enter the Asset Details</h2>
-        <h3 class="form-signin-heading">Asset 1 : </h3>
-        <div class="form-group" ng-class="{ 'has-error' : assetForm.noa.$invalid && !assetForm.noa.$pristine }">
-            <label>Name of the Asset</label>
-            <input type="text" name="noa" class="form-control" ng-model="asset.noa" required>
-            <p ng-show="assetForm.noa.$invalid && !assetForm.noa.$pristine" class="help-block">Name of the Asset is required.</p>
-        </div>
-        <div class="form-group" ng-class="{ 'has-error' : assetForm.voa.$invalid && !assetForm.voa.$pristine }">
-            <label>Value of the Asset</label>
-            <input type="number" name="voa" class="form-control currency" ng-model="asset.voa" required>
-            <p ng-show="assetForm.voa.$invalid && !assetForm.voa.$pristine" class="help-block">Value of the Asset is required.</p>
-        </div>
-        <div class="form-group" ng-class="{ 'has-error' : assetForm.dr.$invalid && !assetForm.dr.$pristine }">
-            <label>Depreciation Rate</label>
-            <input type="number" name="dr" class="form-control" ng-model="asset.dr" required min="0" max="100" step="0.01">
-            <p ng-show="assetForm.dr.$invalid && !assetForm.dr.$pristine" class="help-block">Depreciation Rate required.</p>
-        </div>
-        <div class="form-group" ng-class="{ 'has-error' : assetForm.mr.$invalid && !assetForm.mr.$pristine }">
-            <label>Margin Rate</label>
-            <input type="number" name="mr" class="form-control" ng-model="asset.mr" required min="0" max="100" step="0.01">
-            <p ng-show="assetForm.mr.$invalid && !assetForm.mr.$pristine" class="help-block">Margin Rate required.</p>
-        </div>
-        <div class="form-group" ng-class="{ 'has-error' : assetForm.aaa.$invalid && !assetForm.aaa.$pristine }">
-            <label>Add another Asset?</label>
-            <input type="radio" name="aaa" class="form-group" value="1" ng-model="asset.aaa" required ng-selected> Yes
-            <input type="radio" name="aaa" class="form-group" value="2" ng-model="asset.aaa" required> No
-            <p ng-show="assetForm.profession.$invalid && !assetForm.profession.$pristine" class="help-block">Profession is required.</p>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" ng-disabled="assetForm.$invalid">Sign in</button>
-      </form>
-
+<div ng-show="!showAssetForm">
+    <span ng-if="(assets | json) == '{}'">You don't have any Assets for this client. Please add the Assets.</span>
+    <button class="btn btn-primary pull-right" ng-click="addAsset()">Add Asset</button>
+    <h2 class="sub-header" ng-if="assets.length > 0">List Of Assets</h2>
+    <!-- <div ng-if="assets.length > 0" ng-if="!refresh" ui-grid="gridOptions" external-scopes="$scope" ui-grid-pagination class="myGrid"></div> -->
+    <div ng-if="assets.length > 0">
+        <table class="tableCustome">
+            <thead>
+                <th>ID</th>
+                <th>Asset Name</th>
+                <th>Asset Value</th>
+                <th>Depreciation Rate</th>
+                <th>Margin Rate</th>
+                <th>Update</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="data in assets track by $index">
+                    <td>{{data.assetId}}</td>
+                    <td>{{data.name}}</td>
+                    <td>{{data.value}}</td>
+                    <td>{{data.depreciationRate}}</td>
+                    <td>{{data.promoterMargin}}</td>
+                    <td><a href ng-click="updateDetails(data)">Click Here</a></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
+</div>
+<form ng-show="showAssetForm" class="form-signin" name="assetForm" ng-submit="submit()" novalidate>
+    <div class="col-lg-12 col-sm-12 col-xs-12 alert alert-success" ng-if="successMessagebool ">
+        <strong>{{successMessage }}</strong>
+    </div>
+    <div class="col-lg-12 col-sm-12 col-xs-12 alert alert-danger" ng-if="errorMessagebool">
+        <strong>{{errorMessage }}</strong>
+    </div>
+    <h5 ng-if="!isUpdate" class="form-signin-heading">Please Enter the Asset Details</h5>
+    <h5 ng-if="isUpdate" class="form-signin-heading">Update Asset Details</h5>
+    <div class="form-group" ng-class="{ 'has-error' : assetForm.name.$invalid && !assetForm.name.$pristine }">
+        <label>Name of the Asset</label>
+        <input type="text" name="name" class="form-control" ng-model="asset.name" required>
+        <p ng-show="assetForm.name.$invalid && !assetForm.name.$pristine" class="help-block">Name of the Asset is required.</p>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error' : assetForm.value.$invalid && !assetForm.value.$pristine }">
+        <label>Value of the Asset</label>
+        <input type="number" name="value" class="form-control currency" ng-model="asset.value" required>
+        <p ng-show="assetForm.value.$invalid && !assetForm.value.$pristine" class="help-block">Value of the Asset is required.</p>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error' : assetForm.depreciationRate.$invalid && !assetForm.depreciationRate.$pristine }">
+        <label>Depreciation Rate</label>
+        <input type="number" name="depreciationRate" class="form-control" ng-model="asset.depreciationRate" required min="0" max="100" step="0.01">
+        <p ng-show="assetForm.depreciationRate.$invalid && !assetForm.depreciationRate.$pristine" class="help-block">Depreciation Rate required.</p>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error' : assetForm.promoterMargin.$invalid && !assetForm.promoterMargin.$pristine }">
+        <label>Margin Rate</label>
+        <input type="number" name="promoterMargin" class="form-control" ng-model="asset.promoterMargin" required min="0" max="100" step="0.01">
+        <p ng-show="assetForm.promoterMargin.$invalid && !assetForm.promoterMargin.$pristine" class="help-block">Margin Rate required.</p>
+    </div>
+    <div ng-if="!isUpdate" class="form-group" ng-class="{ 'has-error' : assetForm.aaa.$invalid && !assetForm.aaa.$pristine }">
+        <label>Add another Asset?</label>
+        <input type="radio" name="aaa" class="form-group" value="1" ng-model="asset.aaa" required ng-selected> Yes
+        <input type="radio" name="aaa" class="form-group" value="2" ng-model="asset.aaa" required> No
+        <p ng-show="assetForm.profession.$invalid && !assetForm.profession.$pristine" class="help-block">Profession is required.</p>
+    </div>
+    <button ng-if="!isUpdate" class="btn btn-primary" type="submit" ng-disabled="assetForm.$invalid" ng-click="saveAsset()">Add Asset</button>
+    <button ng-if="isUpdate" class="btn btn-primary" type="submit" ng-disabled="assetForm.$invalid" ng-click="updateAsset()">Update Asset</button>
+    <button class="btn btn-primary" type="submit" ng-click="cancel()">Cancel</button>
+</form>

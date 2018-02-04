@@ -6,6 +6,9 @@
                 <li ng-class="{ tabStyle: isSet(1), tabStyleNone : !isSet(1) }">
                     <a href ng-click="setTab(1)">Profile</a>
                 </li>
+                <li ng-class="{ tabStyle: isSet(5), tabStyleNone : !isSet(5) }">
+                    <a href ng-click="setTab(5)">Basic Data</a>
+                </li>
                 <li ng-class="{ tabStyle: isSet(2), tabStyleNone : !isSet(2) }">
                     <a href ng-click="setTab(2)">Assets</a>
                 </li>
@@ -20,152 +23,86 @@
         <div class="col-md-10">
             <div class="jumbotron">
                 <div ng-show="isSet(1)">
-                    <form class="form-register" name="clientForm" novalidate style="margin-top:-50px;">
-                        <div class="col-lg-12 col-sm-12 col-xs-12 alert alert-success" ng-if="successMessagebool ">
-                            <strong>{{successMessage }}</strong>
-                        </div>
-                        <div class="col-lg-12 col-sm-12 col-xs-12 alert alert-danger" ng-if="errorMessagebool">
-                            <strong>{{errorMessage }}</strong>
-                        </div>
-                        <div class="row">
-                            <h5 class="col-lg-6 col-sm-6 col-xs-6 form-signin-heading">You are viewing the details of : {{client.name}}</h5>
-                            <!-- <span class="col-lg-6 col-sm-6 col-xs-6 form-signin-heading pull-right"><a href="" class="pull-right">click here to update</a></span> -->
-                        </div>
-                        <div class="form-group">
-                            <label><b>Salutation</b></label>
-                            <input type="radio" name="namePrefix" class="form-group" value="Mr" ng-model="client.namePrefix" required> Mr
-                            <input type="radio" name="namePrefix" class="form-group" value="Mrs" ng-model="client.namePrefix" required> Mrs
-                            <input type="radio" name="namePrefix" class="form-group" value="Ms" ng-model="client.namePrefix" required> Ms
-                            <input type="radio" name="namePrefix" class="form-group" value="M/S" ng-model="client.namePrefix" required> M/S
-                        </div>
-                        <div class="form-group" ng-class="{ 'has-error' : clientForm.name.$invalid && !clientForm.name.$pristine }">
-                            <label><b>Name of the Client</b></label>
-                            <i class="fa fa-asterisk text-danger">*</i>
-                            <input type="text" name="name" class="form-control" ng-model="client.name" required>
-                            <p ng-show="clientForm.name.$invalid && !clientForm.name.$pristine" class="help-block">Name is required.</p>
-                        </div>
-                        <div class="form-group">
-                            <label><b>Client Status</b></label>
-                            <input type="radio" name="status" class="form-group" value="Propreitorship" ng-model="client.status" required> Propreitorship
-                            <input type="radio" name="status" class="form-group" value="Partnership" ng-model="client.status" required> Partnership
-                            <input type="radio" name="status" class="form-group" value="LmtCompany" ng-model="client.status" required> Limited Company
-                        </div>
-                        <div class="form-group" ng-class="{ 'has-error' : clientForm.doorNo.$invalid && !clientForm.doorNo.$pristine }">
-                            <label><b>Door No</b></label>
-                            <i class="fa fa-asterisk text-danger">*</i>
-                            <input type="text" name="doorNo" class="form-control" ng-model="client.doorNo" required>
-                            <p ng-show="clientForm.doorNo.$invalid && !clientForm.doorNo.$pristine" class="help-block">Door No/Building Name is required.</p>
-                        </div>
-                        <div class="form-group">
-                            <label><b>Road</b></label>
-                            <input type="text" name="address" class="form-control" ng-model="client.road">
-                        </div>
-                        <div class="form-group">
-                            <label><b>Locality</b></label>
-                            <input type="text" name="address1" class="form-control" ng-model="client.locality">
-                        </div>
-                        <div class="form-group">
-                            <label><b>Land Mark</b></label>
-                            <input type="text" name="address2" class="form-control" ng-model="client.landmark">
-                        </div>
-                        <div class="form-group">
-                            <label><b>Town</b></label>
-                            <input type="text" name="town" class="form-control" ng-model="client.town">
-                        </div>
-                        <div class="form-group" ng-class="{ 'has-error' : clientForm.pincode.$invalid && !clientForm.pincode.$pristine }">
-                            <label><b>Pincode</b></label>
-                            <i class="fa fa-asterisk text-danger">*</i>
-                            <input type="number" name="pincode" class="form-control" ng-model="client.pincode" minlength="7" maxlength="7">
-                            <p ng-show="clientForm.pincode.$invalid && !clientForm.pincode.$pristine" class="help-block">Pincode is required.</p>
-                        </div>
-                        <div class="form-group" ng-class="{ 'has-error' : clientForm.state.$invalid && !clientForm.state.$pristine }">
-                            <label><b>State</b></label>
-                            <i class="fa fa-asterisk text-danger">*</i>
-                            <select class="form-control" name="state" ng-model="client.state">
-                            <option value="-1">Select State</option>
-                            <option ng-repeat="state in states">{{state}}</option>
-                        </select>
-                            <p ng-show="clientForm.state.$invalid && !clientForm.state.$pristine" class="help-block">State is required.</p>
-                        </div>
-                        <div class="form-group">
-                            <label><b>Land Phone</b></label>
-                            <input type="text" name="landphone" class="form-control" ng-model="client.landphone">
-                        </div>
-                        <div class="form-group" ng-class="{ 'has-error' : clientForm.mobile.$invalid && !clientForm.mobile.$pristine }">
-                            <label><b>Mobile Number</b></label>
-                            <i class="fa fa-asterisk text-danger">*</i>
-                            <input type="number" name="mobile" class="form-control" ng-model="client.mobile" minlength="10" maxlength="10">
-                            <p ng-show="clientForm.mobile.$invalid && !clientForm.mobile.$pristine" class="help-block">Mobile Phone is required.</p>
-                        </div>
-                        <div class="form-group" ng-class="{ 'has-error' : clientForm.email.$invalid && !clientForm.email.$pristine }">
-                            <label><b>Email Address</b></label>
-                            <i class="fa fa-asterisk text-danger">*</i>
-                            <input type="email" name="email" class="form-control" ng-model="client.email" required>
-                            <p ng-show="clientForm.email.$invalid && !clientForm.email.$pristine" class="help-block">Email is required.</p>
-                        </div>
-                        <div class="form-group">
-                            <label><b>Industry</b></label>
-                            <input type="radio" name="lineofactivity" class="form-group" value="Manufacturing" ng-model="client.lineofactivity" required> Manufacturing
-                            <input type="radio" name="lineofactivity" class="form-group" value="Service" ng-model="client.lineofactivity" required> Service
-                        </div>
-                        <div class="form-group" ng-class="{ 'has-error' : clientForm.dateoffirstditributionoftermloan.$invalid && !clientForm.dateoffirstditributionoftermloan.$pristine }">
-                            <label><b>Anticipated date of first disbursement of proposed Term Loan</b></label>
-                            <i class="fa fa-asterisk text-danger">*</i>
-                            <input type="date" name="dateoffirstditributionoftermloan" class="form-control" datetime="yyyy/MM/dd HH:mm:ss" ng-model="client.dateoffirstditributionoftermloan" required>
-                            <p ng-show="clientForm.dateoffirstditributionoftermloan.$invalid && !clientForm.dateoffirstditributionoftermloan.$pristine" class="help-block">Date of first Disbursement Term Loan is required.</p>
-                        </div>
-                        <div class="row">
-                            <button class="btn btn-lg btn-primary btn-block col-md-5" type="submit" ng-disabled="clientForm.$invalid" ng-click="updateClient()">Update</button>
-                            <!-- <span class="col-md-2">&nbsp;</span>
-                        <button class="btn btn-lg btn-primary btn-block col-md-5" type="submit" ng-click="cancel()">Cancel</button> -->
-                        </div>
-                        <!-- <button class="btn btn-lg btn-primary btn-block" type="submit" ng-disabled="clientForm.$invalid" ng-click="submit()">Add Client</button> -->
-                    </form>
+                    <update-client></update-client>
                 </div>
                 <!--*Asset Input screen*-->
                 <div ng-show="isSet(2)">
-                    <span ng-show="!showAssetForm">You don't have any Assets for this client. Please add the Assets.</span>
-                    <button class="btn btn-primary pull-right" ng-click="addAsset()">Add Asset</button>
-                    <form ng-show="showAssetForm" class="form-signin" name="assetForm" ng-submit="submit()" novalidate>
-                        <div class="col-lg-12 col-sm-12 col-xs-12 alert alert-success" ng-if="successMessagebool ">
-                            <strong>{{successMessage }}</strong>
-                        </div>
-                        <div class="col-lg-12 col-sm-12 col-xs-12 alert alert-danger" ng-if="errorMessagebool">
-                            <strong>{{errorMessage }}</strong>
-                        </div>
-                        <h5 class="form-signin-heading">Please Enter the Asset Details</h5>
-                        <div class="form-group" ng-class="{ 'has-error' : assetForm.name.$invalid && !assetForm.name.$pristine }">
-                            <label>Name of the Asset</label>
-                            <input type="text" name="name" class="form-control" ng-model="asset.name" required>
-                            <p ng-show="assetForm.name.$invalid && !assetForm.name.$pristine" class="help-block">Name of the Asset is required.</p>
-                        </div>
-                        <div class="form-group" ng-class="{ 'has-error' : assetForm.value.$invalid && !assetForm.value.$pristine }">
-                            <label>Value of the Asset</label>
-                            <input type="number" name="value" class="form-control currency" ng-model="asset.value" required>
-                            <p ng-show="assetForm.value.$invalid && !assetForm.value.$pristine" class="help-block">Value of the Asset is required.</p>
-                        </div>
-                        <div class="form-group" ng-class="{ 'has-error' : assetForm.depreciationRate.$invalid && !assetForm.depreciationRate.$pristine }">
-                            <label>Depreciation Rate</label>
-                            <input type="number" name="depreciationRate" class="form-control" ng-model="asset.depreciationRate" required min="0" max="100" step="0.01">
-                            <p ng-show="assetForm.depreciationRate.$invalid && !assetForm.depreciationRate.$pristine" class="help-block">Depreciation Rate required.</p>
-                        </div>
-                        <div class="form-group" ng-class="{ 'has-error' : assetForm.promoterMargin.$invalid && !assetForm.promoterMargin.$pristine }">
-                            <label>Margin Rate</label>
-                            <input type="number" name="promoterMargin" class="form-control" ng-model="asset.promoterMargin" required min="0" max="100" step="0.01">
-                            <p ng-show="assetForm.promoterMargin.$invalid && !assetForm.promoterMargin.$pristine" class="help-block">Margin Rate required.</p>
-                        </div>
-                        <div class="form-group" ng-class="{ 'has-error' : assetForm.aaa.$invalid && !assetForm.aaa.$pristine }">
-                            <label>Add another Asset?</label>
-                            <input type="radio" name="aaa" class="form-group" value="1" ng-model="asset.aaa" required ng-selected> Yes
-                            <input type="radio" name="aaa" class="form-group" value="2" ng-model="asset.aaa" required> No
-                            <p ng-show="assetForm.profession.$invalid && !assetForm.profession.$pristine" class="help-block">Profession is required.</p>
-                        </div>
-                        <button class="btn btn-lg btn-primary btn-block" type="submit" ng-disabled="assetForm.$invalid" ng-click="saveAsset()">Add Asset</button>
-                    </form>
+                    <asset-input></asset-input>
                 </div>
                 <div ng-show="isSet(3)">
                     <h1>Messages</h1>
                     <p> Some messages </p>
+                </div>
+                <div ng-show="isSet(5)">
+                    <form class="form-signin" name="basicForm" ng-submit="submit()" novalidate>
+                        <h2 class="form-signin-heading">Please Enter the Basic Details</h2>
+                        <div class="form-group" ng-class="{ 'has-error' : basicForm.nob.$invalid && !basicForm.nob.$pristine }">
+                            <label>Name of the Business</label>
+                            <input type="text" name="nob" class="form-control" ng-model="basic.nob" required>
+                            <p ng-show="basicForm.nob.$invalid && !basicForm.nob.$pristine" class="help-block">Name of the Business is required.</p>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : basicForm.fdd.$invalid && !basicForm.fdd.$pristine }">
+                            <label>Term Loan First Disbursement Date</label>
+                            <input type="date" name="fdd" class="form-control" ng-model="basic.fdd" required>
+                            <p ng-show="basicForm.fdd.$invalid && !basicForm.fdd.$pristine" class="help-block">Term Loan First Disbursement Date required.</p>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : basicForm.bcd.$invalid && !basicForm.bcd.$pristine }">
+                            <label>Business Commencement Date</label>
+                            <input type="date" name="bcd" class="form-control" ng-model="basic.bcd" required>
+                            <p ng-show="basicForm.bcd.$invalid && !basicForm.bcd.$pristine" class="help-block">Business Commencement Date required.</p>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : basicForm.ttl.$invalid && !basicForm.ttl.$pristine }">
+                            <label>Tenure of Term Loan</label>
+                            <input type="number" name="ttl" class="form-control" ng-model="basic.ttl" required min="0" max="240">
+                            <p ng-show="basicForm.ttl.$invalid && !basicForm.ttl.$pristine" class="help-block">Tenure of Term Loan required.</p>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : basicForm.moratorium.$invalid && !basicForm.moratorium.$pristine }">
+                            <label>Moratorium</label>
+                            <input type="number" name="moratorium" class="form-control" ng-model="basic.moratorium" required min="0" max="240">
+                            <p ng-show="basicForm.moratorium.$invalid && !basicForm.moratorium.$pristine" class="help-block">Tenure of Term Loan required.</p>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : basicForm.ircc.$invalid && !basicForm.ircc.$pristine }">
+                            <label>Interest Rate for CC</label>
+                            <input type="number" name="ircc" class="form-control" ng-model="basic.ircc" required min="0" max="240" step="0.01">
+                            <p ng-show="basicForm.ircc.$invalid && !basicForm.ircc.$pristine" class="help-block">Interest Rate for CC required.</p>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : basicForm.pd.$invalid && !basicForm.pd.$pristine }">
+                            <label>Payment Date</label>
+                            <input type="number" name="pd" class="form-control" ng-model="basic.pd" required min="0" max="240">
+                            <p ng-show="basicForm.pd.$invalid && !basicForm.pd.$pristine" class="help-block">Payment Date required.</p>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : basicForm.status.$invalid && !basicForm.status.$pristine }">
+                            <label>Status</label>
+                            <select class="form-control" name="status" ng-model="basic.status">
+                                      <option value="-1">Select Status</option>
+                                      <option value="1">Propreitorship</option>
+                                      <option value="2">Partnership</option>
+                                      <option value="3">Private Limited Company</option>
+                                    </select>
+                            <p ng-show="basicForm.status.$invalid && !basicForm.status.$pristine" class="help-block">State is required.</p>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : basicForm.cca.$invalid && !basicForm.cca.$pristine }">
+                            <label>Cash Credit Amount Required</label>
+                            <input type="number" name="cca" class="form-control" ng-model="basic.cca" required min="0">
+                            <p ng-show="basicForm.cca.$invalid && !basicForm.cca.$pristine" class="help-block">Cash Credit Amount Required required.</p>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : basicForm.fepm.$invalid && !basicForm.fepm.$pristine }">
+                            <label>Fixed Expenses Per Month</label>
+                            <input type="number" name="fepm" class="form-control" ng-model="basic.fepm" required min="0">
+                            <p ng-show="basicForm.fepm.$invalid && !basicForm.fepm.$pristine" class="help-block">Fixed Expenses Per Month required.</p>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : basicForm.nodiam.$invalid && !basicForm.nodiam.$pristine }">
+                            <label>Number of Days in a Month</label>
+                            <input type="number" name="nodiam" class="form-control" ng-model="basic.nodiam" required min="0">
+                            <p ng-show="basicForm.nodiam.$invalid && !basicForm.nodiam.$pristine" class="help-block">Number of Days in a Month required.</p>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error' : basicForm.ppm.$invalid && !basicForm.ppm.$pristine }">
+                            <label>Production Per Month(in units)</label>
+                            <input type="number" name="ppm" class="form-control" ng-model="basic.ppm" required min="0" max="240" step="0.01">
+                            <p ng-show="basicForm.ppm.$invalid && !basicForm.ppm.$pristine" class="help-block">Production Per Month(in units) required.</p>
+                        </div>
+                        <button class="btn btn-lg btn-primary btn-block" type="submit" ng-disabled="basicForm.$invalid">Sign in</button>
+                    </form>
                 </div>
             </div>
         </div>
