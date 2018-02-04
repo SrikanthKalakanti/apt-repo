@@ -1,41 +1,83 @@
+<div ng-show="basicInfo && !showBasicForm">
+    <span ng-if="!basicInfo">You don't have any Basic data for this client. Please add the Basic Info.</span>
+    <button ng-if="!basicInfo" class="btn btn-primary pull-right" ng-click="addBasiInfo()">Add Basic Info</button>
+    <h2 class="sub-header" ng-if="basicInfo">Basic Details</h2>
+    <!-- <div ng-if="assets.length > 0" ng-if="!refresh" ui-grid="gridOptions" external-scopes="$scope" ui-grid-pagination class="myGrid"></div> -->
+    <div ng-if="basicInfo">
+        <table class="tableCustome">
+            <thead>
+                <th>ID</th>
+                <td>Name</td>
+                <th>Commencement</th>
+                <th>CC Amt Req</th>
+                <th>Fixed Expenses/Month</th>
+                <th>Int Rate For Cc</th>
+                <th>Moratorium</th>
+                <th>No Of Days/Month</th>
+                <th>Update</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{basicInfo.basicInputId}}</td>
+                    <td>{{basicInfo.nameOfTheBusiness}}</td>
+                    <td>{{basicInfo.businessCommencement}}</td>
+                    <td>{{basicInfo.cashCreditAmountRequired}}</td>
+                    <td>{{basicInfo.fixedExpensesPerMonth}}</td>
+                    <td>{{basicInfo.interestRateForCc}}</td>
+                    <td>{{basicInfo.moratorium}}</td>
+                    <td>{{basicInfo.numberOfDaysInAMonth}}</td>
+                    <td><a href ng-click="updateDetails(basicInfo)">Click Here</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 <div class="container">
-
-      <form class="form-signin" name="basicForm" ng-submit="submit()" novalidate>
-        <h2 class="form-signin-heading">Please Enter the Basic Details</h2>
-        <div class="form-group" ng-class="{ 'has-error' : basicForm.nob.$invalid && !basicForm.nob.$pristine }">
+    <!-- <span ng-if="(basicInfo | json) == '{}' && !showBasicForm">You don't have any Basic data for this client. Please add the Basic Info.</span>
+    <button ng-if="(basicInfo | json) == '{}' && !showBasicForm" class="btn btn-primary pull-right" ng-click="addBasiInfo()">Add Basic Info</button> -->
+    <form ng-if="showBasicForm" class="form-signin" name="basicForm" ng-submit="submit()" novalidate>
+        <div class="col-lg-12 col-sm-12 col-xs-12 alert alert-success" ng-if="successMessagebool ">
+            <strong>{{successMessage }}</strong>
+        </div>
+        <div class="col-lg-12 col-sm-12 col-xs-12 alert alert-danger" ng-if="errorMessagebool">
+            <strong>{{errorMessage }}</strong>
+        </div>
+        <h5 ng-if="!isUpdate" class="form-signin-heading">Please Enter the Basic Details</h5>
+        <h5 ng-if="isUpdate" class="form-signin-heading">Update Basic Details</h5>
+        <div class="form-group" ng-class="{ 'has-error' : basicForm.nameOfTheBusiness.$invalid && !basicForm.nameOfTheBusiness.$pristine }">
             <label>Name of the Business</label>
-            <input type="text" name="nob" class="form-control" ng-model="basic.nob" required>
-            <p ng-show="basicForm.nob.$invalid && !basicForm.nob.$pristine" class="help-block">Name of the Business is required.</p>
+            <input type="text" name="nameOfTheBusiness" class="form-control" ng-model="basic.nameOfTheBusiness" required>
+            <p ng-show="basicForm.nameOfTheBusiness.$invalid && !basicForm.nameOfTheBusiness.$pristine" class="help-block">Name of the Business is required.</p>
         </div>
-        <div class="form-group" ng-class="{ 'has-error' : basicForm.fdd.$invalid && !basicForm.fdd.$pristine }">
+        <div class="form-group" ng-class="{ 'has-error' : basicForm.termLoanDisbursement.$invalid && !basicForm.termLoanDisbursement.$pristine }">
             <label>Term Loan First Disbursement Date</label>
-            <input type="date" name="fdd" class="form-control" ng-model="basic.fdd" required>
-            <p ng-show="basicForm.fdd.$invalid && !basicForm.fdd.$pristine" class="help-block">Term Loan First Disbursement Date required.</p>
+            <input type="date" name="termLoanDisbursement" class="form-control" ng-model="basic.termLoanDisbursement" required>
+            <p ng-show="basicForm.termLoanDisbursement.$invalid && !basicForm.termLoanDisbursement.$pristine" class="help-block">Term Loan First Disbursement Date required.</p>
         </div>
-        <div class="form-group" ng-class="{ 'has-error' : basicForm.bcd.$invalid && !basicForm.bcd.$pristine }">
+        <div class="form-group" ng-class="{ 'has-error' : basicForm.businessCommencement.$invalid && !basicForm.businessCommencement.$pristine }">
             <label>Business Commencement Date</label>
-            <input type="date" name="bcd" class="form-control" ng-model="basic.bcd" required>
-            <p ng-show="basicForm.bcd.$invalid && !basicForm.bcd.$pristine" class="help-block">Business Commencement Date required.</p>
+            <input type="date" name="businessCommencement" class="form-control" ng-model="basic.businessCommencement" required>
+            <p ng-show="basicForm.businessCommencement.$invalid && !basicForm.businessCommencement.$pristine" class="help-block">Business Commencement Date required.</p>
         </div>
-        <div class="form-group" ng-class="{ 'has-error' : basicForm.ttl.$invalid && !basicForm.ttl.$pristine }">
+        <div class="form-group" ng-class="{ 'has-error' : basicForm.tenureOfTermLoan.$invalid && !basicForm.tenureOfTermLoan.$pristine }">
             <label>Tenure of Term Loan</label>
-            <input type="number" name="ttl" class="form-control" ng-model="basic.ttl" required min="0" max="240">
-            <p ng-show="basicForm.ttl.$invalid && !basicForm.ttl.$pristine" class="help-block">Tenure of Term Loan required.</p>
+            <input type="number" name="tenureOfTermLoan" class="form-control" ng-model="basic.tenureOfTermLoan" required min="0" max="240">
+            <p ng-show="basicForm.tenureOfTermLoan.$invalid && !basicForm.tenureOfTermLoan.$pristine" class="help-block">Tenure of Term Loan required.</p>
         </div>
         <div class="form-group" ng-class="{ 'has-error' : basicForm.moratorium.$invalid && !basicForm.moratorium.$pristine }">
             <label>Moratorium</label>
             <input type="number" name="moratorium" class="form-control" ng-model="basic.moratorium" required min="0" max="240">
             <p ng-show="basicForm.moratorium.$invalid && !basicForm.moratorium.$pristine" class="help-block">Tenure of Term Loan required.</p>
         </div>
-        <div class="form-group" ng-class="{ 'has-error' : basicForm.ircc.$invalid && !basicForm.ircc.$pristine }">
+        <div class="form-group" ng-class="{ 'has-error' : basicForm.interestRateForCc.$invalid && !basicForm.interestRateForCc.$pristine }">
             <label>Interest Rate for CC</label>
-            <input type="number" name="ircc" class="form-control" ng-model="basic.ircc" required min="0" max="240" step="0.01">
-            <p ng-show="basicForm.ircc.$invalid && !basicForm.ircc.$pristine" class="help-block">Interest Rate for CC required.</p>
+            <input type="number" name="interestRateForCc" class="form-control" ng-model="basic.interestRateForCc" required min="0" max="240" step="0.01">
+            <p ng-show="basicForm.interestRateForCc.$invalid && !basicForm.interestRateForCc.$pristine" class="help-block">Interest Rate for CC required.</p>
         </div>
-        <div class="form-group" ng-class="{ 'has-error' : basicForm.pd.$invalid && !basicForm.pd.$pristine }">
+        <div class="form-group" ng-class="{ 'has-error' : basicForm.paymentDate.$invalid && !basicForm.paymentDate.$pristine }">
             <label>Payment Date</label>
-            <input type="number" name="pd" class="form-control" ng-model="basic.pd" required min="0" max="240">
-            <p ng-show="basicForm.pd.$invalid && !basicForm.pd.$pristine" class="help-block">Payment Date required.</p>
+            <input type="number" name="paymentDate" class="form-control" ng-model="basic.paymentDate" required min="0" max="240">
+            <p ng-show="basicForm.paymentDate.$invalid && !basicForm.paymentDate.$pristine" class="help-block">Payment Date required.</p>
         </div>
         <div class="form-group" ng-class="{ 'has-error' : basicForm.status.$invalid && !basicForm.status.$pristine }">
             <label>Status</label>
@@ -47,27 +89,29 @@
             </select>
             <p ng-show="basicForm.status.$invalid && !basicForm.status.$pristine" class="help-block">State is required.</p>
         </div>
-        <div class="form-group" ng-class="{ 'has-error' : basicForm.cca.$invalid && !basicForm.cca.$pristine }">
+        <div class="form-group" ng-class="{ 'has-error' : basicForm.cashCreditAmountRequired.$invalid && !basicForm.cashCreditAmountRequired.$pristine }">
             <label>Cash Credit Amount Required</label>
-            <input type="number" name="cca" class="form-control" ng-model="basic.cca" required min="0">
-            <p ng-show="basicForm.cca.$invalid && !basicForm.cca.$pristine" class="help-block">Cash Credit Amount Required required.</p>
+            <input type="number" name="cashCreditAmountRequired" class="form-control" ng-model="basic.cashCreditAmountRequired" required min="0">
+            <p ng-show="basicForm.cashCreditAmountRequired.$invalid && !basicForm.cashCreditAmountRequired.$pristine" class="help-block">Cash Credit Amount Required required.</p>
         </div>
-        <div class="form-group" ng-class="{ 'has-error' : basicForm.fepm.$invalid && !basicForm.fepm.$pristine }">
+        <div class="form-group" ng-class="{ 'has-error' : basicForm.fixedExpensesPerMonth.$invalid && !basicForm.fixedExpensesPerMonth.$pristine }">
             <label>Fixed Expenses Per Month</label>
-            <input type="number" name="fepm" class="form-control" ng-model="basic.fepm" required min="0">
-            <p ng-show="basicForm.fepm.$invalid && !basicForm.fepm.$pristine" class="help-block">Fixed Expenses Per Month required.</p>
+            <input type="number" name="fixedExpensesPerMonth" class="form-control" ng-model="basic.fixedExpensesPerMonth" required min="0">
+            <p ng-show="basicForm.fixedExpensesPerMonth.$invalid && !basicForm.fixedExpensesPerMonth.$pristine" class="help-block">Fixed Expenses Per Month required.</p>
         </div>
-        <div class="form-group" ng-class="{ 'has-error' : basicForm.nodiam.$invalid && !basicForm.nodiam.$pristine }">
+        <div class="form-group" ng-class="{ 'has-error' : basicForm.numberOfDaysInAMonth.$invalid && !basicForm.numberOfDaysInAMonth.$pristine }">
             <label>Number of Days in a Month</label>
-            <input type="number" name="nodiam" class="form-control" ng-model="basic.nodiam" required min="0">
-            <p ng-show="basicForm.nodiam.$invalid && !basicForm.nodiam.$pristine" class="help-block">Number of Days in a Month required.</p>
+            <input type="number" name="numberOfDaysInAMonth" class="form-control" ng-model="basic.numberOfDaysInAMonth" required min="0">
+            <p ng-show="basicForm.numberOfDaysInAMonth.$invalid && !basicForm.numberOfDaysInAMonth.$pristine" class="help-block">Number of Days in a Month required.</p>
         </div>
-        <div class="form-group" ng-class="{ 'has-error' : basicForm.ppm.$invalid && !basicForm.ppm.$pristine }">
+        <div class="form-group" ng-class="{ 'has-error' : basicForm.productionPerMonthInUnits.$invalid && !basicForm.productionPerMonthInUnits.$pristine }">
             <label>Production Per Month(in units)</label>
-            <input type="number" name="ppm" class="form-control" ng-model="basic.ppm" required min="0" max="240" step="0.01">
-            <p ng-show="basicForm.ppm.$invalid && !basicForm.ppm.$pristine" class="help-block">Production Per Month(in units) required.</p>
+            <input type="number" name="productionPerMonthInUnits" class="form-control" ng-model="basic.productionPerMonthInUnits" required min="0" max="240" step="0.01">
+            <p ng-show="basicForm.productionPerMonthInUnits.$invalid && !basicForm.productionPerMonthInUnits.$pristine" class="help-block">Production Per Month(in units) required.</p>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" ng-disabled="basicForm.$invalid">Sign in</button>
-      </form>
+        <button ng-if="!isUpdate" class="btn btn-lg btn-primary" type="submit" ng-disabled="basicForm.$invalid" ng-click="addBasicInfo()">Add Basic Info</button>
+        <button ng-if="isUpdate" class="btn btn-lg btn-primary" type="submit" ng-disabled="basicForm.$invalid" ng-click="updateBasicInfo()">Update Basic Info</button>
+        <button class="btn btn-lg btn-primary" type="submit" ng-click="cancel()">Cancel</button>
+    </form>
 
-    </div>
+</div>

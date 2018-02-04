@@ -51,6 +51,7 @@ angular.module('myAppApp').directive('updateClient', function() {
             };
             $scope.clientData = JSON.parse(localStorage.getItem("clientData"));
             var date = new Date($scope.clientData.dateoffirstditributionoftermloan);
+            console.log(date);
             $scope.clientData.dateoffirstditributionoftermloan = new Date(date.getFullYear(), date.getMonth(), date.getDate());
             $scope.client = $scope.clientData;
             $scope.updateClient = function() {

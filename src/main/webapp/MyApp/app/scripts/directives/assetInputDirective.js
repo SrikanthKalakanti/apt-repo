@@ -11,7 +11,7 @@ angular.module('myAppApp').directive('assetInput', function() {
         controller: function($scope, AssetService, $window, $timeout) {
             // $scope.assets = {};
             $scope.userData = JSON.parse(localStorage.getItem('userData'));
-            $scope.assets = localStorage.getItem('assetData');
+            $scope.assets = JSON.parse(localStorage.getItem('assetData'));
             $scope.gridOptions = {
                 enableSorting: true,
                 enableFiltering: true,
@@ -42,8 +42,8 @@ angular.module('myAppApp').directive('assetInput', function() {
                 }, 0);
             };
             $scope.getAssetDetails = function() {
-                console.log($scope.userData.customerId);
-                AssetService.getAllAssets($scope.userData.customerId)
+                console.log($scope.assets.clientId);
+                AssetService.getAllAssets($scope.assets.clientId)
                     .then(function success(response) {
                         $scope.assets = response.data.result;
                         console.log($scope.assets);
@@ -71,7 +71,7 @@ angular.module('myAppApp').directive('assetInput', function() {
                 $scope.showAssetForm = true;
             };
             $scope.updateAsset = function() {
-                console.log($scope.userData.customerId);
+                console.log($scope.assets.clientId);
                 AssetService.updateAsset($scope.asset)
                     .then(function success(response) {
                         //$scope.assets = response.data.result;
@@ -95,6 +95,9 @@ angular.module('myAppApp').directive('assetInput', function() {
                         $window.scrollTo(0, 0);
                     });
             };
+            $scope.cancel = function() {
+                $scope.showAssetForm = false;
+            };
             $scope.getAssetDetails();
             $scope.safeApply = function(fn) {
                 var phase = this.$root.$$phase;
@@ -107,8 +110,8 @@ angular.module('myAppApp').directive('assetInput', function() {
                 }
             };
             $scope.saveAsset = function() {
-                $scope.userData = JSON.parse(localStorage.getItem('userData'));
-                $scope.asset.clientId = $scope.userData.customerId;
+                //$scope.userData = JSON.parse(localStorage.getItem('userData'));
+                $scope.asset.clientId = $scope.assets.clientId;
                 if ($scope.assetForm.$valid) {
                     AssetService.saveAsset({ "assetInput": [$scope.asset] })
                         .then(function success(response) {
