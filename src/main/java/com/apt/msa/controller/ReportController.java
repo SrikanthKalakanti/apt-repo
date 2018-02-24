@@ -30,6 +30,7 @@ import com.apt.msa.service.IBasicInputService;
 import com.apt.msa.service.IClientService;
 import com.apt.msa.service.IExpensesInputService;
 import com.apt.msa.service.IGrowthInflationInputService;
+import com.apt.msa.util.ExcelUtil;
 import com.apt.msa.util.ResultStatusConstants;
 
 @RestController
@@ -158,6 +159,10 @@ public class ReportController {
 				CostOfProjectTable costOfProjectTable = new CostOfProjectTable(clientGlobalInput);
 				costOfProjectTable.printCostOfProjectTable(costOfProjectTable);
 				logger.info("......asset list size...."+CostOfProjectTable.columnHeaders);
+				
+				
+				//Print above CostOfProjectTable related to Asset in Excel
+				ExcelUtil.createAptReport(costOfProjectTable);
 				
 				
 				return new Response(ResultStatusConstants.STATUS_OK,ResultStatusConstants.SUCCESS_CODE,
