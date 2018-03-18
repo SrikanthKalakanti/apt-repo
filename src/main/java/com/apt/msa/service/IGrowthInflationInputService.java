@@ -9,4 +9,5 @@ public interface IGrowthInflationInputService {
 	public GrowthInflationInput findOne(Long clientId) throws APTException;
 	int updateGrowthInput(GrowthInflationInput growthInflationInput) throws APTException;
 	int deleteGrowthInput(GrowthInflationInput growthInflationInput) throws APTException;
+	public GrowthInflationInput fetchByClientId(Long clientId) throws APTException;
 }

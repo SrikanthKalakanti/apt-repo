@@ -38,5 +38,10 @@ public class GrowthInflationInputService implements IGrowthInflationInputService
 		growthInflationRepository.deleteAssetByIdAndClient(growthInflationInput.getClientId(), growthInflationInput.getGrowthIflationId());
 		return 0;
 	}
+	@Override
+	public GrowthInflationInput fetchByClientId(Long clientId) throws APTException {
+		GrowthInflationInput growthInflation = growthInflationRepository.fetchByClientId(clientId);
+		return growthInflation;
+	}
 
 }

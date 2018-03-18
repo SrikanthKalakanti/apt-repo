@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.apt.msa.entity.BasicInput;
 import com.apt.msa.exception.APTException;
-import com.apt.msa.request.BasicInputRequest;
 import com.apt.msa.request.ClientRequest;
 import com.apt.msa.response.Response;
 import com.apt.msa.service.IBasicInputService;

@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.apt.msa.entity.GrowthInflationInput;
 
 @Repository
@@ -19,6 +20,7 @@ public interface GrowthInflationInputRespository extends JpaRepository<GrowthInf
 	@Query("delete from growth_inflation_input WHERE client_id = :clientId and growth_iflation_id =:growthIflationId")
 	int deleteAssetByIdAndClient(@Param("clientId") Long clientId, @Param("growthIflationId") Long growthIflationId);
 	
-	
+	@Query("FROM growth_inflation_input where client_id=?1")
+	GrowthInflationInput fetchByClientId(@Param("clientId") Long clientId);
 	
 }

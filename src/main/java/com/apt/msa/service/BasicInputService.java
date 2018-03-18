@@ -39,5 +39,8 @@ public class BasicInputService implements IBasicInputService {
 		return 0;
 	}
 
-	
+	@Override
+	public BasicInput fetchByClientId(Long clientId) throws APTException {
+		return basicInputRepository.fetchByClientId(clientId);
+	}
 }
