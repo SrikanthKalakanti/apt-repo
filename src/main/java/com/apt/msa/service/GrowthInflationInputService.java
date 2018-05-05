@@ -1,5 +1,7 @@
 package com.apt.msa.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,8 +31,8 @@ public class GrowthInflationInputService implements IGrowthInflationInputService
 
 	@Override
 	public int updateGrowthInput(GrowthInflationInput growthInflationInput) throws APTException {
-		// TODO Auto-generated method stub
-		return 0;
+		return growthInflationRepository.updateGrowthInflationInput(growthInflationInput.getAnswer1(),growthInflationInput.getAnswer2(),growthInflationInput.getAnswer3(),
+				growthInflationInput.getNumberOfYears(), growthInflationInput.getArray1(),growthInflationInput.getArray2(),growthInflationInput.getClientId(),growthInflationInput.getGrowthIflationId());
 	}
 
 	@Override
