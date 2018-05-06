@@ -8,15 +8,18 @@
     padding: 20px;
     /* margin-top: 80px; */
 }
+
 footer {
-    position: relative;
+    position: fixed;
     bottom: 0;
 }
+
 .footer-basic-centered .footer-company-motto {
     color: #8d9093;
     font-size: 24px;
     margin: 0;
 }
+
 .footer-basic-centered .footer-links {
     list-style: none;
     font-weight: bold;
@@ -24,11 +27,13 @@ footer {
     padding: 35px 0 23px;
     margin: 0;
 }
+
 .footer-basic-centered .footer-links a {
     display: inline-block;
     text-decoration: none;
     color: inherit;
 }
+
 .footer-basic-centered .footer-company-name {
     color: #8f9296;
     font-size: 14px;

@@ -1,101 +1,104 @@
-<div class="col-md-6 col-md-offset-3">
-  <h2 class="form-signin-heading">Please Register</h2>
-  <form name="registrationForm" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !namePrefix.valid }">
-        <label for="namePrefix">Name Prefix</label>
-        <i class="fa fa-asterisk text-danger">*</i>
-        <input type="radio" name="namePrefix" class="form-group" value="Mr" [(ngModel)]="model.namePrefix" #namePrefix="ngModel" required> Mr
-        <input type="radio" name="namePrefix" class="form-group" value="Mrs" [(ngModel)]="model.namePrefix" #namePrefix="ngModel" required> Mrs
-        <input type="radio" name="namePrefix" class="form-group" value="Ms" [(ngModel)]="model.namePrefix" #namePrefix="ngModel" required> Ms
-        <input type="radio" name="namePrefix" class="form-group" value="M/S" [(ngModel)]="model.namePrefix" #namePrefix="ngModel" required> M/S
-        <div *ngIf="f.submitted && !namePrefix.valid" class="help-block">Name Prefix is required</div>
-      </div>
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstName.valid }">
-        <label for="firstName">First Name</label>
-        <i class="fa fa-asterisk text-danger">*</i>
-        <input type="text" class="form-control" name="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" required />
-        <div *ngIf="f.submitted && !firstName.valid" class="help-block">First Name is required</div>
-      </div>
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lastName.valid }">
-          <label for="lastName">Last Name</label>
-          <i class="fa fa-asterisk text-danger">*</i>
-          <input type="text" class="form-control" name="lastName" [(ngModel)]="model.lastName" #lastName="ngModel" required />
-          <div *ngIf="f.submitted && !lastName.valid" class="help-block">Last Name is required</div>
-      </div>
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !status.valid }">
-        <label for="status">Status</label>
-        <i class="fa fa-asterisk text-danger">*</i>
-        <input type="radio" name="status" class="form-group" value="Individual" [(ngModel)]="model.status" #status="ngModel" required> Individual
-        <input type="radio" name="status" class="form-group" value="Firm" [(ngModel)]="model.status" #status="ngModel" required> Firm
-        <div *ngIf="f.submitted && !status.valid" class="help-block">Status is required</div>
-      </div>
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !doorNumber.valid }">
-        <label for="doorNumber">Address Door No/Building Name</label>
-        <i class="fa fa-asterisk text-danger">*</i>
-        <input type="text" class="form-control" name="doorNumber" [(ngModel)]="model.doorNumber" #doorNumber="ngModel" required />
-        <div *ngIf="f.submitted && !doorNumber.valid" class="help-block">Address Door No/Building Name is required</div>
-      </div>
-      <div class="form-group">
-        <label for="roadNumber">Address Road</label>
-        <input type="text" class="form-control" name="roadNumber" [(ngModel)]="model.roadNumber" #roadNumber="ngModel"/>
-      </div>
-      <div class="form-group">
-        <label for="locality">Address Locality</label>
-        <input type="text" class="form-control" name="locality" [(ngModel)]="model.locality" #locality="ngModel"/>
-      </div>
-      <div class="form-group">
-        <label for="landmark">Address Land Mark</label>
-        <input type="text" class="form-control" name="landmark" [(ngModel)]="model.landmark" #landmark="ngModel"/>
-      </div>
-      <div class="form-group">
-        <label for="town">Town</label>
-        <input type="text" class="form-control" name="town" [(ngModel)]="model.town" #town="ngModel"/>
-      </div>
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !pincode.valid }">
-        <label for="pincode">Pincode</label>
-        <i class="fa fa-asterisk text-danger">*</i>
-        <input type="number" class="form-control" name="pincode" [(ngModel)]="model.pincode" #pincode="ngModel" minlength="7" maxlength="7" required />
-        <div *ngIf="f.submitted && !pincode.valid" class="help-block">Pincode is required</div>
-      </div>
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !state.valid }">
-        <label for="state">State</label>
-        <i class="fa fa-asterisk text-danger">*</i>
-        <select class="form-control" name="state" [(ngModel)]="model.state" #state="ngModel">
+<app-header></app-header>
+<div class="col-md-6 col-md-offset-3 height">
+    <h2 class="form-signin-heading">Please Register</h2>
+    <form name="registrationForm" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !namePrefix.valid }">
+            <label for="namePrefix">Name Prefix</label>
+            <i class="fa fa-asterisk text-danger">*</i>
+            <input type="radio" name="namePrefix" class="form-group" value="Mr" [(ngModel)]="model.namePrefix" #namePrefix="ngModel" required> Mr
+            <input type="radio" name="namePrefix" class="form-group" value="Mrs" [(ngModel)]="model.namePrefix" #namePrefix="ngModel" required> Mrs
+            <input type="radio" name="namePrefix" class="form-group" value="Ms" [(ngModel)]="model.namePrefix" #namePrefix="ngModel" required> Ms
+            <input type="radio" name="namePrefix" class="form-group" value="M/S" [(ngModel)]="model.namePrefix" #namePrefix="ngModel" required> M/S
+            <div *ngIf="f.submitted && !namePrefix.valid" class="help-block">Name Prefix is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstName.valid }">
+            <label for="firstName">First Name</label>
+            <i class="fa fa-asterisk text-danger">*</i>
+            <input type="text" class="form-control" name="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" required />
+            <div *ngIf="f.submitted && !firstName.valid" class="help-block">First Name is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lastName.valid }">
+            <label for="lastName">Last Name</label>
+            <i class="fa fa-asterisk text-danger">*</i>
+            <input type="text" class="form-control" name="lastName" [(ngModel)]="model.lastName" #lastName="ngModel" required />
+            <div *ngIf="f.submitted && !lastName.valid" class="help-block">Last Name is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !status.valid }">
+            <label for="status">Status</label>
+            <i class="fa fa-asterisk text-danger">*</i>
+            <input type="radio" name="status" class="form-group" value="Individual" [(ngModel)]="model.status" #status="ngModel" required> Individual
+            <input type="radio" name="status" class="form-group" value="Firm" [(ngModel)]="model.status" #status="ngModel" required> Firm
+            <div *ngIf="f.submitted && !status.valid" class="help-block">Status is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !doorNumber.valid }">
+            <label for="doorNumber">Address Door No/Building Name</label>
+            <i class="fa fa-asterisk text-danger">*</i>
+            <input type="text" class="form-control" name="doorNumber" [(ngModel)]="model.doorNumber" #doorNumber="ngModel" required />
+            <div *ngIf="f.submitted && !doorNumber.valid" class="help-block">Address Door No/Building Name is required</div>
+        </div>
+        <div class="form-group">
+            <label for="roadNumber">Address Road</label>
+            <input type="text" class="form-control" name="roadNumber" [(ngModel)]="model.roadNumber" #roadNumber="ngModel" />
+        </div>
+        <div class="form-group">
+            <label for="locality">Address Locality</label>
+            <input type="text" class="form-control" name="locality" [(ngModel)]="model.locality" #locality="ngModel" />
+        </div>
+        <div class="form-group">
+            <label for="landmark">Address Land Mark</label>
+            <input type="text" class="form-control" name="landmark" [(ngModel)]="model.landmark" #landmark="ngModel" />
+        </div>
+        <div class="form-group">
+            <label for="town">Town</label>
+            <input type="text" class="form-control" name="town" [(ngModel)]="model.town" #town="ngModel" />
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !pincode.valid }">
+            <label for="pincode">Pincode</label>
+            <i class="fa fa-asterisk text-danger">*</i>
+            <input type="number" class="form-control" name="pincode" [(ngModel)]="model.pincode" #pincode="ngModel" minlength="7" maxlength="7" required />
+            <div *ngIf="f.submitted && !pincode.valid" class="help-block">Pincode is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !state.valid }">
+            <label for="state">State</label>
+            <i class="fa fa-asterisk text-danger">*</i>
+            <select class="form-control" name="state" [(ngModel)]="model.state" #state="ngModel">
           <option value="-1">Select State</option>
           <option value="{{state.id}}" *ngFor="let state of states">{{state.name}}</option>
         </select>
-        <div *ngIf="f.submitted && !state.valid" class="help-block">State is required</div>
-      </div>
-      <div class="form-group">
-        <label for="landPhone">Land Phone</label>
-        <input type="text" class="form-control" name="landPhone" [(ngModel)]="model.landPhone" #landPhone="ngModel"/>
-      </div>
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !mobile.valid }">
-        <label for="mobile">Mobile Phone</label>
-        <i class="fa fa-asterisk text-danger">*</i>
-        <input type="number" class="form-control" name="mobile" [(ngModel)]="model.mobile" #mobile="ngModel" min-length="7" max-length="7" required />
-        <div *ngIf="f.submitted && !mobile.valid" class="help-block">Mobile is required</div>
-      </div>
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
-        <label for="email">Email</label>
-        <i class="fa fa-asterisk text-danger">*</i>
-        <input type="email" class="form-control" name="email" [(ngModel)]="model.email" #email="ngModel" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"/>
-        <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required/invalid</div>
-      </div>
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-          <label for="username">Username</label>
-          <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel" required />
-          <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
-      </div>
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-          <label for="password">Password</label>
-          <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
-          <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
-      </div>
-      <div class="form-group">
-          <button [disabled]="loading" class="btn btn-primary">Register</button>
-          <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-          <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
-      </div>
-  </form>
+            <div *ngIf="f.submitted && !state.valid" class="help-block">State is required</div>
+        </div>
+        <div class="form-group">
+            <label for="landPhone">Land Phone</label>
+            <input type="text" class="form-control" name="landPhone" [(ngModel)]="model.landPhone" #landPhone="ngModel" />
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !mobile.valid }">
+            <label for="mobile">Mobile Phone</label>
+            <i class="fa fa-asterisk text-danger">*</i>
+            <input type="number" class="form-control" name="mobile" [(ngModel)]="model.mobile" #mobile="ngModel" min-length="7" max-length="7" required />
+            <div *ngIf="f.submitted && !mobile.valid" class="help-block">Mobile is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+            <label for="email">Email</label>
+            <i class="fa fa-asterisk text-danger">*</i>
+            <input type="email" class="form-control" name="email" [(ngModel)]="model.email" #email="ngModel" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" />
+            <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required/invalid</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel" required />
+            <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
+            <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+        </div>
+        <div class="form-group">
+            <button [disabled]="loading" class="btn btn-primary">Register</button>
+            <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+            />
+            <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
+        </div>
+    </form>
 </div>
+<app-footer></app-footer>

@@ -11,7 +11,9 @@ import { STATES } from '../../mocks/states';
 })
 export class RegisterComponent implements OnInit {
 
-  model: any = {};
+  model: any = {
+    namePrefix: "Mr"
+  };
     loading = false;
     states = STATES;
 
