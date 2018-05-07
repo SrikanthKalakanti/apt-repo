@@ -4,34 +4,29 @@ import { RouterModule, Routes } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 
 // import { HomeComponent } from './home/index';
-import { LoginComponent } from './components/login/login.component';
+import { LoginViewComponent } from './components/login-view/login-view.component';
 import { RegisterComponent } from './components/register/register.component';
 // import { AuthGuard } from './_guards/index';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginViewComponent },
   { path: 'register', component: RegisterComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
 
   // otherwise redirect to home
-  { path: '**', redirectTo: '' }
+  { path: '**', component: LoginViewComponent }
 ];
 
 @NgModule({
   imports: [
-    CommonModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: false } // <-- debugging purposes only
+    )
   ],
-  declarations: []
+  exports: [
+    RouterModule
+  ]
 })
 
-export class AppRoutingModule {
-  appRoutes: Routes = [
-    { path: '', redirectTo: 'login', pathMatch: 'full' },
-    { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent },
-  
-    // otherwise redirect to home
-    { path: '**', redirectTo: '' }
-  ];
- }
+export class AppRoutingModule { }

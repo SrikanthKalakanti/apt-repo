@@ -1,29 +1,43 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
-import { User } from '../models/user';
+import { Observable } from 'rxjs/Observable';
+
+import { ApiService } from './api.service';
+import { AuthService } from './authentication.service';
+import { User } from '../shared/models/user.model';
 
 @Injectable()
 export class UserService {
-    constructor(private http: HttpClient) { }
 
-    getAll() {
-        return this.http.get<User[]>('/api/users');
-    }
+  constructor(
+    private apiService: ApiService,
+    private http: HttpClient,
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
-    getById(id: number) {
-        return this.http.get('/api/users/' + id);
+  populate() {
+    // If JWT detected, reroute to fileupload screen
+    if (this.authService.getToken()) {
+      this.router.navigateByUrl('/fileupload');
     }
+  }
 
-    create(user: User) {
-        return this.http.post('/api/users', user);
-    }
+  setAuth(user: User) {
+    // Save response Object sent from server in localstorage
+    this.authService.setSession(user);
+  }
 
-    update(user: User) {
-        return this.http.put('/api/users/' + user.id, user);
-    }
+  // Make modified post request using Api Service
+  attemptAuth(credentials): Observable<User> {
+    const path = 'login';
+    return this.apiService.post(path, credentials, this.authService.getHeaders())
+      .map(data => {
+        this.setAuth(data);
+        return data;
+      });
+  }
 
-    delete(id: number) {
-        return this.http.delete('/api/users/' + id);
-    }
 }

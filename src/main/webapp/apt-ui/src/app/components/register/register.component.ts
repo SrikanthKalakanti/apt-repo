@@ -12,7 +12,10 @@ import { STATES } from '../../mocks/states';
 export class RegisterComponent implements OnInit {
 
   model: any = {
-    namePrefix: "Mr"
+    namePrefix: "Mr",
+    status: "Individual",
+    state: "-1",
+    profession: "CA"
   };
     loading = false;
     states = STATES;
@@ -24,16 +27,16 @@ export class RegisterComponent implements OnInit {
 
     register() {
         this.loading = true;
-        this.userService.create(this.model)
-            .subscribe(
-                data => {
-                    this.alertService.success('Registration successful', true);
-                    this.router.navigate(['/login']);
-                },
-                error => {
-                    this.alertService.error(error);
-                    this.loading = false;
-                });
+        // this.userService.create(this.model)
+        //     .subscribe(
+        //         data => {
+        //             this.alertService.success('Registration successful', true);
+        //             this.router.navigate(['/login']);
+        //         },
+        //         error => {
+        //             this.alertService.error(error);
+        //             this.loading = false;
+        //         });
     }
 
   ngOnInit() {
