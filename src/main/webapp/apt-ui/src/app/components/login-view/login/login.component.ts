@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Errors } from '../../../shared/models/errors.model';
 import { ErrorService } from '../../../shared/services/error.service';
+import { UserService } from '../../../services';
+import { Router } from '@angular/router';
 
 interface ItemsResponse {
   obj: string[];
@@ -19,7 +21,9 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private userService: UserService,
+    private router: Router
   ) { 
     this.form = this.fb.group({
       'userName': ['', Validators.required],
