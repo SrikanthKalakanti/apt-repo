@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { AlertService, UserService } from '../../services/index';
 import { State } from '../../models/state';
 import { STATES } from '../../mocks/states';
+import { ApiService } from '../../services/api.service';
+import { RegisterService } from '../../services/register.service';
 
 @Component({
   selector: 'app-register',
@@ -12,31 +14,25 @@ import { STATES } from '../../mocks/states';
 export class RegisterComponent implements OnInit {
 
   model: any = {
-    namePrefix: "Mr",
-    status: "Individual",
-    state: "-1",
-    profession: "CA"
+    namePrefix: 'Mr',
+    status: 'Individual',
+    state: '-1',
+    profession: 'CA'
   };
     loading = false;
     states = STATES;
 
     constructor(
         private router: Router,
-        private userService: UserService,
+        private registerService: RegisterService,
         private alertService: AlertService) { }
 
     register() {
         this.loading = true;
-        // this.userService.create(this.model)
-        //     .subscribe(
-        //         data => {
-        //             this.alertService.success('Registration successful', true);
-        //             this.router.navigate(['/login']);
-        //         },
-        //         error => {
-        //             this.alertService.error(error);
-        //             this.loading = false;
-        //         });
+        const formValues = this.model;
+        console.log(formValues);
+        this.registerService.register(formValues);
+        this.loading = false;
     }
 
   ngOnInit() {

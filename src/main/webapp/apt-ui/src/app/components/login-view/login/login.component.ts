@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     private errorService: ErrorService,
     private userService: UserService,
     private router: Router
-  ) { 
+  ) {
     this.form = this.fb.group({
       'userName': ['', Validators.required],
       'password': ['', Validators.required],
@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
     this.userService.attemptAuth(credentials)
       .subscribe(
         data => {
-          this.router.navigateByUrl('/SCC/fileupload');
+          this.router.navigateByUrl('/register');
         },
         err => {
           this.errors = err.error;

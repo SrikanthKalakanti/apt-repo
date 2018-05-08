@@ -1,0 +1,6 @@
+<div *ngIf="errorList"
+  [ngClass]="{ 'alert': errorList,
+    'alert-success': errorList.type === 'success',
+    'alert-danger': errorList.type === 'error' }">
+  <b>{{errorList.description}}</b>
+</div>

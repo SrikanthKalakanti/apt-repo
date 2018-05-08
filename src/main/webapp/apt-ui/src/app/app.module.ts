@@ -15,11 +15,15 @@ import { LoginComponent } from './components/login-view/login/login.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { RegisterComponent } from './components/register/register.component';
 
-import { AuthenticationService } from './services/authentication.service';
 import { AlertService } from './services/alert.service';
 import { UserService } from './services/user.service';
 import { AlertComponent } from './directives/alert/alert.component';
 import { LoginViewComponent } from './components/login-view/login-view.component';
+import { AuthService } from './services/auth.service';
+import { ErrorService } from './shared/services/error.service';
+import { ApiService } from './services/api.service';
+import { ListErrorsComponent } from './shared/components/list-errors/list-errors.component';
+import { RegisterService } from './services/register.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,8 @@ import { LoginViewComponent } from './components/login-view/login-view.component
     LoginComponent,
     RegisterComponent,
     AlertComponent,
-    LoginViewComponent
+    LoginViewComponent,
+    ListErrorsComponent
   ],
   imports: [
     BrowserModule,
@@ -39,9 +44,12 @@ import { LoginViewComponent } from './components/login-view/login-view.component
     ReactiveFormsModule
   ],
   providers: [
-    AuthenticationService,
+    AuthService,
     AlertService,
-    UserService
+    UserService,
+    ErrorService,
+    ApiService,
+    RegisterService
   ],
   bootstrap: [AppComponent]
 })

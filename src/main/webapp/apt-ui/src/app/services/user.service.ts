@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
 import { ApiService } from './api.service';
-import { AuthService } from './authentication.service';
 import { User } from '../shared/models/user.model';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class UserService {
@@ -32,7 +32,7 @@ export class UserService {
 
   // Make modified post request using Api Service
   attemptAuth(credentials): Observable<User> {
-    const path = 'login';
+    const path = '/apt/customer/login';
     return this.apiService.post(path, credentials, this.authService.getHeaders())
       .map(data => {
         this.setAuth(data);
