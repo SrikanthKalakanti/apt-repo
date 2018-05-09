@@ -31,7 +31,7 @@ export class ErrorService {
     this.subject.next(
       {
         type: 'success',
-        description: (errorList.description) ? errorList.description : errorList.status
+        description: (errorList.errorMessage) ? errorList.errorMessage : errorList.status
       }
     );
   }
@@ -41,7 +41,7 @@ export class ErrorService {
     this.subject.next(
       {
         type: 'error',
-        description: `${errorList.status}: ${errorList.description}`
+        description: `${errorList.status}: ${errorList.errorMessage}`
       }
     );
   }

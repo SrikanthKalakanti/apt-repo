@@ -3,5 +3,6 @@ export class Errors {
     description: string;
     errorCode: string;
     status: string;
+    errorMessage: string;
   }
   

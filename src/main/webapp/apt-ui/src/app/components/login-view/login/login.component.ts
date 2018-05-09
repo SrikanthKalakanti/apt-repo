@@ -44,9 +44,12 @@ export class LoginComponent implements OnInit {
     this.userService.attemptAuth(credentials)
       .subscribe(
         data => {
+          console.log(data);
+          this.errorService.success(this.errors);
           this.router.navigateByUrl('/register');
         },
         err => {
+          console.log(err);
           this.errors = err.error;
           this.errorService.error(this.errors);
         });
