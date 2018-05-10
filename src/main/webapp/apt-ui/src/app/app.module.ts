@@ -24,6 +24,8 @@ import { ErrorService } from './shared/services/error.service';
 import { ApiService } from './services/api.service';
 import { ListErrorsComponent } from './shared/components/list-errors/list-errors.component';
 import { RegisterService } from './services/register.service';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   declarations: [
@@ -34,14 +36,16 @@ import { RegisterService } from './services/register.service';
     RegisterComponent,
     AlertComponent,
     LoginViewComponent,
-    ListErrorsComponent
+    ListErrorsComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DataTablesModule
   ],
   providers: [
     AuthService,

@@ -1,0 +1,44 @@
+<app-header></app-header>
+<div class="container">
+    <div class="row alignment_body">
+        <div class="col-sm-12 col-xs-12 col-md-12 main">
+            <span *ngIf="!isDataAvailable">You don't have any clients. Please add the client.</span>
+            <button class="btn btn-primary pull-right" (click)="addClient()">Add Client</button>
+            <h2 class="sub-header" *ngIf="isDataAvailable">List Of Clients</h2>
+            <table *ngIf="isDataAvailable" datatable [dtOptions]="dtOptions" class="table table-striped table-bordered tableCustom row-border hover">
+                <thead>
+                    <tr>
+                        <th class="width_10">ID</th>
+                        <th class="width_40">Name</th>
+                        <th class="width_20">Status</th>
+                        <th class="width_20">Mobile</th>
+                        <th class="width_40">Email</th>
+                        <th class="width_20">LOA</th>
+                        <th class="width_20">Date of LD</th>
+                        <th class="width_20">Delete/Update</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngIf="data?.length == 0">
+                        <td colspan="5" class="no-data-available">Loading Data...</td>
+                    </tr>
+                    <tr *ngFor="let data of data[0]">
+                        <td>{{data.clientId}}</td>
+                        <td>{{data.clientName}}</td>
+                        <td>{{data.clientStatus}}</td>
+                        <td>{{data.phone}}</td>
+                        <td>{{data.email}}</td>
+                        <td>{{data.loa}}</td>
+                        <td>{{data.termLoadDate | date : 'MM/dd/yyyy'}}</td>
+                        <td class="text-align">
+                            <a (click)="downloadReport(data)" title="{{data.fileName}}">
+                                Delete/Update</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- <div *ngIf="isDataAvailable" ui-grid="gridOptions" external-scopes="$scope" ui-grid-pagination class="myGrid"></div> -->
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

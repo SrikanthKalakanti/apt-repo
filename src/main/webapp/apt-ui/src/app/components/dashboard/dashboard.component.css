@@ -1,0 +1,151 @@
+.app-hr-cyan {
+    margin-top: 0;
+    border: none;
+    height: 1px;
+    /* Set the hr color */
+    color: rgb(163, 197, 216);
+    /* old IE */
+    background-color: rgb(163, 197, 216);
+    /* Modern Browsers */
+}
+
+.asterisk {
+    margin: 0px;
+    padding: 0px;
+    color: red;
+}
+
+.blue-outline {
+    border-top: navy solid 2px;
+    width: 100%;
+}
+
+.btn-group>.upload-btn {
+    margin-left: 9px;
+}
+
+.equal-label-input {
+    width: 150px;
+}
+
+.file-drop-text {
+    padding-top: 6px;
+}
+
+.remove-bottom-margin {
+    margin-bottom: 0px;
+}
+
+.upload-btn {
+    color: navy;
+    border: rgb(151, 151, 151) solid 2px;
+    padding: 0px 15px 0px 15px;
+}
+
+.vertical-line {
+    min-height: 505px;
+    border-left: solid rgb(163, 197, 216) 1px;
+    padding-left: 0px;
+}
+
+.vertical-line-padding {
+    padding-left: 0em;
+}
+
+.view-header {
+    margin-top: 0px;
+    margin-bottom: 5px;
+    color: rgb(70, 70, 70);
+}
+
+.views-horizontal-line {
+    margin-bottom: 5px;
+}
+
+.table {
+    width: 100% !important;
+    max-width: 100%;
+    /* margin: 20px !important; */
+    background-color: transparent;
+    border-spacing: 0;
+    border-collapse: collapse;
+    border: none;
+    table-layout: fixed;
+    border: 1px solid #337ab7;
+}
+
+.table>thead:first-child>tr:first-child>th {
+    border: 1px solid gray;
+}
+
+.table-striped>tbody>tr {
+    border: 1px solid gray;
+}
+
+.table-striped>thead>tr {
+    background-color: #337ab7;
+}
+
+.table-bordered>tbody>tr>td {
+    line-height: 0.5;
+    text-align: center;
+    color: #000000;
+    border: 1px solid gray;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.text-align {
+    text-align: left !important;
+}
+
+.table-bordered>thead>tr>th {
+    line-height: 0.5;
+    text-align: center;
+    color: #ffffff;
+    border: 1px solid gray;
+}
+
+.left-align {
+    text-align: left !important;
+}
+
+.table-bordered>tbody {
+    overflow: auto;
+}
+
+.table-bordered>tbody>tr>td>a {
+    cursor: pointer;
+    user-select: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.blue-outline>.dataTables_wrapper {
+    padding-top: 1rem !important;
+}
+
+.blue-outline>.dataTables_wrapper .dataTables_length {
+    float: right !important;
+}
+
+.table-bordered>thead .width_10 {
+    width: 10% !important;
+}
+
+.table-bordered>thead .width_15 {
+    width: 14% !important;
+}
+
+.table-bordered>thead .width_20 {
+    width: 18% !important;
+}
+
+.table-bordered>thead .width_40 {
+    width: 44% !important;
+}
+
+.table-bordered>tbody tr:hover {
+    background-color: lightblue;
+}

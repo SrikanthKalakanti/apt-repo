@@ -4,5 +4,5 @@ export class Errors {
     errorCode: string;
     status: string;
     errorMessage: string;
-  }
-  
+}
+
