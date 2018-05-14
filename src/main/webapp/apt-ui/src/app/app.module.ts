@@ -27,6 +27,10 @@ import { RegisterService } from './services/register.service';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DataTablesModule } from 'angular-datatables';
 import { AddCustomerComponent } from './components/add-customer/add-customer.component';
+import { TabComponent } from './components/tab/tab.component';
+import { TabsetComponent } from './components/tabset/tabset.component';
+import { CustomerDetailsComponent } from './components/customer-details/customer-details.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +43,10 @@ import { AddCustomerComponent } from './components/add-customer/add-customer.com
     LoginViewComponent,
     ListErrorsComponent,
     DashboardComponent,
-    AddCustomerComponent
+    AddCustomerComponent,
+    TabComponent,
+    TabsetComponent,
+    CustomerDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +62,8 @@ import { AddCustomerComponent } from './components/add-customer/add-customer.com
     UserService,
     ErrorService,
     ApiService,
-    RegisterService
+    RegisterService,
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })
