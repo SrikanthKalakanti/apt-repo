@@ -26,6 +26,7 @@ import { ListErrorsComponent } from './shared/components/list-errors/list-errors
 import { RegisterService } from './services/register.service';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DataTablesModule } from 'angular-datatables';
+import { AddCustomerComponent } from './components/add-customer/add-customer.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { DataTablesModule } from 'angular-datatables';
     AlertComponent,
     LoginViewComponent,
     ListErrorsComponent,
-    DashboardComponent
+    DashboardComponent,
+    AddCustomerComponent
   ],
   imports: [
     BrowserModule,
