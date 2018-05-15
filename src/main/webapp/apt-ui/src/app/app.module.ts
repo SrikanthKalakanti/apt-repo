@@ -32,6 +32,7 @@ import { TabsetComponent } from './components/tabset/tabset.component';
 import { CustomerDetailsComponent } from './components/customer-details/customer-details.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { DashboardService } from './services/dashboard.service';
+import { AddClientService } from './services/add-client.service';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { DashboardService } from './services/dashboard.service';
     ApiService,
     RegisterService,
     AuthGuardService,
-    DashboardService
+    DashboardService,
+    AddClientService
   ],
   bootstrap: [AppComponent]
 })
