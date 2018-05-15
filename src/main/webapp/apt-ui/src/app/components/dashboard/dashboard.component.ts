@@ -62,15 +62,15 @@ export class DashboardComponent implements OnInit {
     this.isDataAvailable = true;
     this.data = [CLIENTDETAILS];
   this.dtTrigger.next();
-    // this.http.get('clientList.json')
-    //             .subscribe(data => {
-    //               this.isDataAvailable = true;
-    //               this.data = data;
-    //             },
-    //             err => {
-    //               this.errors = err.error;
-    //               this.errorService.error(this.errors);
-    //             });
+    this.http.get('clientList.json')
+                .subscribe(data => {
+                  this.isDataAvailable = true;
+                  this.data = data;
+                },
+                err => {
+                  this.errors = err.error;
+                  this.errorService.error(this.errors);
+                });
   }
 
 }
