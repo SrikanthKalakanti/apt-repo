@@ -16,6 +16,7 @@ export class AuthService {
     localStorage.setItem('expiration', expiration);
     localStorage.setItem('jwtToken', user.jwtToken);
     localStorage.setItem('userDisplayName', user.userDisplayName);
+    localStorage.setItem('customerId', user.customerId);
   }
 
   private headers(body: Object = {}) {

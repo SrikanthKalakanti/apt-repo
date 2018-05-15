@@ -6,6 +6,7 @@ import { ErrorService } from '../../shared/services/error.service';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs/Subject';
 import { CLIENTDETAILS } from '../../mocks/clientList';
+import { DashboardService } from '../../services/dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,7 +24,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private router: Router,
     private http: HttpClient,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private dashBoardService: DashboardService
   ) { }
 
   ngOnInit() {
@@ -61,16 +63,15 @@ export class DashboardComponent implements OnInit {
   getAllClientList() {
     this.isDataAvailable = true;
     this.data = [CLIENTDETAILS];
-  this.dtTrigger.next();
-    this.http.get('clientList.json')
-                .subscribe(data => {
-                  this.isDataAvailable = true;
-                  this.data = data;
-                },
-                err => {
-                  this.errors = err.error;
-                  this.errorService.error(this.errors);
-                });
+    this.dashBoardService.getClientList().subscribe(
+      data => {
+        this.data = [data];
+        this.dtTrigger.next();
+      },
+      err => {
+        this.errors = err.error;
+        this.errorService.error(this.errors);
+      });
   }
 
 }

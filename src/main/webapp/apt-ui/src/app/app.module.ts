@@ -31,6 +31,7 @@ import { TabComponent } from './components/tab/tab.component';
 import { TabsetComponent } from './components/tabset/tabset.component';
 import { CustomerDetailsComponent } from './components/customer-details/customer-details.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { DashboardService } from './services/dashboard.service';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { AuthGuardService } from './services/auth-guard.service';
     ErrorService,
     ApiService,
     RegisterService,
-    AuthGuardService
+    AuthGuardService,
+    DashboardService
   ],
   bootstrap: [AppComponent]
 })

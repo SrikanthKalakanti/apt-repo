@@ -4,5 +4,6 @@ export class User {
     isActive: string;
     userDisplayName: string;
     expiration: string;
+    customerId: string;
   }
   

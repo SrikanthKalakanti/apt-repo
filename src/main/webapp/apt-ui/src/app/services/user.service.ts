@@ -35,8 +35,6 @@ export class UserService {
     const path = '/apt/customer/login';
     return this.apiService.post(path, credentials, this.authService.getHeaders())
       .map(data => {
-        data = {'status': 'fail', 'errorCode': 'APT1005', 'errorMessage': 'asdfdsfsa', 'exceptionType': 'dsafgds'};
-        console.log(data);
         this.setAuth(data);
         return data;
       });
