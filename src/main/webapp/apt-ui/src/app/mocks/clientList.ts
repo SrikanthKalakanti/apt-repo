@@ -1,5 +1,5 @@
 import { ClientData } from '../shared/models/clientData.model';
 export const CLIENTDETAILS: ClientData[] = [
-    { clientId: 1, clientName: 'Sampath Kumar', clientStatus: 'Propreitorship', address: 'XYZ', phone: 123456789, email: 'sampath@gmail.com', loa: 'Manufacturing', termLoadDate: '01/20/2018'},
-    { clientId: 2, clientName: 'Sampath Kumar', clientStatus: 'Propreitorship', address: 'XYZ', phone: 123456789, email: 'sampath@gmail.com', loa: 'Manufacturing', termLoadDate: '01/20/2018'}
+    { clientId: 1, name: 'Sampath Kumar', status: 'Propreitorship', address: 'XYZ', mobile: 9618189246, email: 'sampath@gmail.com', lineofactivity: 'Manufacturing', dateoffirstditributionoftermloan: '01/20/2018'},
+    { clientId: 2, name: 'Sampreeth Gambheerrao', status: 'Propreitorship', address: 'ABC', mobile: 6429818169, email: 'sampreeth.0017@gmail.com', lineofactivity: 'Service', dateoffirstditributionoftermloan: '01/20/2018'}
 ];

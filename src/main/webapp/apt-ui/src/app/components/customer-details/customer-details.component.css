@@ -1,0 +1,30 @@
+.app-hr-cyan {
+    margin-top: 0.1em;
+    border: none;
+    height: 1px;
+    /* Set the hr color */
+    color: rgb(163, 197, 216);
+    /* old IE */
+    background-color: rgb(163, 197, 216);
+    /* Modern Browsers */
+}
+
+.view-header {
+    margin-top: 10px;
+    padding-bottom: 14px;
+    height: 45px;
+}
+
+.tabset {
+    min-height: 407px;
+    padding-top: 8px;
+}
+
+.nav .nav-tabs {
+    margin-top: -1em;
+    border-bottom: 1px solid rgb(163, 197, 216) 1px;
+}
+
+.container {
+    margin-top: -16px;
+}

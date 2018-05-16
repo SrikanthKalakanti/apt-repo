@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from '../../shared/services/shared.service';
+import { BasicInfoComponent } from './basic-info/basic-info.component';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-customer-details',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerDetailsComponent implements OnInit {
 
-  constructor() { }
+  data;
+
+  basicInfoComponent = BasicInfoComponent;
+  
+  //bulkUploadHistoryComponent = BulkUploadHistoryComponent;
+
+  constructor(
+    private sharedService: SharedService
+  ) {
+    this.data = this.sharedService.getClientData();
+    this.data = JSON.parse(localStorage.getItem('clientData'));
+    console.log(this.data);
+  }
 
   ngOnInit() {
+    
   }
 
 }

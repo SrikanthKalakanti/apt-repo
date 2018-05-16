@@ -1,11 +1,11 @@
 export class ClientData {
     clientId: Number;
-    clientName: string;
-    clientStatus: string;
+    name: string;
+    status: string;
     address: string;
-    phone: Number;
+    mobile: Number;
     email: string;
-    loa: string;
-    termLoadDate: string;
+    lineofactivity: string;
+    dateoffirstditributionoftermloan: string;
   }
 

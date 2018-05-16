@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs/Subject';
 import { CLIENTDETAILS } from '../../mocks/clientList';
 import { DashboardService } from '../../services/dashboard.service';
+import { SharedService } from '../../shared/services/shared.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,18 +26,20 @@ export class DashboardComponent implements OnInit {
     private router: Router,
     private http: HttpClient,
     private errorService: ErrorService,
-    private dashBoardService: DashboardService
+    private dashBoardService: DashboardService,
+    private sharedService: SharedService
   ) { }
 
   ngOnInit() {
     const self = this;
     this.dtOptions = {
       pageLength: 50,
-      order: ['clientId', 'desc'],
+      order: [0, 'desc'],
       dom: 'Blfrtip',
+      aoColumnDefs: [{ bSortable: false, aTargets: [2,3,4,5,7] }],
       bRetrieve: true,
       bootstrap: true,
-      bStateSave: true,
+      //bStateSave: true,
       // buttons: [
       //   {
       //     text: 'Refresh',
@@ -56,13 +59,16 @@ export class DashboardComponent implements OnInit {
     this.router.navigateByUrl('/addclient');
   }
 
-  openCustomerDetails() {
+  openCustomerDetails(data) {
+    console.log(data);
+    this.sharedService.setClientData(data);
+    localStorage.setItem('clientData', JSON.stringify(data));
     this.router.navigateByUrl('/customerDetails');
   }
 
   getAllClientList() {
     this.isDataAvailable = true;
-    //this.data = [CLIENTDETAILS];
+    //this.data = CLIENTDETAILS;
     this.dashBoardService.getClientList().subscribe(
       data => {
         if(data.result){

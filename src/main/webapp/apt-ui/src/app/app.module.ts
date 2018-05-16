@@ -33,6 +33,9 @@ import { CustomerDetailsComponent } from './components/customer-details/customer
 import { AuthGuardService } from './services/auth-guard.service';
 import { DashboardService } from './services/dashboard.service';
 import { AddClientService } from './services/add-client.service';
+import { SharedService } from './shared/services/shared.service';
+import { BasicInfoComponent } from './components/customer-details/basic-info/basic-info.component';
+import { CustomerDetailsService } from './services/customer-details.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,8 @@ import { AddClientService } from './services/add-client.service';
     AddCustomerComponent,
     TabComponent,
     TabsetComponent,
-    CustomerDetailsComponent
+    CustomerDetailsComponent,
+    BasicInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -67,8 +71,11 @@ import { AddClientService } from './services/add-client.service';
     RegisterService,
     AuthGuardService,
     DashboardService,
-    AddClientService
+    AddClientService,
+    SharedService,
+    CustomerDetailsService
   ],
+  entryComponents: [BasicInfoComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

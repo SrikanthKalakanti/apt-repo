@@ -1,11 +1,11 @@
 <app-header></app-header>
 <div class="container">
-    <h2 class="view-header col-sm-10 col-md-10 col-xs-10 col-lg-10 vertical-line">
-        <strong>{{data}}</strong>
+    <h2 class="view-header col-sm-12 col-md-12 col-xs-12 col-lg-12 vertical-line">
+        <h4>You are viwing the details of : {{data.name}}</h4>
     </h2>
-    <app-tabset class="col-sm-10 col-md-10 col-xs-10 col-lg-10 vertical-line tabset">
-        <app-tab tabTitle="Upload New" [contentRef]="bulkUploadNewComponent"></app-tab>
-        <app-tab tabTitle="History" [contentRef]="bulkUploadHistoryComponent"></app-tab>
+    <app-tabset class="col-sm-12 col-md-12 col-xs-12 col-lg-12 vertical-line tabset">
+        <app-tab tabTitle="Basic Info" [contentRef]="basicInfoComponent"></app-tab>
+        <app-tab tabTitle="Assets" [contentRef]="bulkUploadHistoryComponent"></app-tab>
     </app-tabset>
 </div>
 <app-footer></app-footer>
