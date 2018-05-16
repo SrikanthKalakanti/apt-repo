@@ -11,9 +11,10 @@ export class DashboardService {
     private authService: AuthService
   ) { }
 
-  getClientList(): Observable<ClientData> {
-    const path = '/apt/client/getallclientsbycustomer' + '?customerId=' + localStorage.getItem('customerId');
-    return this.apiService.get(path, this.authService.getHeaders())
+  getClientList(): Observable<any> {
+    const path = '/apt/client/getallclientsbycustomer';// + '?customerId=' + localStorage.getItem('customerId');
+    const obj = {customerId: localStorage.getItem('customerId')};
+    return this.apiService.post(path, obj, this.authService.getHeaders())
       .map(data => {
         return data;
       });

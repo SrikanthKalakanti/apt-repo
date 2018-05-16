@@ -19,7 +19,8 @@ export class AddCustomerComponent implements OnInit {
     namePrefix: 'Mr',
     status: 'Propreitorship',
     state: '-1',
-    lineofactivity: 'Manufacturing'
+    lineofactivity: 'Manufacturing',
+    customerId: localStorage.getItem('customerId')
   };
   loading = false;
   states = STATES;

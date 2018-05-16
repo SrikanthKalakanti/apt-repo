@@ -22,14 +22,14 @@
                     <tr *ngIf="data?.length == 0">
                         <td colspan="8" class="no-data-available">Loading Data...</td>
                     </tr>
-                    <tr *ngFor="let data of data[0]">
+                    <tr *ngFor="let data of data">
                         <td>{{data.clientId}}</td>
-                        <td>{{data.clientName}}</td>
-                        <td>{{data.clientStatus}}</td>
-                        <td>{{data.phone}}</td>
+                        <td>{{data.name}}</td>
+                        <td>{{data.status}}</td>
+                        <td>{{data.mobile}}</td>
                         <td>{{data.email}}</td>
-                        <td>{{data.loa}}</td>
-                        <td>{{data.termLoadDate | date : 'MM/dd/yyyy'}}</td>
+                        <td>{{data.lineofactivity}}</td>
+                        <td>{{data.dateoffirstditributionoftermloan | date : 'MM/dd/yyyy'}}</td>
                         <td class="text-align">
                             <a (click)="openCustomerDetails(data)" title="Delete/Update">
                                 Delete/Update</a>
