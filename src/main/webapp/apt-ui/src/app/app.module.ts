@@ -36,6 +36,8 @@ import { AddClientService } from './services/add-client.service';
 import { SharedService } from './shared/services/shared.service';
 import { BasicInfoComponent } from './components/customer-details/basic-info/basic-info.component';
 import { CustomerDetailsService } from './services/customer-details.service';
+import { AgGridModule } from 'ag-grid-angular';
+import 'ag-grid-enterprise';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,8 @@ import { CustomerDetailsService } from './services/customer-details.service';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    DataTablesModule
+    DataTablesModule,
+    AgGridModule.withComponents([])
   ],
   providers: [
     AuthService,
