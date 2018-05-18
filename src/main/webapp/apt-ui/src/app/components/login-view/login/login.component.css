@@ -1,13 +1,32 @@
 .sign-in-greeting {
     margin-top: 50px;
     margin-bottom: 23px;
-  }
-  
-  .uname-pword-label {
+}
+
+.uname-pword-label {
     margin: 7px 15px 0px 375px;
-  }
-  
-  .notification {
+}
+
+.notification {
     padding: 6px 12px;
     margin: 3px;
-  }
+}
+
+.wrapper {
+    /* background-color: #e3f2fd; */
+    min-height: 100%;
+    height: auto !important;
+    margin-bottom: -50px;
+    /* the bottom margin is the negative value of the footer's total height */
+}
+
+.wrapper:after {
+    content: "";
+    display: block;
+    height: 50px;
+    /* the footer's total height */
+}
+
+.content {
+    height: 100%;
+}

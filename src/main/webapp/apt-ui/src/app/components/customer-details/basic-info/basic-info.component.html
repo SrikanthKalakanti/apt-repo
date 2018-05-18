@@ -1,16 +1,17 @@
-<div class="container">
-    <div class="row alignment_body">
+<div class="container topContainer">
+    <app-list-errors></app-list-errors>
+    <div class="row alignment_body height">
         <div class="col-sm-12 col-xs-12 col-md-12 main">
             <span *ngIf="!isDataAvailable">You don't have any details. Please add the details.</span>
             <button *ngIf="!isDataAvailable" class="btn btn-primary pull-right" (click)="showForm()">Add Basic Info</button>
-            <button *ngIf="isDataAvailable" class="btn btn-primary pull-right" (click)="showForm()">Edit</button>
+            <button *ngIf="isDataAvailable && !isEdit" class="btn btn-primary pull-right" (click)="showForm()">Edit</button>
             <!-- <h2 class="sub-header" *ngIf="isDataAvailable">List Of Clients</h2> -->
-            <form name="basictForm" #f="ngForm" novalidate *ngIf="!isDataAvailable">
-                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !nameOfTheBusiness.valid }">
-                    <label for="nameOfTheBusiness">Name of the Business</label>
+            <form name="basictForm" #f="ngForm" novalidate *ngIf="isEdit">
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !nameOfTheBussiness.valid }">
+                    <label for="nameOfTheBussiness">Name of the Bussiness</label>
                     <i class="fa fa-asterisk text-danger">*</i>
-                    <input type="text" *ngIf="!isEdit" class="form-control" name="name" [(ngModel)]="model.nameOfTheBusiness" #nameOfTheBusiness="ngModel" required />
-                    <div *ngIf="f.submitted && !nameOfTheBusiness.valid" class="help-block">Name of the Business is required</div>
+                    <input type="text" class="form-control" name="name" [(ngModel)]="model.nameOfTheBussiness" #nameOfTheBusiness="ngModel" required />
+                    <div *ngIf="f.submitted && !nameOfTheBussiness.valid" class="help-block">Name of the Bussiness is required</div>
                 </div>
                 <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !termLoanFirstDisbursementDate.valid }">
                     <label for="termLoanFirstDisbursementDate">Term Loan First Disbursement Date</label>
@@ -88,6 +89,14 @@
                     <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
                     />
                     <a [routerLink]="['/dashboard']" class="btn btn-link">Cancel</a>
+                </div>
+            </form>
+            <form name="basictForm1" #f="ngForm" novalidate *ngIf="isDataAvailable && !isEdit && basicData">
+                <div class="form-group">
+                    <label for="nameOfTheBusiness"><b>Name of the Business</b> : </label> {{basicData.nameOfTheBussiness}}
+                </div>
+                <div class="form-group">
+                    <label for="termLoanFirstDisbursementDate"><b>Term Loan First Disbursement Date</b> : </label> {{basicData.termLoanFirstDisbursementDate}}
                 </div>
             </form>
         </div>

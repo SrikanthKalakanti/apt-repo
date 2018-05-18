@@ -1,9 +1,9 @@
 <app-header></app-header>
-<div class="container">
+<div class="container wrapper">
     <h2 class="view-header col-sm-12 col-md-12 col-xs-12 col-lg-12 vertical-line">
         <h4>You are viwing the details of : {{data.name}}</h4>
     </h2>
-    <app-tabset class="col-sm-12 col-md-12 col-xs-12 col-lg-12 vertical-line tabset">
+    <app-tabset class="col-sm-12 col-md-12 col-xs-12 col-lg-12 vertical-line tabset content">
         <app-tab tabTitle="Basic Info" [contentRef]="basicInfoComponent"></app-tab>
         <app-tab tabTitle="Assets" [contentRef]="bulkUploadHistoryComponent"></app-tab>
     </app-tabset>
