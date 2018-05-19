@@ -3,6 +3,7 @@ package com.apt.msa.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.apt.msa.entity.Customer;
 import com.apt.msa.exception.APTException;
+import com.apt.msa.mail.Mail;
+import com.apt.msa.mail.NotificationSender;
 import com.apt.msa.request.LoginRequest;
 import com.apt.msa.response.Response;
 import com.apt.msa.service.ICustomerService;
@@ -27,6 +30,19 @@ public class CustomerController {
 
 	@Autowired
 	private ICustomerService customerService;
+	
+	@Autowired
+	private NotificationSender mailSender;
+	
+	@Value("${registration.mail.success.message.subject}")
+	private String registrationMailSuccessSubject;
+	
+	@Value("${registration.mail.success.message.content}")
+	private String registrationMailSuccessContent;
+	
+	@Value("${registration.mail.success.message.from}")
+	private String registrationMailFrom;
+	
 	
 	/**
 	 * author srikanth
@@ -46,7 +62,19 @@ public class CustomerController {
 			customer.setPassword(encryptPwd);
 					
 			customerService.createCustomer(customer);
-
+			
+			//send email for registered client
+			
+			//registrationMailSuccessSubject registrationMailSuccessContent registrationMailFrom
+			Mail mail = new Mail();
+	        mail.setFrom(registrationMailFrom);
+	        mail.setTo(customer.getEmail());
+	        mail.setSubject(registrationMailSuccessSubject);
+	        mail.setContent("Hi "+customer.getFirstName() + ", "+registrationMailSuccessContent);
+			
+	        //MailSender mailSender = new MailSender();
+			mailSender.sendSimpleMessage(mail);
+			
 			return new Response(ResultStatusConstants.STATUS_OK,ResultStatusConstants.SUCCESS_CODE,ResultStatusConstants.STATUS_CREATE_CUSTOMER_SUCCESS,null);
 			
 		} catch (APTException aptException) {
