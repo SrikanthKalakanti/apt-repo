@@ -2,15 +2,15 @@
     <app-list-errors></app-list-errors>
     <div class="row alignment_body height">
         <div class="col-sm-12 col-xs-12 col-md-12 main">
-            <span *ngIf="!isDataAvailable">You don't have any details. Please add the details.</span>
-            <button *ngIf="!isDataAvailable" class="btn btn-primary pull-right" (click)="showForm()">Add Basic Info</button>
+            <span *ngIf="!isDataAvailable && !isEdit">You don't have any details. Please add the details.</span>
+            <button *ngIf="!isDataAvailable && !isEdit" class="btn btn-primary pull-right" (click)="showForm()">Add Basic Info</button>
             <button *ngIf="isDataAvailable && !isEdit" class="btn btn-primary pull-right" (click)="showForm()">Edit</button>
             <!-- <h2 class="sub-header" *ngIf="isDataAvailable">List Of Clients</h2> -->
             <form name="basictForm" #f="ngForm" novalidate *ngIf="isEdit">
                 <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !nameOfTheBussiness.valid }">
                     <label for="nameOfTheBussiness">Name of the Bussiness</label>
                     <i class="fa fa-asterisk text-danger">*</i>
-                    <input type="text" class="form-control" name="name" [(ngModel)]="model.nameOfTheBussiness" #nameOfTheBusiness="ngModel" required />
+                    <input type="text" class="form-control" name="name" [(ngModel)]="model.nameOfTheBussiness" #nameOfTheBussiness="ngModel" required />
                     <div *ngIf="f.submitted && !nameOfTheBussiness.valid" class="help-block">Name of the Bussiness is required</div>
                 </div>
                 <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !termLoanFirstDisbursementDate.valid }">
@@ -85,10 +85,11 @@
                     <div *ngIf="f.submitted && !productionPerMonthInUnits.valid" class="help-block">Production per Month in Units is required</div>
                 </div>
                 <div class="form-group">
-                    <button [disabled]="loading" class="btn btn-primary" [disabled]="!f.form.valid" (click)="addClient()">Submit</button>
+                    <button *ngIf="!isDataAvailable && isEdit" [disabled]="loading" class="btn btn-primary" [disabled]="!f.form.valid" (click)="addBasicInfo()">Submit</button>
+                    <button *ngIf="isDataAvailable && isEdit" [disabled]="loading" class="btn btn-primary" [disabled]="!f.form.valid" (click)="updateClient()">Update</button>
                     <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
                     />
-                    <a [routerLink]="['/dashboard']" class="btn btn-link">Cancel</a>
+                    <button [disabled]="loading" class="btn btn-danger" (click)="cancel()">Cancel</button>
                 </div>
             </form>
             <form name="basictForm1" #f="ngForm" novalidate *ngIf="isDataAvailable && !isEdit && basicData">
@@ -97,6 +98,42 @@
                 </div>
                 <div class="form-group">
                     <label for="termLoanFirstDisbursementDate"><b>Term Loan First Disbursement Date</b> : </label> {{basicData.termLoanFirstDisbursementDate}}
+                </div>
+                <div class="form-group">
+                    <label for="businessCommencementDate"><b>Business Commencement Date</b> : </label> {{basicData.businessCommencementDate}}
+                </div>
+                <div class="form-group">
+                    <label for="tenureOfTermLoan"><b>Tenure of Term Loan</b> : </label> {{basicData.tenureOfTermLoan}}
+                </div>
+                <div class="form-group">
+                    <label for="moratorium"><b>Moratorium</b> : </label> {{basicData.moratorium}}
+                </div>
+                <div class="form-group">
+                    <label for="interestRateForCc"><b>Interest Rate for CC</b> : </label> {{basicData.interestRateForCc}}
+                </div>
+                <div class="form-group">
+                    <label for="paymentDate"><b>Payment Date</b> : </label> {{basicData.paymentDate}}
+                </div>
+                <div class="form-group" *ngIf="basicData.status === 1">
+                    <label for="status"><b>Status</b> : </label> Propreitorship
+                </div>
+                <div class="form-group" *ngIf="basicData.status === 2">
+                    <label for="status"><b>Status</b> : </label> Partnership
+                </div>
+                <div class="form-group" *ngIf="basicData.status === 3">
+                    <label for="status"><b>Status</b> : </label> Private Limited Company
+                </div>
+                <div class="form-group">
+                    <label for="cashCreditAmountRequired"><b>Cash Credit Amount Required</b> : </label> {{basicData.cashCreditAmountRequired}}
+                </div>
+                <div class="form-group">
+                    <label for="fixedExpensesPerMonth"><b>Fixed Expences Per Month</b> : </label> {{basicData.fixedExpensesPerMonth}}
+                </div>
+                <div class="form-group">
+                    <label for="numberOfDaysInAMonth"><b>Number of days in a Month</b> : </label> {{basicData.numberOfDaysInAMonth}}
+                </div>
+                <div class="form-group">
+                    <label for="productionPerMonthInUnits"><b>Production per Month in Units</b> : </label> {{basicData.productionPerMonthInUnits}}
                 </div>
             </form>
         </div>
