@@ -33,13 +33,13 @@ export class CustomerDetailsService {
         return data;
       });
   }
-  addBasicInfo(): Observable<any> {
+  addBasicInfo(addCustomerObj): Observable<any> {
     const path = "/apt/client/basicinput/create"; // + '?customerId=' + localStorage.getItem('customerId');
     const data = JSON.parse(localStorage.getItem("clientData"));
     console.log(data.clientId);
-    const obj = { clientId: data.clientId };
+    addCustomerObj.clientId = data.clientId;
     return this.apiService
-      .post(path, obj, this.authService.getHeaders())
+      .post(path, addCustomerObj, this.authService.getHeaders())
       .map(data => {
         return data;
       });

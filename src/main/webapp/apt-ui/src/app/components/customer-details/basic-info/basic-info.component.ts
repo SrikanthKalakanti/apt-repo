@@ -96,7 +96,10 @@ export class BasicInfoComponent implements OnInit {
     );
   }
   addBasicInfo() {
-    this.customerDetailsService.addBasicInfo().subscribe(
+    this.errors = new Errors();
+        const formValues = this.model;
+        console.log(formValues);
+    this.customerDetailsService.addBasicInfo(formValues).subscribe(
       data => {
         this.errorService.success(JSON.parse(data));
         this.isEdit = false;

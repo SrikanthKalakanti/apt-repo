@@ -135,23 +135,23 @@ export class DashboardComponent implements OnInit {
   }
 
   getAllClientList() {
-    this.isDataAvailable = true;
-    this.data = CLIENTDETAILS;
-    // this.dashBoardService.getClientList().subscribe(
-    //   data => {
-    //     if (data.result) {
-    //       this.data = data.result;
-    //       this.isDataAvailable = true;
-    //     } else {
-    //       this.isDataAvailable = false;
-    //     }
-    //     this.dtTrigger.next();
-    //   },
-    //   err => {
-    //     this.isDataAvailable = false;
-    //     this.errors = err.error;
-    //     this.errorService.error(this.errors);
-    //   }
-    // );
+    // this.isDataAvailable = true;
+    // this.data = CLIENTDETAILS;
+    this.dashBoardService.getClientList().subscribe(
+      data => {
+        if (data.result) {
+          this.data = data.result;
+          this.isDataAvailable = true;
+        } else {
+          this.isDataAvailable = false;
+        }
+        this.dtTrigger.next();
+      },
+      err => {
+        this.isDataAvailable = false;
+        this.errors = err.error;
+        this.errorService.error(this.errors);
+      }
+    );
   }
 }

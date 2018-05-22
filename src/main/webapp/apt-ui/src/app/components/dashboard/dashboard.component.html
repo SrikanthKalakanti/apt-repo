@@ -1,7 +1,7 @@
 <app-header></app-header>
-<div class="container">
+<div class="container wrapper">
     <div class="row alignment_body">
-        <div class="col-sm-12 col-xs-12 col-md-12 main">
+        <div class="col-sm-12 col-xs-12 col-md-12 main content">
             <span *ngIf="!isDataAvailable">You don't have any clients. Please add the client.</span>
             <button class="btn btn-primary pull-right" (click)="addClient()">Add Client</button>
             <h3 class="sub-header" *ngIf="isDataAvailable">List Of Clients</h3>
