@@ -1,0 +1,98 @@
+<div class="container topContainer">
+    <app-list-errors></app-list-errors>
+    <div class="row alignment_body height">
+        <div class="col-sm-12 col-xs-12 col-md-12 main">
+            <span *ngIf="!isDataAvailable && !isFormAvailable">You don't have any assets. Please add the assets.</span>
+            <button class="btn btn-primary pull-right" *ngIf="!isDataAvailable && !isFormAvailable" (click)="showForm()">Add Asset</button>
+            <h3 class="sub-header" *ngIf="isDataAvailable">List Of Assets</h3>
+            <ag-grid-angular *ngIf="isDataAvailable" #agGrid style="width: 1200px; height: 700px;" class="col-sm-12 col-xs-12 col-md-12 main ag-theme-blue" [rowData]="assetData" [columnDefs]="columnDefs" [enableSorting]="true" [enableFilter]="true" (rowClicked)="onRowClicked($event)">
+            </ag-grid-angular>
+            <form name="assetForm" #f="ngForm" novalidate *ngIf="isFormAvailable">
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !name.valid }">
+                    <label for="name">Name of the Asset</label>
+                    <i class="fa fa-asterisk text-danger">*</i>
+                    <input type="text" class="form-control" name="name" [(ngModel)]="model.name" #name="ngModel" required />
+                    <div *ngIf="f.submitted && !name.valid" class="help-block">Name of the Asset is required</div>
+                </div>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !value.valid }">
+                    <label for="value">Value of the Asset</label>
+                    <i class="fa fa-asterisk text-danger">*</i>
+                    <input type="number" class="form-control" name="value" [(ngModel)]="model.value" #value="ngModel" required />
+                    <div *ngIf="f.submitted && !value.valid" class="help-block">Value of the Asset is required.</div>
+                </div>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !businessCommencementDate.valid }">
+                    <label for="businessCommencementDate">Depreciation Rate</label>
+                    <i class="fa fa-asterisk text-danger">*</i>
+                    <input type="date" class="form-control" name="businessCommencementDate" [(ngModel)]="model.businessCommencementDate" #businessCommencementDate="ngModel" required />
+                    <div *ngIf="f.submitted && !businessCommencementDate.valid" class="help-block">Business Commencement Date is required.</div>
+                </div>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !tenureOfTermLoan.valid }">
+                    <label for="tenureOfTermLoan">Tenure of Term Loan</label>
+                    <i class="fa fa-asterisk text-danger">*</i>
+                    <input type="number" class="form-control" name="tenureOfTermLoan" [(ngModel)]="model.tenureOfTermLoan" #tenureOfTermLoan="ngModel" required />
+                    <div *ngIf="f.submitted && !tenureOfTermLoan.valid" class="help-block">Tenure of Term Loan is required</div>
+                </div>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !moratorium.valid }">
+                    <label for="moratorium">Moratorium</label>
+                    <i class="fa fa-asterisk text-danger">*</i>
+                    <input type="number" class="form-control" name="moratorium" [(ngModel)]="model.moratorium" #moratorium="ngModel" required />
+                    <div *ngIf="f.submitted && !moratorium.valid" class="help-block">Moratorium is required</div>
+                </div>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !interestRateForCc.valid }">
+                    <label for="interestRateForCc">Interest Rate for CC</label>
+                    <i class="fa fa-asterisk text-danger">*</i>
+                    <input type="number" class="form-control" name="interestRateForCc" [(ngModel)]="model.interestRateForCc" #interestRateForCc="ngModel" required />
+                    <div *ngIf="f.submitted && !interestRateForCc.valid" class="help-block">Interest Rate for CC is required</div>
+                </div>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !paymentDate.valid }">
+                    <label for="paymentDate">Payment Date</label>
+                    <i class="fa fa-asterisk text-danger">*</i>
+                    <input type="date" class="form-control" name="paymentDate" [(ngModel)]="model.paymentDate" #paymentDate="ngModel" required />
+                    <div *ngIf="f.submitted && !paymentDate.valid" class="help-block">Payment Date is required.</div>
+                </div>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !status.valid && status !== '-1' }">
+                    <label for="status">Status</label>
+                    <i class="fa fa-asterisk text-danger">*</i>
+                    <select class="form-control" name="status" [(ngModel)]="model.status" #status="ngModel">
+                      <option value="-1">Select Status</option>
+                      <option value="1">Propreitorship</option>
+                      <option value="2">Partnership</option>
+                      <option value="3">Private Limited Company</option>
+                    </select>
+                    <div *ngIf="f.submitted && !state.valid && state !== '-1'" class="help-block">Status is required</div>
+                </div>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !cashCreditAmountRequired.valid }">
+                    <label for="cashCreditAmountRequired">Cash Credit Amount Required</label>
+                    <i class="fa fa-asterisk text-danger">*</i>
+                    <input type="number" class="form-control" name="cashCreditAmountRequired" [(ngModel)]="model.cashCreditAmountRequired" #cashCreditAmountRequired="ngModel" required />
+                    <div *ngIf="f.submitted && !cashCreditAmountRequired.valid" class="help-block">Cash Credit Amount is required</div>
+                </div>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !fixedExpensesPerMonth.valid }">
+                    <label for="fixedExpensesPerMonth">Fixed Expences Per Month</label>
+                    <i class="fa fa-asterisk text-danger">*</i>
+                    <input type="number" class="form-control" name="fixedExpensesPerMonth" [(ngModel)]="model.fixedExpensesPerMonth" #fixedExpensesPerMonth="ngModel" required />
+                    <div *ngIf="f.submitted && !fixedExpensesPerMonth.valid" class="help-block">Fixed Expences Per Month is required</div>
+                </div>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !numberOfDaysInAMonth.valid }">
+                    <label for="numberOfDaysInAMonth">Number of days in a Month</label>
+                    <i class="fa fa-asterisk text-danger">*</i>
+                    <input type="number" class="form-control" name="numberOfDaysInAMonth" [(ngModel)]="model.numberOfDaysInAMonth" #numberOfDaysInAMonth="ngModel" required />
+                    <div *ngIf="f.submitted && !numberOfDaysInAMonth.valid" class="help-block">Number of days in a Month is required</div>
+                </div>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !productionPerMonthInUnits.valid }">
+                    <label for="productionPerMonthInUnits">Production per Month in Units</label>
+                    <i class="fa fa-asterisk text-danger">*</i>
+                    <input type="number" class="form-control" name="productionPerMonthInUnits" [(ngModel)]="model.productionPerMonthInUnits" #productionPerMonthInUnits="ngModel" required />
+                    <div *ngIf="f.submitted && !productionPerMonthInUnits.valid" class="help-block">Production per Month in Units is required</div>
+                </div>
+                <div class="form-group">
+                    <button *ngIf="!isDataAvailable && isEdit" [disabled]="loading" class="btn btn-primary" [disabled]="!f.form.valid" (click)="addBasicInfo()">Submit</button>
+                    <button *ngIf="isDataAvailable && isEdit" [disabled]="loading" class="btn btn-primary" [disabled]="!f.form.valid" (click)="updateClient()">Update</button>
+                    <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+                    />
+                    <button [disabled]="loading" class="btn btn-danger" (click)="cancel()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

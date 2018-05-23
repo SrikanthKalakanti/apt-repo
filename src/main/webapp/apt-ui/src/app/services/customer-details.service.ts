@@ -44,4 +44,15 @@ export class CustomerDetailsService {
         return data;
       });
   }
+  getAllAssets(): Observable<any> {
+    const path = "/apt/client/asset/getallbyclient"; // + '?customerId=' + localStorage.getItem('customerId');
+    const data = JSON.parse(localStorage.getItem("clientData"));
+    console.log(data.clientId);
+    const obj = { clientId: data.clientId };
+    return this.apiService
+      .post(path, obj, this.authService.getHeaders())
+      .map(data => {
+        return data;
+      });
+  }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../../shared/services/shared.service';
 import { BasicInfoComponent } from './basic-info/basic-info.component';
 import { Observable } from 'rxjs/Observable';
+import { AssetComponent } from './asset/asset.component';
 
 @Component({
   selector: 'app-customer-details',
@@ -13,6 +14,7 @@ export class CustomerDetailsComponent implements OnInit {
   data;
 
   basicInfoComponent = BasicInfoComponent;
+  assetComponent = AssetComponent;
   
   //bulkUploadHistoryComponent = BulkUploadHistoryComponent;
 
