@@ -16,6 +16,11 @@ export class AssetComponent implements OnInit {
   errors: Errors = new Errors();
   assetData;
 
+  model: any = {
+    name: "",
+    customerId: localStorage.getItem("customerId")
+  };
+
   constructor(
     private customerDetailsService: CustomerDetailsService,
     private errorService: ErrorService
@@ -42,13 +47,29 @@ export class AssetComponent implements OnInit {
       suppressSizeToFit: true,
       width: 220
     },
-    { headerName: "ID", field: "assetId", pinned: true },
-    { headerName: "Name", field: "name", pinned: true },
-    { headerName: "Value", field: "value" },
-    { headerName: "Depreciation Rate", field: "depreciationRate" },
-    { headerName: "Promoter Margin", field: "promoterMargin" }
+    { headerName: "Name", field: "name", pinned: true, editable: true },
+    { headerName: "Value", field: "value", editable: true, cellRenderer: this.CurrencyCellRenderer },
+    { headerName: "Depreciation Rate", field: "depreciationRate", editable: true, cellRenderer: this.PecentageCellRenderer },
+    { headerName: "Promoter Margin", field: "promoterMargin", editable: true }
   ];
 
+  private CurrencyCellRenderer(params:any) {
+
+    var usdFormate = new Intl.NumberFormat('en-IN', {
+        style: 'currency',
+        currency: 'INR',
+        minimumFractionDigits: 2
+    });
+    return usdFormate.format(params.value);
+}
+private PecentageCellRenderer(params:any) {
+
+  var usdFormate = new Intl.NumberFormat('en-IN', {
+      style: 'percent',
+      minimumFractionDigits: 2
+  });
+  return usdFormate.format(params.value/100);
+}
   public onRowClicked(e) {
     if (e.event.target !== undefined) {
       let data = e.data;
@@ -59,8 +80,6 @@ export class AssetComponent implements OnInit {
           return this.onActionViewClick(data);
         case "remove":
           return this.onActionRemoveClick(data);
-        case "report":
-          return this.onActionReportClick(data);
       }
     }
   }
@@ -68,16 +87,15 @@ export class AssetComponent implements OnInit {
   public onActionViewClick(data: any) {
     console.log("View action clicked", data);
     console.log(data);
+    this.isDataAvailable = true;
+    this.isFormAvailable = true;
+    this.model = data;
     // localStorage.setItem("clientData", JSON.stringify(data));
     // this.router.navigateByUrl("/customerDetails");
   }
 
   public onActionRemoveClick(data: any) {
     console.log("Remove action clicked", data);
-  }
-
-  public onActionReportClick(data: any) {
-    console.log("Report action clicked", data);
   }
 
   getAllAssets() {
