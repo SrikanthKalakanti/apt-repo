@@ -7,11 +7,11 @@
             <button *ngIf="isDataAvailable && !isEdit" class="btn btn-primary pull-right" (click)="showForm()">Edit</button>
             <!-- <h2 class="sub-header" *ngIf="isDataAvailable">List Of Clients</h2> -->
             <form name="basictForm" #f="ngForm" novalidate *ngIf="isEdit">
-                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !nameOfTheBussiness.valid }">
-                    <label for="nameOfTheBussiness">Name of the Bussiness</label>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !nameOfTheBusiness.valid }">
+                    <label for="nameOfTheBusiness">Name of the Bussiness</label>
                     <i class="fa fa-asterisk text-danger">*</i>
-                    <input type="text" class="form-control" name="name" [(ngModel)]="model.nameOfTheBussiness" #nameOfTheBussiness="ngModel" required />
-                    <div *ngIf="f.submitted && !nameOfTheBussiness.valid" class="help-block">Name of the Bussiness is required</div>
+                    <input type="text" class="form-control" name="name" [(ngModel)]="model.nameOfTheBusiness" #nameOfTheBusiness="ngModel" required />
+                    <div *ngIf="f.submitted && !nameOfTheBusiness.valid" class="help-block">Name of the Bussiness is required</div>
                 </div>
                 <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !termLoanFirstDisbursementDate.valid }">
                     <label for="termLoanFirstDisbursementDate">Term Loan First Disbursement Date</label>
@@ -46,7 +46,7 @@
                 <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !paymentDate.valid }">
                     <label for="paymentDate">Payment Date</label>
                     <i class="fa fa-asterisk text-danger">*</i>
-                    <input type="date" class="form-control" name="paymentDate" [(ngModel)]="model.paymentDate" #paymentDate="ngModel" required />
+                    <input type="number" class="form-control" name="paymentDate" [(ngModel)]="model.paymentDate" #paymentDate="ngModel" required />
                     <div *ngIf="f.submitted && !paymentDate.valid" class="help-block">Payment Date is required.</div>
                 </div>
                 <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !status.valid && status !== '-1' }">
@@ -54,11 +54,11 @@
                     <i class="fa fa-asterisk text-danger">*</i>
                     <select class="form-control" name="status" [(ngModel)]="model.status" #status="ngModel">
                       <option value="-1">Select Status</option>
-                      <option value="1">Propreitorship</option>
-                      <option value="2">Partnership</option>
-                      <option value="3">Private Limited Company</option>
+                      <option value=1>Propreitorship</option>
+                      <option value=2>Partnership</option>
+                      <option value=3>Private Limited Company</option>
                     </select>
-                    <div *ngIf="f.submitted && !state.valid && state !== '-1'" class="help-block">Status is required</div>
+                    <div *ngIf="f.submitted && !status.valid && status !== '-1'" class="help-block">Status is required</div>
                 </div>
                 <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !cashCreditAmountRequired.valid }">
                     <label for="cashCreditAmountRequired">Cash Credit Amount Required</label>
@@ -94,7 +94,7 @@
             </form>
             <form name="basictForm1" #f="ngForm" novalidate *ngIf="isDataAvailable && !isEdit && basicData">
                 <div class="form-group">
-                    <label for="nameOfTheBusiness"><b>Name of the Business</b> : </label> {{basicData.nameOfTheBussiness}}
+                    <label for="nameOfTheBusiness"><b>Name of the Business</b> : </label> {{basicData.nameOfTheBusiness}}
                 </div>
                 <div class="form-group">
                     <label for="termLoanFirstDisbursementDate"><b>Term Loan First Disbursement Date</b> : </label> {{basicData.termLoanFirstDisbursementDate}}

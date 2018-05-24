@@ -11,7 +11,7 @@ export class CustomerDetailsService {
   ) {}
 
   getBasicInput(): Observable<any> {
-    const path = "/apt/client/basicinput"; // + '?customerId=' + localStorage.getItem('customerId');
+    const path = "/apt/client/basicinput/getallbyclient"; // + '?customerId=' + localStorage.getItem('customerId');
     const data = JSON.parse(localStorage.getItem("clientData"));
     console.log(data.clientId);
     const obj = { clientId: data.clientId };

@@ -100,10 +100,15 @@ export class BasicInfoComponent implements OnInit {
     const formValues = this.model;
     formValues.termLoanDisbursement = formValues.termLoanFirstDisbursementDate;
     formValues.businessCommencement = formValues.businessCommencementDate;
+    formValues.status = parseInt(formValues.status);
+    formValues.termLoanDisbursement = this.formatDate(formValues.termLoanDisbursement);
+    formValues.termLoanFirstDisbursementDate = this.formatDate(formValues.termLoanFirstDisbursementDate);
+    formValues.businessCommencement = this.formatDate(formValues.businessCommencement);
+    formValues.businessCommencementDate = this.formatDate(formValues.businessCommencementDate);
     console.log(formValues);
     this.customerDetailsService.addBasicInfo(formValues).subscribe(
       data => {
-        this.errorService.success(JSON.parse(data));
+        this.errorService.success(data);
         this.isEdit = false;
         this.loading = false;
       },
@@ -115,4 +120,17 @@ export class BasicInfoComponent implements OnInit {
       }
     );
   }
+
+  formatDate(value)
+{
+ var d=new Date(value);
+var dt=d.getDate();
+var mn=d.getMonth();
+var mn = mn + 1;
+var yyyy=d.getFullYear();
+console.log(mn+"/"+dt+"/"+yyyy);
+return new Date(mn+"/"+dt+"/"+yyyy);
+// document.getElementById("ndt").hidden=false;
+// document.getElementById("dt").hidden=true;
+}
 }
