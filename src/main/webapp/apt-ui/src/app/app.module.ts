@@ -40,6 +40,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import 'ag-grid-enterprise';
 import { AssetComponent } from './components/customer-details/asset/asset.component';
 import { ExpensesComponent } from './components/customer-details/expenses/expenses.component';
+import { GrowthAndInflationComponent } from './components/customer-details/growth-and-inflation/growth-and-inflation.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { ExpensesComponent } from './components/customer-details/expenses/expens
     CustomerDetailsComponent,
     BasicInfoComponent,
     AssetComponent,
-    ExpensesComponent
+    ExpensesComponent,
+    GrowthAndInflationComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +84,7 @@ import { ExpensesComponent } from './components/customer-details/expenses/expens
     SharedService,
     CustomerDetailsService
   ],
-  entryComponents: [BasicInfoComponent, AssetComponent, ExpensesComponent],
+  entryComponents: [BasicInfoComponent, AssetComponent, ExpensesComponent, GrowthAndInflationComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
