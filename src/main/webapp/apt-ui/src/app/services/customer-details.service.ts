@@ -75,11 +75,55 @@ export class CustomerDetailsService {
       });
   }
   removeAsset(removeAssetObj): Observable<any> {
-    const path = "/apt/client/asset/delete"; // + '?customerId=' + localStorage.getItem('customerId');
+    const path = "/apt/client/asset/delete";
     const data = JSON.parse(localStorage.getItem("clientData"));
     var obj = {
       clientId: data.clientId,
       assetId: removeAssetObj.assetId
+    }
+    return this.apiService
+      .post(path, obj, this.authService.getHeaders())
+      .map(data => {
+        return data;
+      });
+  }
+  getAllExpenses(): Observable<any> {
+    const path = "/apt/client/expenses/getallbyclient";
+    const data = JSON.parse(localStorage.getItem("clientData"));
+    console.log(data.clientId);
+    const obj = { clientId: data.clientId };
+    return this.apiService
+      .post(path, obj, this.authService.getHeaders())
+      .map(data => {
+        return data;
+      });
+  }
+  addExpenses(expenseObj): Observable<any> {
+    const path = "/apt/client/expenses/create";
+    const data = JSON.parse(localStorage.getItem("clientData"));
+    expenseObj.clientId = data.clientId;
+    return this.apiService
+      .post(path, expenseObj, this.authService.getHeaders())
+      .map(data => {
+        return data;
+      });
+  }
+  updateExpense(updateExpenseObj): Observable<any> {
+    const path = "/apt/client/expenses/update";
+    const data = JSON.parse(localStorage.getItem("clientData"));
+    updateExpenseObj.clientId = data.clientId;
+    return this.apiService
+      .post(path, updateExpenseObj, this.authService.getHeaders())
+      .map(data => {
+        return data;
+      });
+  }
+  removeExpenses(removeExpenseObj): Observable<any> {
+    const path = "/apt/client/expenses/delete";
+    const data = JSON.parse(localStorage.getItem("clientData"));
+    var obj = {
+      clientId: data.clientId,
+      expensesInputId: removeExpenseObj.expensesInputId
     }
     return this.apiService
       .post(path, obj, this.authService.getHeaders())

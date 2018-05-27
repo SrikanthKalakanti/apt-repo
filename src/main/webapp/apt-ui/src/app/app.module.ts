@@ -39,6 +39,7 @@ import { CustomerDetailsService } from './services/customer-details.service';
 import { AgGridModule } from 'ag-grid-angular';
 import 'ag-grid-enterprise';
 import { AssetComponent } from './components/customer-details/asset/asset.component';
+import { ExpensesComponent } from './components/customer-details/expenses/expenses.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { AssetComponent } from './components/customer-details/asset/asset.compon
     TabsetComponent,
     CustomerDetailsComponent,
     BasicInfoComponent,
-    AssetComponent
+    AssetComponent,
+    ExpensesComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +82,7 @@ import { AssetComponent } from './components/customer-details/asset/asset.compon
     SharedService,
     CustomerDetailsService
   ],
-  entryComponents: [BasicInfoComponent, AssetComponent],
+  entryComponents: [BasicInfoComponent, AssetComponent, ExpensesComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,6 +3,7 @@ import { SharedService } from '../../shared/services/shared.service';
 import { BasicInfoComponent } from './basic-info/basic-info.component';
 import { Observable } from 'rxjs/Observable';
 import { AssetComponent } from './asset/asset.component';
+import { ExpensesComponent } from './expenses/expenses.component';
 
 @Component({
   selector: 'app-customer-details',
@@ -15,6 +16,7 @@ export class CustomerDetailsComponent implements OnInit {
 
   basicInfoComponent = BasicInfoComponent;
   assetComponent = AssetComponent;
+  expensesComponent = ExpensesComponent;
   
   //bulkUploadHistoryComponent = BulkUploadHistoryComponent;
 

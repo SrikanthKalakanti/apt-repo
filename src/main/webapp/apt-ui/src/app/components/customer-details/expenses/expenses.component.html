@@ -1,0 +1,51 @@
+<div class="container topContainer">
+    <app-list-errors></app-list-errors>
+    <div class="row alignment_body height">
+        <div class="col-sm-12 col-xs-12 col-md-12 main">
+            <span *ngIf="!isDataAvailable && !isFormAvailable">You don't have any expenses. Please add the expenses.</span>
+            <button class="btn btn-primary pull-right" *ngIf="!isFormAvailable" (click)="showForm()">Add Expenses</button>
+            <h3 class="sub-header" *ngIf="isDataAvailable && !isFormAvailable">List Of Expenses</h3>
+            <ag-grid-angular *ngIf="isDataAvailable && !isFormAvailable" #agGrid style="width: 1050px; height: 500px;" class="col-sm-12 col-xs-12 col-md-12 main ag-theme-blue" [rowData]="expensesData" [columnDefs]="columnDefs" [enableSorting]="true" [enableFilter]="true"
+                (rowClicked)="onRowClicked($event)">
+            </ag-grid-angular>
+            <form name="expensesForm" #f="ngForm" novalidate *ngIf="isFormAvailable">
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !nomenclature.valid }">
+                    <label for="nomenclature">Nomenclature</label>
+                    <i class="fa fa-asterisk text-danger">*</i>
+                    <input type="text" class="form-control" name="name" [(ngModel)]="model.nomenclature" #nomenclature="ngModel" required />
+                    <div *ngIf="f.submitted && !nomenclature.valid" class="help-block">Nomenclature is required</div>
+                </div>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !cmaNomenclature.valid }">
+                    <label for="cmaNomenclature">CMA Nomenclature</label>
+                    <i class="fa fa-asterisk text-danger">*</i>
+                    <input type="text" class="form-control" name="cmaNomenclature" [(ngModel)]="model.cmaNomenclature" #cmaNomenclature="ngModel" required />
+                    <div *ngIf="f.submitted && !cmaNomenclature.valid" class="help-block">CMA Nomenclature is required.</div>
+                </div>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !expenditurePer.valid && expenditurePer !== '-1' }">
+                    <label for="expenditurePer">Periodicity</label>
+                    <i class="fa fa-asterisk text-danger">*</i>
+                    <select class="form-control" name="expenditurePer" [(ngModel)]="model.expenditurePer" #expenditurePer="ngModel">
+                    <option value="-1">Select Periodicity</option>
+                    <option value="Unit">Unit</option>
+                    <option value="Day">Day</option>
+                    <option value="Month">Month</option>
+                    <option value="Year">Year</option>
+                  </select>
+                    <div *ngIf="f.submitted && !expenditurePer.valid && expenditurePer !== '-1'" class="help-block">Periodicity is required</div>
+                </div>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !amountInINR.valid }">
+                    <label for="amountInINR">Amount</label>
+                    <i class="fa fa-asterisk text-danger">*</i>
+                    <input type="number" class="form-control" name="amountInINR" [(ngModel)]="model.amountInINR" #amountInINR="ngModel" required />
+                    <div *ngIf="f.submitted && !amountInINR.valid" class="help-block">Amount is required</div>
+                </div>
+                <div class="form-group">
+                    <button [disabled]="loading" class="btn btn-primary" [disabled]="!f.form.valid" (click)="addExpenses()">Submit</button>
+                    <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+                    />
+                    <button [disabled]="loading" class="btn btn-danger" (click)="cancel()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

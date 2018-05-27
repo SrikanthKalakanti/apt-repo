@@ -93,6 +93,8 @@ export class BasicInfoComponent implements OnInit {
         this.isEdit = false;
         this.loading = false;
         this.isDataAvailable = true;
+        this.basicData.termLoanFirstDisbursementDate = formValues.termLoanDisbursement;
+        this.basicData.businessCommencementDate = formValues.businessCommencement;
       },
       err => {
         this.isDataAvailable = false;

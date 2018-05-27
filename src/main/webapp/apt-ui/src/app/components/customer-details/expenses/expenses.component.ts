@@ -1,24 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { ErrorService } from '../../../shared/services/error.service';
-import { CustomerDetailsService } from '../../../services/customer-details.service';
 import { Errors } from '../../../shared/models/errors.model';
-import { ASSETDATA } from '../../../mocks/assetsList';
+import { CustomerDetailsService } from '../../../services/customer-details.service';
+import { ErrorService } from '../../../shared/services/error.service';
 
 @Component({
-  selector: 'app-asset',
-  templateUrl: './asset.component.html',
-  styleUrls: ['./asset.component.scss']
+  selector: 'app-expenses',
+  templateUrl: './expenses.component.html',
+  styleUrls: ['./expenses.component.scss']
 })
-export class AssetComponent implements OnInit {
+export class ExpensesComponent implements OnInit {
 
   isDataAvailable = false;
   isFormAvailable = false;
   isUpdate = false;
   errors: Errors = new Errors();
-  assetData;
-
+  expensesData;
   model: any = {
-    name: "",
+    expenditurePer: "-1",
     customerId: localStorage.getItem("customerId")
   };
 
@@ -28,7 +26,7 @@ export class AssetComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getAllAssets();
+    this.getAllExpenses();
   }
 
   //this is the code for ag-Grid
@@ -48,10 +46,10 @@ export class AssetComponent implements OnInit {
       suppressSizeToFit: true,
       width: 220
     },
-    { headerName: "Name", field: "name", pinned: true, editable: true },
-    { headerName: "Value", field: "value", editable: true, cellRenderer: this.CurrencyCellRenderer },
-    { headerName: "Depreciation Rate", field: "depreciationRate", editable: true, cellRenderer: this.PecentageCellRenderer },
-    { headerName: "Promoter Margin", field: "promoterMargin", editable: true }
+    { headerName: "Nomenclature", field: "nomenclature", pinned: true },
+    { headerName: "CMA Nomenclature", field: "cmaNomenclature" },
+    { headerName: "Periodicity", field: "expenditurePer" },
+    { headerName: "Amount", field: "amountInINR" }
   ];
 
   private CurrencyCellRenderer(params:any) {
@@ -95,16 +93,55 @@ private PecentageCellRenderer(params:any) {
   }
 
   public onActionRemoveClick(data: any) {
-    this.removeAsset(data);
+    this.removeExpenses(data);
   }
 
-  getAllAssets() {
+  showForm() {
+    this.isFormAvailable = true;
+  }
+
+  addExpenses() {
+    this.errors = new Errors();
+    const formValues = this.model;
+    if(this.isUpdate) {
+      this.customerDetailsService.updateExpense(formValues).subscribe(
+        data => {
+          this.errorService.success(data);
+            this.isDataAvailable = true;
+            this.isFormAvailable = false;
+            this.isUpdate = false;
+            this.getAllExpenses();
+        },
+        err => {
+          this.isDataAvailable = false;
+          this.errors = err.error;
+          this.errorService.error(this.errors);
+        }
+      );
+    } else {
+    this.customerDetailsService.addExpenses(formValues).subscribe(
+      data => {
+        this.errorService.success(data);
+          this.isDataAvailable = true;
+          this.isFormAvailable = false;
+          this.getAllExpenses();
+      },
+      err => {
+        this.isDataAvailable = false;
+        this.errors = err.error;
+        this.errorService.error(this.errors);
+      }
+    );
+  }
+  }
+
+  getAllExpenses() {
     // this.isDataAvailable = true;
     // this.assetData = ASSETDATA;
-    this.customerDetailsService.getAllAssets().subscribe(
+    this.customerDetailsService.getAllExpenses().subscribe(
       data => {
         if (data.result) {
-          this.assetData = data.result;
+          this.expensesData = data.result;
           this.isDataAvailable = true;
         } else {
           this.isDataAvailable = false;
@@ -118,31 +155,13 @@ private PecentageCellRenderer(params:any) {
     );
   }
 
-  addAsset() {
-    this.errors = new Errors();
-    const formValues = this.model;
-    if(this.isUpdate) {
-      this.customerDetailsService.updateAsset(formValues).subscribe(
-        data => {
-          this.errorService.success(data);
-            this.isDataAvailable = true;
-            this.isFormAvailable = false;
-            this.isUpdate = false;
-            this.getAllAssets();
-        },
-        err => {
-          this.isDataAvailable = false;
-          this.errors = err.error;
-          this.errorService.error(this.errors);
-        }
-      );
-    } else {
-    this.customerDetailsService.addAsset(formValues).subscribe(
+  removeExpenses(data) {
+    this.customerDetailsService.removeExpenses(data).subscribe(
       data => {
         this.errorService.success(data);
           this.isDataAvailable = true;
           this.isFormAvailable = false;
-          this.getAllAssets();
+          this.getAllExpenses();
       },
       err => {
         this.isDataAvailable = false;
@@ -150,32 +169,6 @@ private PecentageCellRenderer(params:any) {
         this.errorService.error(this.errors);
       }
     );
-  }
-  }
-
-  removeAsset(data) {
-    this.customerDetailsService.removeAsset(data).subscribe(
-      data => {
-        this.errorService.success(data);
-          this.isDataAvailable = true;
-          this.isFormAvailable = false;
-          this.getAllAssets();
-      },
-      err => {
-        this.isDataAvailable = false;
-        this.errors = err.error;
-        this.errorService.error(this.errors);
-      }
-    );
-  }
-
-  showForm() {
-    this.isFormAvailable = true;
-  }
-
-  cancel() {
-    this.isFormAvailable = false;
-    // this.getAllAssets();
   }
 
 }
