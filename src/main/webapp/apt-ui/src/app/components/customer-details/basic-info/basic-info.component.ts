@@ -78,14 +78,21 @@ export class BasicInfoComponent implements OnInit {
     this.loading = true;
     this.errors = new Errors();
     const formValues = this.model;
-    // console.log(formValues);
-    // this.isEdit = false;
-    // this.loading = false;
-    this.customerDetailsService.updateBasicInput().subscribe(
+    formValues.termLoanDisbursement = formValues.termLoanFirstDisbursementDate;
+    formValues.businessCommencement = formValues.businessCommencementDate;
+    formValues.status = parseInt(formValues.status);
+    formValues.termLoanDisbursement = this.formatDate(formValues.termLoanDisbursement);
+    formValues.termLoanFirstDisbursementDate = this.formatDate(formValues.termLoanFirstDisbursementDate);
+    formValues.businessCommencement = this.formatDate(formValues.businessCommencement);
+    formValues.businessCommencementDate = this.formatDate(formValues.businessCommencementDate);
+    delete formValues.businessCommencementDate;
+    delete formValues.termLoanFirstDisbursementDate;
+    this.customerDetailsService.updateBasicInput(formValues).subscribe(
       data => {
-        this.errorService.success(JSON.parse(data));
+        this.errorService.success(data);
         this.isEdit = false;
         this.loading = false;
+        this.isDataAvailable = true;
       },
       err => {
         this.isDataAvailable = false;
@@ -105,12 +112,14 @@ export class BasicInfoComponent implements OnInit {
     formValues.termLoanFirstDisbursementDate = this.formatDate(formValues.termLoanFirstDisbursementDate);
     formValues.businessCommencement = this.formatDate(formValues.businessCommencement);
     formValues.businessCommencementDate = this.formatDate(formValues.businessCommencementDate);
-    console.log(formValues);
+    delete formValues.businessCommencementDate;
+    delete formValues.termLoanFirstDisbursementDate;
     this.customerDetailsService.addBasicInfo(formValues).subscribe(
       data => {
         this.errorService.success(data);
         this.isEdit = false;
         this.loading = false;
+        this.isDataAvailable = true;
       },
       err => {
         this.isDataAvailable = false;
@@ -128,9 +137,6 @@ var dt=d.getDate();
 var mn=d.getMonth();
 var mn = mn + 1;
 var yyyy=d.getFullYear();
-console.log(mn+"/"+dt+"/"+yyyy);
-return new Date(mn+"/"+dt+"/"+yyyy);
-// document.getElementById("ndt").hidden=false;
-// document.getElementById("dt").hidden=true;
+return dt+"/"+mn+"/"+yyyy;
 }
 }

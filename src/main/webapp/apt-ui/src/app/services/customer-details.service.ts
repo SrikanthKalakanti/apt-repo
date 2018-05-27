@@ -22,13 +22,10 @@ export class CustomerDetailsService {
       });
   }
 
-  updateBasicInput(): Observable<any> {
+  updateBasicInput(basicInputObj): Observable<any> {
     const path = "/apt/client/basicinput/update"; // + '?customerId=' + localStorage.getItem('customerId');
-    const data = JSON.parse(localStorage.getItem("clientData"));
-    console.log(data.clientId);
-    const obj = { clientId: data.clientId };
     return this.apiService
-      .post(path, obj, this.authService.getHeaders())
+      .post(path, basicInputObj, this.authService.getHeaders())
       .map(data => {
         return data;
       });
