@@ -30,13 +30,13 @@ export class CustomerDetailsService {
         return data;
       });
   }
-  addBasicInfo(addCustomerObj): Observable<any> {
+  addBasicInfo(addBasicInfoObj): Observable<any> {
     const path = "/apt/client/basicinput/create"; // + '?customerId=' + localStorage.getItem('customerId');
     const data = JSON.parse(localStorage.getItem("clientData"));
     console.log(data.clientId);
-    addCustomerObj.clientId = data.clientId;
+    addBasicInfoObj.clientId = data.clientId;
     return this.apiService
-      .post(path, addCustomerObj, this.authService.getHeaders())
+      .post(path, addBasicInfoObj, this.authService.getHeaders())
       .map(data => {
         return data;
       });
@@ -46,6 +46,41 @@ export class CustomerDetailsService {
     const data = JSON.parse(localStorage.getItem("clientData"));
     console.log(data.clientId);
     const obj = { clientId: data.clientId };
+    return this.apiService
+      .post(path, obj, this.authService.getHeaders())
+      .map(data => {
+        return data;
+      });
+  }
+  addAsset(addAssetObj): Observable<any> {
+    const path = "/apt/client/asset/create"; // + '?customerId=' + localStorage.getItem('customerId');
+    const data = JSON.parse(localStorage.getItem("clientData"));
+    console.log(data.clientId);
+    addAssetObj.clientId = data.clientId;
+    return this.apiService
+      .post(path, addAssetObj, this.authService.getHeaders())
+      .map(data => {
+        return data;
+      });
+  }
+  updateAsset(updateAssetObj): Observable<any> { 
+    const path = "/apt/client/asset/update"; // + '?customerId=' + localStorage.getItem('customerId');
+    const data = JSON.parse(localStorage.getItem("clientData"));
+    console.log(data.clientId);
+    updateAssetObj.clientId = data.clientId;
+    return this.apiService
+      .post(path, updateAssetObj, this.authService.getHeaders())
+      .map(data => {
+        return data;
+      });
+  }
+  removeAsset(removeAssetObj): Observable<any> {
+    const path = "/apt/client/asset/delete"; // + '?customerId=' + localStorage.getItem('customerId');
+    const data = JSON.parse(localStorage.getItem("clientData"));
+    var obj = {
+      clientId: data.clientId,
+      assetId: removeAssetObj.assetId
+    }
     return this.apiService
       .post(path, obj, this.authService.getHeaders())
       .map(data => {

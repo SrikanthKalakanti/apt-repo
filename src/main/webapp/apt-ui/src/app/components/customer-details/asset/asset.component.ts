@@ -13,6 +13,7 @@ export class AssetComponent implements OnInit {
 
   isDataAvailable = false;
   isFormAvailable = false;
+  isUpdate = false;
   errors: Errors = new Errors();
   assetData;
 
@@ -89,13 +90,12 @@ private PecentageCellRenderer(params:any) {
     console.log(data);
     this.isDataAvailable = true;
     this.isFormAvailable = true;
+    this.isUpdate = true;
     this.model = data;
-    // localStorage.setItem("clientData", JSON.stringify(data));
-    // this.router.navigateByUrl("/customerDetails");
   }
 
   public onActionRemoveClick(data: any) {
-    console.log("Remove action clicked", data);
+    this.removeAsset(data);
   }
 
   getAllAssets() {
@@ -109,6 +109,57 @@ private PecentageCellRenderer(params:any) {
         } else {
           this.isDataAvailable = false;
         }
+      },
+      err => {
+        this.isDataAvailable = false;
+        this.errors = err.error;
+        this.errorService.error(this.errors);
+      }
+    );
+  }
+
+  addAsset() {
+    this.errors = new Errors();
+    const formValues = this.model;
+    if(this.isUpdate) {
+      this.customerDetailsService.updateAsset(formValues).subscribe(
+        data => {
+          this.errorService.success(data);
+            this.isDataAvailable = true;
+            this.isFormAvailable = false;
+            this.isUpdate = false;
+            this.getAllAssets();
+        },
+        err => {
+          this.isDataAvailable = false;
+          this.errors = err.error;
+          this.errorService.error(this.errors);
+        }
+      );
+    } else {
+    this.customerDetailsService.addAsset(formValues).subscribe(
+      data => {
+        this.errorService.success(data);
+          this.isDataAvailable = true;
+          this.isFormAvailable = false;
+          this.getAllAssets();
+      },
+      err => {
+        this.isDataAvailable = false;
+        this.errors = err.error;
+        this.errorService.error(this.errors);
+      }
+    );
+  }
+  }
+
+  removeAsset(data) {
+    this.customerDetailsService.removeAsset(data).subscribe(
+      data => {
+        this.errorService.success(data);
+          this.isDataAvailable = true;
+          this.isFormAvailable = false;
+          this.getAllAssets();
       },
       err => {
         this.isDataAvailable = false;
