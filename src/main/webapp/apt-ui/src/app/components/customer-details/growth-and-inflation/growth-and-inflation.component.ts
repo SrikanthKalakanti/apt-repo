@@ -7,9 +7,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GrowthAndInflationComponent implements OnInit {
 
+  isEdit = false;
+  growthAndInflationData;
+  model: any = {
+    answer: "yes",
+    customerId: localStorage.getItem("customerId")
+  };
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  showForm() {
+    // debugger;
+    if (!this.isEdit) {
+      this.isEdit = true;
+      this.model = this.growthAndInflationData;
+    } else {
+      this.isEdit = false;
+    }
   }
 
 }
