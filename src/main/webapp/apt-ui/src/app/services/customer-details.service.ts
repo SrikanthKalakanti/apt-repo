@@ -63,7 +63,7 @@ export class CustomerDetailsService {
         return data;
       });
   }
-  updateAsset(updateAssetObj): Observable<any> { 
+  updateAsset(updateAssetObj): Observable<any> {
     const path = "/apt/client/asset/update"; // + '?customerId=' + localStorage.getItem('customerId');
     const data = JSON.parse(localStorage.getItem("clientData"));
     console.log(data.clientId);
@@ -80,7 +80,7 @@ export class CustomerDetailsService {
     var obj = {
       clientId: data.clientId,
       assetId: removeAssetObj.assetId
-    }
+    };
     return this.apiService
       .post(path, obj, this.authService.getHeaders())
       .map(data => {
@@ -124,7 +124,7 @@ export class CustomerDetailsService {
     var obj = {
       clientId: data.clientId,
       expensesInputId: removeExpenseObj.expensesInputId
-    }
+    };
     return this.apiService
       .post(path, obj, this.authService.getHeaders())
       .map(data => {

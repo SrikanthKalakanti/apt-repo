@@ -81,10 +81,18 @@ export class BasicInfoComponent implements OnInit {
     formValues.termLoanDisbursement = formValues.termLoanFirstDisbursementDate;
     formValues.businessCommencement = formValues.businessCommencementDate;
     formValues.status = parseInt(formValues.status);
-    formValues.termLoanDisbursement = this.formatDate(formValues.termLoanDisbursement);
-    formValues.termLoanFirstDisbursementDate = this.formatDate(formValues.termLoanFirstDisbursementDate);
-    formValues.businessCommencement = this.formatDate(formValues.businessCommencement);
-    formValues.businessCommencementDate = this.formatDate(formValues.businessCommencementDate);
+    formValues.termLoanDisbursement = this.formatDate(
+      formValues.termLoanDisbursement
+    );
+    formValues.termLoanFirstDisbursementDate = this.formatDate(
+      formValues.termLoanFirstDisbursementDate
+    );
+    formValues.businessCommencement = this.formatDate(
+      formValues.businessCommencement
+    );
+    formValues.businessCommencementDate = this.formatDate(
+      formValues.businessCommencementDate
+    );
     delete formValues.businessCommencementDate;
     delete formValues.termLoanFirstDisbursementDate;
     this.customerDetailsService.updateBasicInput(formValues).subscribe(
@@ -93,8 +101,10 @@ export class BasicInfoComponent implements OnInit {
         this.isEdit = false;
         this.loading = false;
         this.isDataAvailable = true;
-        this.basicData.termLoanFirstDisbursementDate = formValues.termLoanDisbursement;
-        this.basicData.businessCommencementDate = formValues.businessCommencement;
+        this.basicData.termLoanFirstDisbursementDate =
+          formValues.termLoanDisbursement;
+        this.basicData.businessCommencementDate =
+          formValues.businessCommencement;
       },
       err => {
         this.isDataAvailable = false;
@@ -110,10 +120,18 @@ export class BasicInfoComponent implements OnInit {
     formValues.termLoanDisbursement = formValues.termLoanFirstDisbursementDate;
     formValues.businessCommencement = formValues.businessCommencementDate;
     formValues.status = parseInt(formValues.status);
-    formValues.termLoanDisbursement = this.formatDate(formValues.termLoanDisbursement);
-    formValues.termLoanFirstDisbursementDate = this.formatDate(formValues.termLoanFirstDisbursementDate);
-    formValues.businessCommencement = this.formatDate(formValues.businessCommencement);
-    formValues.businessCommencementDate = this.formatDate(formValues.businessCommencementDate);
+    formValues.termLoanDisbursement = this.formatDate(
+      formValues.termLoanDisbursement
+    );
+    formValues.termLoanFirstDisbursementDate = this.formatDate(
+      formValues.termLoanFirstDisbursementDate
+    );
+    formValues.businessCommencement = this.formatDate(
+      formValues.businessCommencement
+    );
+    formValues.businessCommencementDate = this.formatDate(
+      formValues.businessCommencementDate
+    );
     delete formValues.businessCommencementDate;
     delete formValues.termLoanFirstDisbursementDate;
     this.customerDetailsService.addBasicInfo(formValues).subscribe(
@@ -132,13 +150,12 @@ export class BasicInfoComponent implements OnInit {
     );
   }
 
-  formatDate(value)
-{
- var d=new Date(value);
-var dt=d.getDate();
-var mn=d.getMonth();
-var mn = mn + 1;
-var yyyy=d.getFullYear();
-return dt+"/"+mn+"/"+yyyy;
-}
+  formatDate(value) {
+    var d = new Date(value);
+    var dt = d.getDate();
+    var mn = d.getMonth();
+    var mn = mn + 1;
+    var yyyy = d.getFullYear();
+    return dt + "/" + mn + "/" + yyyy;
+  }
 }
