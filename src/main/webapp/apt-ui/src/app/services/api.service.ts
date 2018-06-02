@@ -32,6 +32,12 @@ export class ApiService {
       .catch(this.formatErrors);
   }
 
+  getStates(path: string, headers: HttpHeaders): Observable<any> {
+    headers.set('Access-Control-Allow-Origin', 'http://localhost:9000');
+    return this.http.get(`${path}`, { headers: headers })
+      .catch(this.formatErrors);
+  }
+
   getReports(path: string, headers: HttpHeaders): Observable<any> {
     return this.http.get(
       `${environment.api_url}${path}`,

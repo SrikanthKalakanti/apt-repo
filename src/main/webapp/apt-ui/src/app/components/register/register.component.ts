@@ -49,5 +49,18 @@ export class RegisterComponent implements OnInit {
     this.loading = false;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getStates();
+  }
+  getStates() {
+    this.registerService.getStates().subscribe(
+      data => {
+        console.log(data);
+        this.states = [data];
+      },
+      err => {
+        
+      }
+    )
+  }
 }

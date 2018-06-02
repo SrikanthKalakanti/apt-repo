@@ -131,4 +131,37 @@ export class CustomerDetailsService {
         return data;
       });
   }
+  getGrowthAndInflation(): Observable<any> {
+    const path = "/apt/client/growthinflation/getallbyclient";
+    const data = JSON.parse(localStorage.getItem("clientData"));
+    console.log(data.clientId);
+    const obj = { clientId: data.clientId };
+    return this.apiService
+      .post(path, obj, this.authService.getHeaders())
+      .map(data => {
+        return data;
+      });
+  }
+  addGrowthAndInflation(addGrowthAndInflationObj): Observable<any> {
+    const path = "/apt/client/growthinflation/create";
+    const data = JSON.parse(localStorage.getItem("clientData"));
+    console.log(data.clientId);
+    addGrowthAndInflationObj.clientId = data.clientId;
+    return this.apiService
+      .post(path, addGrowthAndInflationObj, this.authService.getHeaders())
+      .map(data => {
+        return data;
+      });
+  }
+  updateGrowthAndInflation(updateGrowthAndInflationObj): Observable<any> {
+    const path = "/apt/client/growthinflation/update";
+    const data = JSON.parse(localStorage.getItem("clientData"));
+    console.log(data.clientId);
+    updateGrowthAndInflationObj.clientId = data.clientId;
+    return this.apiService
+      .post(path, updateGrowthAndInflationObj, this.authService.getHeaders())
+      .map(data => {
+        return data;
+      });
+  }
 }
