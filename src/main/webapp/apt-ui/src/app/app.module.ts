@@ -40,6 +40,7 @@ import "ag-grid-enterprise";
 import { AssetComponent } from "./components/customer-details/asset/asset.component";
 import { ExpensesComponent } from "./components/customer-details/expenses/expenses.component";
 import { GrowthAndInflationComponent } from "./components/customer-details/growth-and-inflation/growth-and-inflation.component";
+import { OrderModule } from 'ngx-order-pipe';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { GrowthAndInflationComponent } from "./components/customer-details/growt
     HttpClientModule,
     ReactiveFormsModule,
     DataTablesModule,
-    AgGridModule.withComponents([])
+    AgGridModule.withComponents([]),
+    OrderModule
   ],
   providers: [
     AuthService,

@@ -37,7 +37,7 @@ export class GrowthAndInflationComponent implements OnInit {
           this.growthAndInflationData = data.result;
           this.growthAndInflationData.growthAndInflation = this.growthAndInflationData.answer1;
           this.growthAndInflationData.numberOfYears = Math.floor(this.growthAndInflationData.numberOfYears);
-          debugger;
+          // debugger;
           if(this.growthAndInflationData.growthAndInflation === 'yes') {
             this.growthAndInflationData.growthForAllYears = this.growthAndInflationData.array1.split("$")[0];
             this.growthAndInflationData.inflationForAllYears = this.growthAndInflationData.array2.split("$")[0];
@@ -76,7 +76,7 @@ export class GrowthAndInflationComponent implements OnInit {
       formValues.array2 = '';
       var growthString = '';
       var inflationString = '';
-      debugger;
+      // debugger;
       if(formValues.answer2 === 'yes'){
         growthString = growthString + formValues.growthYear1 + '$' + formValues.growthYear2 + '$' + formValues.growthYear3 + '$' + formValues.growthYear4 + '$' + formValues.growthYear5 + '$' + formValues.growthYear6 + '$' + formValues.growthYear7 + '$' + formValues.growthYear8;
         formValues.array1 = growthString;

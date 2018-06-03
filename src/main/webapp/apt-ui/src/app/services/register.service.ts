@@ -17,9 +17,4 @@ export class RegisterService {
       });
   }
 
-  getStates(): Observable<any> {
-    const path = 'http://services.groupkt.com/state/get/IND/all';
-    return this.apiService.getStates(path, this.authService.getHeaders())
-  }
-
 }
