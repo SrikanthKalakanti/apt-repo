@@ -24,7 +24,7 @@
 
 .nav-tabs {
     margin-top: -1em;
-    border-bottom: 0px solid #ddd;
+    border-bottom: 1px solid #ddd;
 }
 
 div.tab-header {
