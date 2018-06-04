@@ -5,7 +5,7 @@
             <span *ngIf="!isDataAvailable && !isFormAvailable">You don't have any assets. Please add the assets.</span>
             <button class="btn btn-primary pull-right" *ngIf="!isFormAvailable" (click)="showForm()">Add Asset</button>
             <h3 class="sub-header" *ngIf="isDataAvailable && !isFormAvailable">List Of Assets</h3>
-            <ag-grid-angular *ngIf="isDataAvailable && !isFormAvailable" #agGrid style="width: 1050px; height: 500px;" class="col-sm-12 col-xs-12 col-md-12 main ag-theme-blue" [rowData]="assetData" [columnDefs]="columnDefs" [enableSorting]="true" [enableFilter]="true"
+            <ag-grid-angular *ngIf="isDataAvailable && !isFormAvailable" #agGrid style="width: 1125px; height: 500px;" class="col-sm-12 col-xs-12 col-md-12 main ag-theme-blue" [rowData]="assetData" [columnDefs]="columnDefs" [enableSorting]="true" [enableFilter]="true"
                 (rowClicked)="onRowClicked($event)">
             </ag-grid-angular>
             <form name="assetForm" #f="ngForm" novalidate *ngIf="isFormAvailable">
