@@ -4,8 +4,10 @@
         <h4>You are viwing the details of : {{data.name}}</h4>
     </h2>
     <app-tabset class="col-sm-12 col-md-12 col-xs-12 col-lg-12 vertical-line tabset content">
+        <app-tab tabTitle="Client Info" [contentRef]="cilentInfo"></app-tab>
         <app-tab tabTitle="Basic Info" [contentRef]="basicInfoComponent"></app-tab>
         <app-tab tabTitle="Assets" [contentRef]="assetComponent"></app-tab>
+        <app-tab tabTitle="Selling Price" [contentRef]="sellingPrice"></app-tab>
         <app-tab tabTitle="Expenses" [contentRef]="expensesComponent"></app-tab>
         <app-tab tabTitle="Growth And Inflation" [contentRef]="growthAndInflation"></app-tab>
     </app-tabset>

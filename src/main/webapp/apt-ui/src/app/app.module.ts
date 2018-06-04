@@ -41,6 +41,9 @@ import { AssetComponent } from "./components/customer-details/asset/asset.compon
 import { ExpensesComponent } from "./components/customer-details/expenses/expenses.component";
 import { GrowthAndInflationComponent } from "./components/customer-details/growth-and-inflation/growth-and-inflation.component";
 import { OrderModule } from 'ngx-order-pipe';
+import { DateValueAccessorModule } from 'angular-date-value-accessor';
+import { SellingPriceComponent } from './components/customer-details/selling-price/selling-price.component';
+import { ClientInfoComponent } from './components/customer-details/client-info/client-info.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +63,9 @@ import { OrderModule } from 'ngx-order-pipe';
     BasicInfoComponent,
     AssetComponent,
     ExpensesComponent,
-    GrowthAndInflationComponent
+    GrowthAndInflationComponent,
+    SellingPriceComponent,
+    ClientInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +75,8 @@ import { OrderModule } from 'ngx-order-pipe';
     ReactiveFormsModule,
     DataTablesModule,
     AgGridModule.withComponents([]),
-    OrderModule
+    OrderModule,
+    DateValueAccessorModule
   ],
   providers: [
     AuthService,
@@ -86,8 +92,10 @@ import { OrderModule } from 'ngx-order-pipe';
     CustomerDetailsService
   ],
   entryComponents: [
+    ClientInfoComponent,
     BasicInfoComponent,
     AssetComponent,
+    SellingPriceComponent,
     ExpensesComponent,
     GrowthAndInflationComponent
   ],

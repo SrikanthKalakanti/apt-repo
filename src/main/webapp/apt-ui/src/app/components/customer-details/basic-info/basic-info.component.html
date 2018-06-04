@@ -43,17 +43,17 @@
                     <input type="number" class="form-control" name="interestRateForCc" [(ngModel)]="model.interestRateForCc" #interestRateForCc="ngModel" required />
                     <div *ngIf="f.submitted && !interestRateForCc.valid" class="help-block">Interest Rate for CC is required</div>
                 </div>
-                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !paymentDate.valid }">
+                <!-- <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !paymentDate.valid }">
                     <label for="paymentDate">Payment Date</label>
                     <i class="fa fa-asterisk text-danger">*</i>
                     <input type="number" class="form-control" name="paymentDate" [(ngModel)]="model.paymentDate" #paymentDate="ngModel" required />
                     <div *ngIf="f.submitted && !paymentDate.valid" class="help-block">Payment Date is required.</div>
-                </div>
+                </div> -->
                 <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !status.valid && status !== '-1' }">
                     <label for="status">Status</label>
                     <i class="fa fa-asterisk text-danger">*</i>
                     <select class="form-control" name="status" [(ngModel)]="model.status" #status="ngModel">
-                      <option value="-1">Select Status</option>
+                      <option value=-1>Select Status</option>
                       <option value=1>Propreitorship</option>
                       <option value=2>Partnership</option>
                       <option value=3>Private Limited Company</option>
@@ -66,24 +66,24 @@
                     <input type="number" class="form-control" name="cashCreditAmountRequired" [(ngModel)]="model.cashCreditAmountRequired" #cashCreditAmountRequired="ngModel" required />
                     <div *ngIf="f.submitted && !cashCreditAmountRequired.valid" class="help-block">Cash Credit Amount is required</div>
                 </div>
-                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !fixedExpensesPerMonth.valid }">
+                <!-- <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !fixedExpensesPerMonth.valid }">
                     <label for="fixedExpensesPerMonth">Fixed Expences Per Month</label>
                     <i class="fa fa-asterisk text-danger">*</i>
                     <input type="number" class="form-control" name="fixedExpensesPerMonth" [(ngModel)]="model.fixedExpensesPerMonth" #fixedExpensesPerMonth="ngModel" required />
                     <div *ngIf="f.submitted && !fixedExpensesPerMonth.valid" class="help-block">Fixed Expences Per Month is required</div>
-                </div>
-                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !numberOfDaysInAMonth.valid }">
+                </div> -->
+                <!-- <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !numberOfDaysInAMonth.valid }">
                     <label for="numberOfDaysInAMonth">Number of days in a Month</label>
                     <i class="fa fa-asterisk text-danger">*</i>
                     <input type="number" class="form-control" name="numberOfDaysInAMonth" [(ngModel)]="model.numberOfDaysInAMonth" #numberOfDaysInAMonth="ngModel" required />
                     <div *ngIf="f.submitted && !numberOfDaysInAMonth.valid" class="help-block">Number of days in a Month is required</div>
-                </div>
-                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !productionPerMonthInUnits.valid }">
+                </div> -->
+                <!-- <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !productionPerMonthInUnits.valid }">
                     <label for="productionPerMonthInUnits">Production per Month in Units</label>
                     <i class="fa fa-asterisk text-danger">*</i>
                     <input type="number" class="form-control" name="productionPerMonthInUnits" [(ngModel)]="model.productionPerMonthInUnits" #productionPerMonthInUnits="ngModel" required />
                     <div *ngIf="f.submitted && !productionPerMonthInUnits.valid" class="help-block">Production per Month in Units is required</div>
-                </div>
+                </div> -->
                 <div class="form-group">
                     <button *ngIf="!isDataAvailable && isEdit" [disabled]="loading" class="btn btn-primary" [disabled]="!f.form.valid" (click)="addBasicInfo()">Submit</button>
                     <button *ngIf="isDataAvailable && isEdit" [disabled]="loading" class="btn btn-primary" [disabled]="!f.form.valid" (click)="updateClient()">Update</button>
@@ -111,9 +111,9 @@
                 <div class="form-group">
                     <label for="interestRateForCc"><b>Interest Rate for CC</b> : </label> {{basicData.interestRateForCc}}
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="paymentDate"><b>Payment Date</b> : </label> {{basicData.paymentDate}}
-                </div>
+                </div> -->
                 <div class="form-group" *ngIf="basicData.status === 1">
                     <label for="status"><b>Status</b> : </label> Propreitorship
                 </div>
@@ -126,15 +126,15 @@
                 <div class="form-group">
                     <label for="cashCreditAmountRequired"><b>Cash Credit Amount Required</b> : </label> {{basicData.cashCreditAmountRequired}}
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="fixedExpensesPerMonth"><b>Fixed Expences Per Month</b> : </label> {{basicData.fixedExpensesPerMonth}}
-                </div>
-                <div class="form-group">
+                </div> -->
+                <!-- <div class="form-group">
                     <label for="numberOfDaysInAMonth"><b>Number of days in a Month</b> : </label> {{basicData.numberOfDaysInAMonth}}
                 </div>
                 <div class="form-group">
                     <label for="productionPerMonthInUnits"><b>Production per Month in Units</b> : </label> {{basicData.productionPerMonthInUnits}}
-                </div>
+                </div> -->
             </form>
         </div>
     </div>

@@ -18,7 +18,21 @@
                 <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !cmaNomenclature.valid }">
                     <label for="cmaNomenclature">CMA Nomenclature</label>
                     <i class="fa fa-asterisk text-danger">*</i>
-                    <input type="text" class="form-control" name="cmaNomenclature" [(ngModel)]="model.cmaNomenclature" #cmaNomenclature="ngModel" required />
+                    <select class="form-control" name="cmaNomenclature" [(ngModel)]="model.cmaNomenclature" #cmaNomenclature="ngModel">
+                        <option value="-1">Select CMA Nomenclature</option>
+                        <option value="AdminAndSellingExpenses">Admin And Selling Expenses</option>
+                        <option value="DirectLabour">Direct Labour</option>
+                        <option value="ExpensesAmortised">Expenses Amortised</option>
+                        <option value="FactoryWages">Factory Wages</option>
+                        <option value="ImportedRawMaterials">Imported Raw Materials</option>
+                        <option value="ImportedStoresAndSpares">Imported Stores And Spares</option>
+                        <option value="IndigenousRawMaterials">Indigenous Raw Materials</option>
+                        <option value="IndigenousStoresAndSpares">Indigenous Stores And Spares</option>
+                        <option value="NonOpExpenses">Non Operational Expenses</option>
+                        <option value="NonOpIncome">Non Operational Income</option>
+                        <option value="OtherManufacturingExpenses">Other Manufacturing Expenses</option>
+                        <option value="PowerAndFuel">Power And Fuel</option>
+                      </select>
                     <div *ngIf="f.submitted && !cmaNomenclature.valid" class="help-block">CMA Nomenclature is required.</div>
                 </div>
                 <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !expenditurePer.valid && expenditurePer !== '-1' }">
@@ -27,9 +41,9 @@
                     <select class="form-control" name="expenditurePer" [(ngModel)]="model.expenditurePer" #expenditurePer="ngModel">
                     <option value="-1">Select Periodicity</option>
                     <option value="Unit">Unit</option>
-                    <option value="Day">Day</option>
+                    <!-- <option value="Day">Day</option>
                     <option value="Month">Month</option>
-                    <option value="Year">Year</option>
+                    <option value="Year">Year</option> -->
                   </select>
                     <div *ngIf="f.submitted && !expenditurePer.valid && expenditurePer !== '-1'" class="help-block">Periodicity is required</div>
                 </div>

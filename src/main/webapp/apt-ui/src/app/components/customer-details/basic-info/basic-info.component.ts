@@ -18,8 +18,12 @@ export class BasicInfoComponent implements OnInit {
 
   model: any = {
     nameOfTheBussiness: "",
-    status: "-1",
+    status: -1,
     state: "-1",
+    paymentDate: 0,
+    fixedExpensesPerMonth: 0,
+    productionPerMonthInUnits: 0,
+    numberOfDaysInAMonth: 0,
     customerId: localStorage.getItem("customerId")
   };
 
