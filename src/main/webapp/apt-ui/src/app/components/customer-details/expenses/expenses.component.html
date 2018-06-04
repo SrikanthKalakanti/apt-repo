@@ -41,9 +41,9 @@
                     <select class="form-control" name="expenditurePer" [(ngModel)]="model.expenditurePer" #expenditurePer="ngModel">
                     <option value="-1">Select Periodicity</option>
                     <option value="Unit">Unit</option>
-                    <!-- <option value="Day">Day</option>
+                    <option value="Day">Day</option>
                     <option value="Month">Month</option>
-                    <option value="Year">Year</option> -->
+                    <option value="Year">Year</option>
                   </select>
                     <div *ngIf="f.submitted && !expenditurePer.valid && expenditurePer !== '-1'" class="help-block">Periodicity is required</div>
                 </div>
