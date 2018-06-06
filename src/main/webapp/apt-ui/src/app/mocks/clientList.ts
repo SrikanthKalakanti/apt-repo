@@ -2,32 +2,62 @@ import { ClientData } from "../shared/models/clientData.model";
 export const CLIENTDETAILS: ClientData[] = [
   {
     clientId: 1,
+    customerId: 1,
+    namePrefix: "Mr",
     name: "Sampath Kumar",
     status: "Propreitorship",
+    doorNo: "59",
+    road: "1",
+    locality: "Santi Nagar",
+    landmark: "Kalyana Mandapam",
+    town: "Srikakulam",
+    pincode: 500010,
+    state: "Andhra Pradesh",
+    landphone: "24324",
     address: "XYZ",
     mobile: 9618189246,
     email: "sampath@gmail.com",
     lineofactivity: "Manufacturing",
-    dateoffirstditributionoftermloan: "01/20/2018"
+    dateoffirstditributionoftermloan: "1/20/2018"
   },
   {
     clientId: 2,
+    customerId: 1,
+    namePrefix: "Mr",
     name: "Sampreeth Gambheerrao",
     status: "Propreitorship",
+    doorNo: "60",
+    road: "2",
+    locality: "Santi Nagar",
+    landmark: "Kalyana Mandapam",
+    town: "Srikakulam",
+    pincode: 500010,
+    state: "Andhra Pradesh",
+    landphone: "24324",
     address: "ABC",
     mobile: 6429818169,
     email: "sampreeth.0017@gmail.com",
     lineofactivity: "Service",
-    dateoffirstditributionoftermloan: "01/20/2018"
+    dateoffirstditributionoftermloan: "1/20/2018"
   },
   {
     clientId: 3,
+    customerId: 1,
+    namePrefix: "Mr",
     name: "Manoj Kumar",
-    status: "Service",
+    status: "Propreitorship",
+    doorNo: "61",
+    road: "3",
+    locality: "Santi Nagar",
+    landmark: "Kalyana Mandapam",
+    town: "Srikakulam",
+    pincode: 500010,
+    state: "Andhra Pradesh",
+    landphone: "24324",
     address: "ZXY",
     mobile: 123456789,
     email: "sampath.gambheerrao@gmail.com",
     lineofactivity: "Service",
-    dateoffirstditributionoftermloan: "01/20/2018"
+    dateoffirstditributionoftermloan: "1/20/2018"
   }
 ];

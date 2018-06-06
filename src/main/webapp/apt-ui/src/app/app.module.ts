@@ -44,6 +44,7 @@ import { OrderModule } from 'ngx-order-pipe';
 import { DateValueAccessorModule } from 'angular-date-value-accessor';
 import { SellingPriceComponent } from './components/customer-details/selling-price/selling-price.component';
 import { ClientInfoComponent } from './components/customer-details/client-info/client-info.component';
+import { NgDatepickerModule } from 'ng2-datepicker';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { ClientInfoComponent } from './components/customer-details/client-info/c
     DataTablesModule,
     AgGridModule.withComponents([]),
     OrderModule,
-    DateValueAccessorModule
+    DateValueAccessorModule,
+    NgDatepickerModule
   ],
   providers: [
     AuthService,

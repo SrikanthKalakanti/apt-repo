@@ -59,9 +59,9 @@
                 <label for="state">State</label>
                 <i class="fa fa-asterisk text-danger">*</i>
                 <select class="form-control" name="state" [(ngModel)]="model.state" #state="ngModel">
-          <option value="-1">Select State</option>
-          <option value="{{state.id}}" *ngFor="let state of states | orderBy : 'name' : false">{{state.name}}</option>
-        </select>
+                    <option value="-1">Select State</option>
+                    <option value="{{state.name}}" *ngFor="let state of states | orderBy : 'name' : false">{{state.name}}</option>
+                </select>
                 <div *ngIf="f.submitted && !state.valid && state !== '-1'" class="help-block">State is required</div>
             </div>
             <div class="form-group">

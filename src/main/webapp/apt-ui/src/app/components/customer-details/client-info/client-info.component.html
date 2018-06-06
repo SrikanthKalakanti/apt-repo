@@ -1,3 +1,150 @@
-<p>
-  client-info works!
-</p>
+<div class="topContainer">
+    <app-list-errors></app-list-errors>
+    <div class="row alignment_body height">
+        <div class="col-sm-12 col-xs-12 col-md-12 main">
+            <button class="btn btn-primary pull-right" *ngIf="!isFormAvailable" (click)="showForm()">Edit</button>
+            <form name="clientInfoForm" #f="ngForm" novalidate *ngIf="!isFormAvailable">
+                <div class="form-group">
+                    <label for="salutation"><b>Salutation</b> : </label> {{clientInfoData.namePrefix}}
+                </div>
+                <div class="form-group">
+                    <label for="name"><b>Name</b> : </label> {{clientInfoData.name}}
+                </div>
+                <div class="form-group">
+                    <label for="status"><b>Client Status</b> : </label> {{clientInfoData.status}}
+                </div>
+                <div class="form-group">
+                    <label for="doorNo"><b>Door Number</b> : </label> {{clientInfoData.doorNo}}
+                </div>
+                <div class="form-group">
+                    <label for="road"><b>Road</b> : </label> {{clientInfoData.road}}
+                </div>
+                <div class="form-group">
+                    <label for="landmark"><b>Land Mark</b> : </label> {{clientInfoData.landmark}}
+                </div>
+                <div class="form-group">
+                    <label for="town"><b>Town</b> : </label> {{clientInfoData.town}}
+                </div>
+                <div class="form-group">
+                    <label for="pincode"><b>Pincode</b> : </label> {{clientInfoData.pincode}}
+                </div>
+                <div class="form-group">
+                    <label for="state"><b>State</b> : </label> {{clientInfoData.state}}
+                </div>
+                <div class="form-group">
+                    <label for="landphone"><b>Land Phone</b> : </label> {{clientInfoData.landphone}}
+                </div>
+                <div class="form-group">
+                    <label for="mobile"><b>Mobile Number</b> : </label> {{clientInfoData.mobile}}
+                </div>
+                <div class="form-group">
+                    <label for="email"><b>Email Address</b> : </label> {{clientInfoData.email}}
+                </div>
+                <div class="form-group">
+                    <label for="lineofactivity"><b>Industry</b> : </label> {{clientInfoData.lineofactivity}}
+                </div>
+                <div class="form-group">
+                    <label for="dateoffirstditributionoftermloan"><b>Anticipated date of first disbursement of proposed Term Loan</b> : </label> {{clientInfoData.dateoffirstditributionoftermloan}}
+                </div>
+            </form>
+            <form name="clientInfoForm1" #f="ngForm" novalidate *ngIf="isFormAvailable">
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !namePrefix.valid }">
+                    <label for="salutation">Salutation</label>
+                    <i class="fa fa-asterisk text-danger">*</i>
+                    <input type="radio" name="namePrefix" class="form-group" value="Mr" [(ngModel)]="clientInfoData.namePrefix" #namePrefix="ngModel" required> Mr
+                    <input type="radio" name="namePrefix" class="form-group" value="Mrs" [(ngModel)]="clientInfoData.namePrefix" #namePrefix="ngModel" required> Mrs
+                    <input type="radio" name="namePrefix" class="form-group" value="Ms" [(ngModel)]="clientInfoData.namePrefix" #namePrefix="ngModel" required> Ms
+                    <input type="radio" name="namePrefix" class="form-group" value="M/S" [(ngModel)]="clientInfoData.namePrefix" #namePrefix="ngModel" required> M/S
+                    <div *ngIf="f.submitted && !namePrefix.valid" class="help-block">Salutation is required</div>
+                </div>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !name.valid }">
+                    <label for="name">Name of the Client</label>
+                    <i class="fa fa-asterisk text-danger">*</i>
+                    <input type="text" class="form-control" name="name" [(ngModel)]="clientInfoData.name" #name="ngModel" required />
+                    <div *ngIf="f.submitted && !name.valid" class="help-block">Name is required</div>
+                </div>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !status.valid }">
+                    <label for="status">Client Status</label>
+                    <i class="fa fa-asterisk text-danger">*</i>
+                    <input type="radio" name="status" class="form-group" value="Propreitorship" [(ngModel)]="clientInfoData.status" #status="ngModel" required> Propreitorship
+                    <input type="radio" name="status" class="form-group" value="Partnership" [(ngModel)]="clientInfoData.status" #status="ngModel" required> Partnership
+                    <input type="radio" name="status" class="form-group" value="LmtCompany" [(ngModel)]="clientInfoData.status" #status="ngModel" required> Limited Company
+                    <div *ngIf="f.submitted && !status.valid" class="help-block">Client Status is required</div>
+                </div>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !doorNo.valid }">
+                    <label for="doorNo">Door Number</label>
+                    <i class="fa fa-asterisk text-danger">*</i>
+                    <input type="text" class="form-control" name="doorNo" [(ngModel)]="clientInfoData.doorNo" #doorNo="ngModel" required />
+                    <div *ngIf="f.submitted && !doorNo.valid" class="help-block">Door Number is required</div>
+                </div>
+                <div class="form-group">
+                    <label for="road">Road</label>
+                    <input type="text" class="form-control" name="road" [(ngModel)]="clientInfoData.road" #road="ngModel" />
+                </div>
+                <div class="form-group">
+                    <label for="locality">Locality</label>
+                    <input type="text" class="form-control" name="locality" [(ngModel)]="clientInfoData.locality" #locality="ngModel" />
+                </div>
+                <div class="form-group">
+                    <label for="landmark">Land Mark</label>
+                    <input type="text" class="form-control" name="landmark" [(ngModel)]="clientInfoData.landmark" #landmark="ngModel" />
+                </div>
+                <div class="form-group">
+                    <label for="town">Town</label>
+                    <input type="text" class="form-control" name="town" [(ngModel)]="clientInfoData.town" #town="ngModel" />
+                </div>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !pincode.valid }">
+                    <label for="pincode">Pincode</label>
+                    <i class="fa fa-asterisk text-danger">*</i>
+                    <input type="number" class="form-control" name="pincode" [(ngModel)]="clientInfoData.pincode" #pincode="ngModel" minlength="7" maxlength="7" required />
+                    <div *ngIf="f.submitted && !pincode.valid" class="help-block">Pincode is required</div>
+                </div>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !state.valid && state !== '-1' }">
+                    <label for="state">State</label>
+                    <i class="fa fa-asterisk text-danger">*</i>
+                    <select class="form-control" name="state" [(ngModel)]="clientInfoData.state" #state="ngModel">
+                      <option value="-1">Select State</option>
+                      <option value="{{state.name}}" *ngFor="let state of states | orderBy : 'name' : false">{{state.name}}</option>
+                    </select>
+                    <div *ngIf="f.submitted && !state.valid && state !== '-1'" class="help-block">State is required</div>
+                </div>
+                <div class="form-group">
+                    <label for="landphone">Land Phone</label>
+                    <input type="text" class="form-control" name="landphone" [(ngModel)]="clientInfoData.landphone" #landphone="ngModel" />
+                </div>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !mobile.valid }">
+                    <label for="mobile">Mobile Number</label>
+                    <i class="fa fa-asterisk text-danger">*</i>
+                    <input type="number" class="form-control" name="mobile" [(ngModel)]="clientInfoData.mobile" #mobile="ngModel" min-length="7" max-length="7" required />
+                    <div *ngIf="f.submitted && !mobile.valid" class="help-block">Mobile is required</div>
+                </div>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+                    <label for="email">Email Address</label>
+                    <i class="fa fa-asterisk text-danger">*</i>
+                    <input type="email" class="form-control" name="email" [(ngModel)]="clientInfoData.email" #email="ngModel" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" />
+                    <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required/invalid</div>
+                </div>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lineofactivity.valid }">
+                    <label for="lineofactivity">Industry</label>
+                    <i class="fa fa-asterisk text-danger">*</i>
+                    <input type="radio" name="lineofactivity" class="form-group" value="Manufacturing" [(ngModel)]="clientInfoData.lineofactivity" #lineofactivity="ngModel" required> Manufacturing
+                    <input type="radio" name="lineofactivity" class="form-group" value="Service" [(ngModel)]="clientInfoData.lineofactivity" #lineofactivity="ngModel" required> Service
+                    <div *ngIf="f.submitted && !lineofactivity.valid" class="help-block">Industry is required</div>
+                </div>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !dateoffirstditributionoftermloan.valid }">
+                    <label for="dateoffirstditributionoftermloan">Anticipated date of first disbursement of proposed Term Loan</label>
+                    <i class="fa fa-asterisk text-danger">*</i>
+                    <!-- <input type="date" class="form-control" name="dateoffirstditributionoftermloan" [(ngModel)]="clientInfoData.dateoffirstditributionoftermloan" #dateoffirstditributionoftermloan="ngModel" required /> -->
+                    <ng-datepicker name="dateoffirstditributionoftermloan" [options]="datepickeroptions" [(ngModel)]="clientInfoData.dateoffirstditributionoftermloan" #dateoffirstditributionoftermloan="ngModel" required></ng-datepicker>
+                    <div *ngIf="f.submitted && !dateoffirstditributionoftermloan.valid" class="help-block">Date of first Disbursement Term Loan is required.</div>
+                </div>
+                <div class="form-group">
+                    <button [disabled]="loading" class="btn btn-primary" [disabled]="!f.form.valid" (click)="updateClient()">Update</button>
+                    <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+                    />
+                    <a [routerLink]="['/dashboard']" class="btn btn-link">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
