@@ -266,5 +266,51 @@ public class ExpensesController {
 		}
 
 	}
+	
+	/**
+	 * 6 Get Expenses Input By Client Id and CMA Nomenclature "SELLING PRICE"
+	 * @author SrikanthKalakanti
+	 * @param requestEntity
+	 * @return
+	 */
+	@RequestMapping(method=RequestMethod.POST, value ="getallbyclientsellingprice",consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Response getExpensesInputByClientSellingPrice(final RequestEntity<ClientRequest> requestEntity) {
+		logger.info("---- Start of getallbyclientsellingprice API-------");
+		try {
+
+			System.out.println(requestEntity.getBody().getClientId());
+
+			ExpensesInput expensesInput = expensesService.fetchByClientSellingPrice(requestEntity.getBody().getClientId());
+
+			if(null!= expensesInput ){
+
+				logger.info("---- getallbyclientsellingprice API success-------");
+				return new Response(ResultStatusConstants.STATUS_OK,ResultStatusConstants.SUCCESS_CODE,
+						ResultStatusConstants.STATUS_RETRIEVED_EXPENSESINPUT_DETAILS,null,expensesInput);
+			} else{
+
+				logger.info("---- getallbyclientsellingprice API no records-------");
+				return new Response(ResultStatusConstants.STATUS_FAIL,
+						ResultStatusConstants.ERROR_CODE_USER_NOT_EXISTS,
+						ResultStatusConstants.STATUS_NOEXPENSES_DETAILS,null);
+			}
+
+		} catch (APTException aptException) {
+
+			logger.debug("---- getallbyclientsellingprice API failed APTException -------" + aptException.getMessage());
+
+			return new Response(aptException);
+
+		} catch(Exception e){
+
+			logger.debug("---- getallbyclientsellingprice API failed Exception -------" + e.getMessage());
+
+			return new Response(
+					ResultStatusConstants.STATUS_FAIL,
+					ResultStatusConstants.ERROR_CODE_UNKNOWN_ERROR,
+					ResultStatusConstants.ERROR_MESSAGE_UNKNOWN_ERROR,null);
+		}
+
+	}
 
 }

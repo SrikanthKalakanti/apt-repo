@@ -49,5 +49,11 @@ public class ExpensesInputService implements IExpensesInputService {
 		flag = true;
 		return flag;
 	}
+	
+	@Override
+	public ExpensesInput fetchByClientSellingPrice(Long clientId) throws APTException {
+		ExpensesInput expensesInput = expensesInputRepository.fetchByClientIdAndSellingPrice(clientId);
+		return expensesInput;
+	}
 
 }

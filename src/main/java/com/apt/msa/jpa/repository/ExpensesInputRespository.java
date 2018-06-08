@@ -15,8 +15,11 @@ import com.apt.msa.entity.ExpensesInput;
 @Transactional
 public interface ExpensesInputRespository extends JpaRepository<ExpensesInput, Long> {
 	
-	@Query("FROM expenses_input where client_id=?1")
+	@Query("FROM expenses_input where client_id=?1 and cma_nomenclature not like '%Selling Price%' ")
 	List<ExpensesInput> fetchByClientId(@Param("clientId") Long clientId);
+	
+	@Query("FROM expenses_input where client_id=?1 and cma_nomenclature like '%Selling Price%' ")
+	ExpensesInput fetchByClientIdAndSellingPrice(@Param("clientId") Long clientId);
 	
 	@Modifying(clearAutomatically = true)
 	@Query("UPDATE expenses_input SET amount_ininr = :amountInINR, cma_nomenclature=:cmaNomenclature, expenditure_per=:expenditurePer, nomenclature=:nomenclature  WHERE client_id = :clientId and expenses_input_id =:expensesInputId")
