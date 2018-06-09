@@ -1,9 +1,9 @@
 <app-header></app-header>
 <div class="container">
     <app-list-errors></app-list-errors>
-    <div class="height">
+    <div class="col-md-6 col-md-offset-3 height">
         <h2 class="form-signin-heading">Please Register</h2>
-        <form [formGroup]="registrationForm" novalidate>
+        <!-- <form [formGroup]="registrationForm" novalidate>
             <div class="form-group">
                 <label for="namePrefix">Name Prefix</label>
                 <i class="fa fa-asterisk text-danger">*</i>
@@ -58,8 +58,8 @@
                 <input type="number" class="form-control" name="pincode" formControlName="pincode" />
                 <div *ngIf="pincode.touched && pincode.invalid" class="help-block">Pincode is required</div>
             </div>
-        </form>
-        <!-- <form name="registrationForm" #f="ngForm" novalidate>
+        </form> -->
+        <form name="registrationForm" #f="ngForm" novalidate>
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !namePrefix.valid }">
                 <label for="namePrefix">Name Prefix</label>
                 <i class="fa fa-asterisk text-danger">*</i>
@@ -180,7 +180,7 @@
                 />
                 <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
             </div>
-        </form> -->
+        </form>
     </div>
 </div>
 <app-footer></app-footer>

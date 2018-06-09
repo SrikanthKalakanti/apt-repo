@@ -164,4 +164,15 @@ export class CustomerDetailsService {
         return data;
       });
   }
+  updateClient(updateClientObject): Observable<any> {
+    const path = "/apt/client/updateclient";
+    const data = JSON.parse(localStorage.getItem("clientData"));
+    console.log(data.clientId);
+    updateClientObject.clientId = data.clientId;
+    return this.apiService
+      .post(path, updateClientObject, this.authService.getHeaders())
+      .map(data => {
+        return data;
+      });
+  }
 }

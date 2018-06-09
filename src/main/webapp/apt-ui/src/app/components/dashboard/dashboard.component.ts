@@ -9,6 +9,7 @@ import { CLIENTDETAILS } from "../../mocks/clientList";
 import { DashboardService } from "../../services/dashboard.service";
 import { SharedService } from "../../shared/services/shared.service";
 import { AgGridNg2 } from "ag-grid-angular";
+import * as moment from 'moment';
 
 @Component({
   selector: "app-dashboard",
@@ -53,7 +54,31 @@ export class DashboardComponent implements OnInit {
     { headerName: "Line Of Activity", field: "lineofactivity" },
     {
       headerName: "Date of First Term Loan Ditribution",
-      field: "dateoffirstditributionoftermloan"
+      field: "dateoffirstditributionoftermloan",
+      valueFormatter: (data) => moment(data.value).format('L'),
+      filter: 'date',
+  filterParams: {
+    //inRangeInclusive: true,
+    comparator: function(filterLocalDateAtMidnight, cellValue) {
+      //using moment js
+      var dateAsString = moment(cellValue).format('DD/MM/YYYY');
+      console.log(dateAsString);
+      var dateParts = dateAsString.split("/");
+      var cellDate = new Date(Number(dateParts[2]), Number(dateParts[1]) - 1, Number(dateParts[0]));
+
+      if (filterLocalDateAtMidnight.getTime() == cellDate.getTime()) {
+        return 0
+      }
+
+      if (cellDate < filterLocalDateAtMidnight) {
+        return -1;
+      }
+
+      if (cellDate > filterLocalDateAtMidnight) {
+        return 1;
+      }
+    }
+  }
     }
   ];
 
@@ -135,23 +160,23 @@ export class DashboardComponent implements OnInit {
   }
 
   getAllClientList() {
-    this.isDataAvailable = true;
-    this.data = CLIENTDETAILS;
-    // this.dashBoardService.getClientList().subscribe(
-    //   data => {
-    //     if (data.result) {
-    //       this.data = data.result;
-    //       this.isDataAvailable = true;
-    //     } else {
-    //       this.isDataAvailable = false;
-    //     }
-    //     this.dtTrigger.next();
-    //   },
-    //   err => {
-    //     this.isDataAvailable = false;
-    //     this.errors = err.error;
-    //     this.errorService.error(this.errors);
-    //   }
-    // );
+    // this.isDataAvailable = true;
+    // this.data = CLIENTDETAILS;
+    this.dashBoardService.getClientList().subscribe(
+      data => {
+        if (data.result) {
+          this.data = data.result;
+          this.isDataAvailable = true;
+        } else {
+          this.isDataAvailable = false;
+        }
+        this.dtTrigger.next();
+      },
+      err => {
+        this.isDataAvailable = false;
+        this.errors = err.error;
+        this.errorService.error(this.errors);
+      }
+    );
   }
 }

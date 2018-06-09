@@ -46,6 +46,10 @@ import { SellingPriceComponent } from './components/customer-details/selling-pri
 import { ClientInfoComponent } from './components/customer-details/client-info/client-info.component';
 import { NgDatepickerModule } from 'ng2-datepicker';
 import { ShowErrorsComponent } from './shared/components/show-errors/show-errors.component';
+import { MomentModule } from 'angular2-moment';
+import * as moment from 'moment';
+import { CalendarModule } from 'primeng/primeng';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -80,7 +84,10 @@ import { ShowErrorsComponent } from './shared/components/show-errors/show-errors
     AgGridModule.withComponents([]),
     OrderModule,
     DateValueAccessorModule,
-    NgDatepickerModule
+    NgDatepickerModule,
+    MomentModule,
+    CalendarModule,
+    BrowserAnimationsModule
   ],
   providers: [
     AuthService,

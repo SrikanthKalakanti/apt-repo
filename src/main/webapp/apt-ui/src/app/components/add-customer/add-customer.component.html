@@ -90,7 +90,8 @@
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !dateoffirstditributionoftermloan.valid }">
                 <label for="dateoffirstditributionoftermloan">Anticipated date of first disbursement of proposed Term Loan</label>
                 <i class="fa fa-asterisk text-danger">*</i>
-                <input type="date" class="form-control" name="dateoffirstditributionoftermloan" [(ngModel)]="model.dateoffirstditributionoftermloan" #dateoffirstditributionoftermloan="ngModel" required />
+                <!-- <input type="date" class="form-control" name="dateoffirstditributionoftermloan" [(ngModel)]="model.dateoffirstditributionoftermloan" #dateoffirstditributionoftermloan="ngModel" required /> -->
+                <ng-datepicker name="dateoffirstditributionoftermloan" [options]="datepickeroptions" [(ngModel)]="model.dateoffirstditributionoftermloan" #dateoffirstditributionoftermloan="ngModel" required></ng-datepicker>
                 <div *ngIf="f.submitted && !dateoffirstditributionoftermloan.valid" class="help-block">Date of first Disbursement Term Loan is required.</div>
             </div>
             <div class="form-group">
