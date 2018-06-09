@@ -14,6 +14,7 @@ export class BasicInfoComponent implements OnInit {
   isEdit = false;
   loading = false;
   errors: Errors = new Errors();
+  minDate = new Date();
   basicData;
 
   model: any = {
@@ -24,7 +25,8 @@ export class BasicInfoComponent implements OnInit {
     fixedExpensesPerMonth: 0,
     productionPerMonthInUnits: 0,
     numberOfDaysInAMonth: 0,
-    customerId: localStorage.getItem("customerId")
+    customerId: localStorage.getItem("customerId"),
+    termLoanFirstDisbursementDate: JSON.parse(localStorage.getItem("clientData")).termLoanFirstDisbursementDate
   };
 
   constructor(
@@ -45,6 +47,11 @@ export class BasicInfoComponent implements OnInit {
 
   showForm() {
     // debugger;
+    var termLoanDate = JSON.parse(localStorage.getItem("clientData"));
+    console.log(termLoanDate);
+    this.model.termLoanFirstDisbursementDate = new Date(JSON.parse(localStorage.getItem("clientData")).dateoffirstditributionoftermloan);
+    this.setMinDate(this.model.termLoanFirstDisbursementDate);
+    console.log(this.model.termLoanFirstDisbursementDate);
     if (!this.isEdit) {
       this.isEdit = true;
       this.model = this.basicData;
@@ -55,6 +62,13 @@ export class BasicInfoComponent implements OnInit {
 
   cancel() {
     this.isEdit = false;
+  }
+  setMinDate(value) {
+    this.minDate = value;
+  }
+
+  onBlurMethod(evn) {
+    console.log(evn);
   }
 
   getBasicInput() {

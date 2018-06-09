@@ -13,17 +13,19 @@
                     <input type="text" class="form-control" name="name" [(ngModel)]="model.nameOfTheBusiness" #nameOfTheBusiness="ngModel" required />
                     <div *ngIf="f.submitted && !nameOfTheBusiness.valid" class="help-block">Name of the Bussiness is required</div>
                 </div>
-                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !termLoanFirstDisbursementDate.valid }">
+                <!-- <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !termLoanFirstDisbursementDate.valid }">
                     <label for="termLoanFirstDisbursementDate">Term Loan First Disbursement Date</label>
                     <i class="fa fa-asterisk text-danger">*</i>
-                    <!-- <input type="date" class="form-control" name="termLoanFirstDisbursementDate" [(ngModel)]="model.termLoanFirstDisbursementDate" #termLoanFirstDisbursementDate="ngModel" required /> -->
-                    <p-calendar name="termLoanFirstDisbursementDate" [(ngModel)]="model.termLoanFirstDisbursementDate" #termLoanFirstDisbursementDate="ngModel" [showIcon]="true" showButtonBar="true"></p-calendar>
-                    <div *ngIf="f.submitted && !termLoanFirstDisbursementDate.valid" class="help-block">Term Loan First Disbursement Date is required.</div>
-                </div>
+                    <input type="date" min="{{model.termLoanFirstDisbursementDate | date:'mm/dd/yyyy'}}" readOnly class="form-control" value="model.termLoanFirstDisbursementDate" name="termLoanFirstDisbursementDate" [(ngModel)]="model.termLoanFirstDisbursementDate" #termLoanFirstDisbursementDate="ngModel"
+                        required />
+                    <p-calendar [readonlyInput]="true" name="termLoanFirstDisbursementDate" [(ngModel)]="model.termLoanFirstDisbursementDate" #termLoanFirstDisbursementDate="ngModel" [showIcon]="true" showButtonBar="true"></p-calendar> -->
+                <!-- <div *ngIf="f.submitted && !termLoanFirstDisbursementDate.valid" class="help-block">Term Loan First Disbursement Date is required.</div>
+                </div> -->
                 <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !businessCommencementDate.valid }">
-                    <label for="businessCommencementDate">Business Commencement Date</label>
+                    <label for="businessCommencementDate">Business Commencement Date(this will decide on the term loan disbursement date)</label>
                     <i class="fa fa-asterisk text-danger">*</i>
-                    <input type="date" class="form-control" name="businessCommencementDate" [(ngModel)]="model.businessCommencementDate" #businessCommencementDate="ngModel" required />
+                    <!-- <input type="date" class="form-control" name="businessCommencementDate" [(ngModel)]="model.businessCommencementDate" #businessCommencementDate="ngModel" required /> -->
+                    <p-calendar [minDate]="minDate" name="businessCommencementDate" (onSelect)="onBlurMethod($event)" [(ngModel)]="model.businessCommencementDate" #businessCommencementDate="ngModel" [showIcon]="true" showButtonBar="true"></p-calendar>
                     <div *ngIf="f.submitted && !businessCommencementDate.valid" class="help-block">Business Commencement Date is required.</div>
                 </div>
                 <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !tenureOfTermLoan.valid }">

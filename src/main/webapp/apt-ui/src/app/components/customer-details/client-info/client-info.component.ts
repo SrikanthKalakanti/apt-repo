@@ -65,4 +65,7 @@ export class ClientInfoComponent implements OnInit {
     );
     this.loading = false;
   }
+  cancel() {
+    this.isFormAvailable = false;
+  }
 }
