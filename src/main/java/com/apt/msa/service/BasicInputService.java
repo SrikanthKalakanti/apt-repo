@@ -26,11 +26,12 @@ public class BasicInputService implements IBasicInputService {
 		return basicInput;
 	}
 
+	
 	@Override
 	public int updateBasicInput(BasicInput basicInput) throws APTException {
-		return basicInputRepository.updateBasicInputByIdAndClient(basicInput.getBusinessCommencementDate(), basicInput.getCashCreditAmountRequired(), basicInput.getFixedExpensesPerMonth(), 
-				basicInput.getInterestRateForCc(), basicInput.getMoratorium(), basicInput.getNameOfTheBusiness(), basicInput.getNumberOfDaysInAMonth(), basicInput.getPaymentDate(), 
-				basicInput.getProductionPerMonthInUnits(), basicInput.getStatus(), basicInput.getTenureOfTermLoan(), basicInput.getTermLoanFirstDisbursementDate(), basicInput.getClientId(), basicInput.getBasicInputId());
+		return basicInputRepository.updateBasicInputByIdAndClient(basicInput.getNameOfTheBusiness(),basicInput.getBusinessCommencementDate(),
+				basicInput.getTenureOfTermLoan(),basicInput.getMoratorium(), basicInput.getInterestRateForCc(),basicInput.getStatus(),
+				basicInput.getCashCreditAmountRequired(),basicInput.getClientId(), basicInput.getBasicInputId());
 	}
 
 	@Override

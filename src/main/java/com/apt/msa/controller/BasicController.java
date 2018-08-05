@@ -50,9 +50,6 @@ public class BasicController {
 
 			if(null!= basicInput){
 
-				Date termLoandate = new Date(new SimpleDateFormat("dd/MM/yyyy").parse(basicInput.getTermLoanDisbursement()).getTime());
-				basicInput.setTermLoanFirstDisbursementDate(termLoandate);
-
 				Date buisnessCommenceDate = new Date(new SimpleDateFormat("dd/MM/yyyy").parse(basicInput.getBusinessCommencement()).getTime());
 				basicInput.setBusinessCommencementDate(buisnessCommenceDate);
 
@@ -99,15 +96,12 @@ public class BasicController {
 		logger.info("---- Start of getbasicinputbyclient API-------");
 		try {
 
-			System.out.println(requestEntity.getBody().getClientId());
-
 			BasicInput basicInput = basicInputService.findOne(requestEntity.getBody().getClientId());
 
 			if(basicInput!=null){
 
 				DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
-				basicInput.setTermLoanDisbursement(df.format(basicInput.getTermLoanFirstDisbursementDate()));
 				basicInput.setBusinessCommencement(df.format(basicInput.getBusinessCommencementDate()));
 
 				logger.info("---- getbasicinputbyclient API success-------");
@@ -153,9 +147,6 @@ public class BasicController {
 		try {
 
 			if(null != basicInputReq.getBody()) {
-
-				Date termLoandate = new Date(new SimpleDateFormat("dd/MM/yyyy").parse(basicInputReq.getBody().getTermLoanDisbursement()).getTime());
-				basicInputReq.getBody().setTermLoanFirstDisbursementDate(termLoandate);
 
 				Date buisnessCommenceDate = new Date(new SimpleDateFormat("dd/MM/yyyy").parse(basicInputReq.getBody().getBusinessCommencement()).getTime());
 				basicInputReq.getBody().setBusinessCommencementDate(buisnessCommenceDate);

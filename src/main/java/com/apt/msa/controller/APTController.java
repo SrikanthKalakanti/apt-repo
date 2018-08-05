@@ -112,8 +112,6 @@ public class APTController {
 
 			if(null!= basicInput){
 
-				Date termLoandate = new Date(new SimpleDateFormat("dd/MM/yyyy").parse(basicInput.getTermLoanDisbursement()).getTime());
-				basicInput.setTermLoanFirstDisbursementDate(termLoandate);
 
 				Date buisnessCommenceDate = new Date(new SimpleDateFormat("dd/MM/yyyy").parse(basicInput.getBusinessCommencement()).getTime());
 				basicInput.setBusinessCommencementDate(buisnessCommenceDate);
@@ -277,7 +275,6 @@ public class APTController {
 				
 				DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 				
-				basicInput.setTermLoanDisbursement(df.format(basicInput.getTermLoanFirstDisbursementDate()));
 				basicInput.setBusinessCommencement(df.format(basicInput.getBusinessCommencementDate()));
 				
 				return new Response(ResultStatusConstants.STATUS_OK,ResultStatusConstants.SUCCESS_CODE,
@@ -428,9 +425,6 @@ public class APTController {
 
 				if(null != basicInputReq.getBody()) {
 					
-					Date termLoandate = new Date(new SimpleDateFormat("dd/MM/yyyy").parse(basicInputReq.getBody().getTermLoanDisbursement()).getTime());
-					basicInputReq.getBody().setTermLoanFirstDisbursementDate(termLoandate);
-
 					Date buisnessCommenceDate = new Date(new SimpleDateFormat("dd/MM/yyyy").parse(basicInputReq.getBody().getBusinessCommencement()).getTime());
 					basicInputReq.getBody().setBusinessCommencementDate(buisnessCommenceDate);
 

@@ -14,7 +14,7 @@ import com.apt.msa.entity.Customer;
 @Transactional
 public interface CustomerRespository extends JpaRepository<Customer, Long> {
 	
-	@Query("SELECT c FROM Customer c where c.email=?1")
+	@Query("SELECT c FROM Customer c where c.email=?1 or c.userName=?1")
 	List<Customer> fetchByUserName(@Param("userName") String userName);
 	
 	@Query("SELECT c FROM Customer c where c.email=?1")

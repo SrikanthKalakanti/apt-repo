@@ -22,22 +22,12 @@ public class BasicInput implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long basicInputId;
 	
-	/*@OneToOne(cascade = CascadeType.ALL)
-	@LazyCollection(LazyCollectionOption.FALSE)
-    @JoinColumn(name = "clientId")
-	@JsonBackReference
-	private Client client;*/
-	
 	@JsonProperty("clientId")
 	private Long clientId;
-	 
+	
 	private String nameOfTheBusiness;
 	
-	private Date termLoanFirstDisbursementDate; 
 	private Date businessCommencementDate;
-	
-	@Transient
-	private String termLoanDisbursement;
 	@Transient
 	private String businessCommencement;
 	
@@ -47,12 +37,8 @@ public class BasicInput implements Serializable {
 	
 	@JsonProperty()
 	private double interestRateForCc; 
-	private Integer paymentDate; 
 	private Integer status; 
 	private Integer cashCreditAmountRequired; 
-	private Integer fixedExpensesPerMonth;  
-	private Integer numberOfDaysInAMonth; 
-	private Integer productionPerMonthInUnits;
 	
 	public BasicInput(){
 		
@@ -65,17 +51,12 @@ public class BasicInput implements Serializable {
 		super();
 		this.basicInputId = basicInputId;
 		this.nameOfTheBusiness = nameOfTheBusiness;
-		this.termLoanFirstDisbursementDate = termLoanFirstDisbursementDate;
 		this.businessCommencementDate = businessCommencementDate;
 		this.tenureOfTermLoan = tenureOfTermLoan;
 		this.moratorium = moratorium;
 		this.interestRateForCc = interestRateForCc;
-		this.paymentDate = paymentDate;
 		this.status = status;
 		this.cashCreditAmountRequired = cashCreditAmountRequired;
-		this.fixedExpensesPerMonth = fixedExpensesPerMonth;
-		this.numberOfDaysInAMonth = numberOfDaysInAMonth;
-		this.productionPerMonthInUnits = productionPerMonthInUnits;
 	}
 
 	public Long getBasicInputId() {
@@ -92,14 +73,6 @@ public class BasicInput implements Serializable {
 
 	public void setNameOfTheBusiness(String nameOfTheBusiness) {
 		this.nameOfTheBusiness = nameOfTheBusiness;
-	}
-
-	public Date getTermLoanFirstDisbursementDate() {
-		return termLoanFirstDisbursementDate;
-	}
-
-	public void setTermLoanFirstDisbursementDate(Date termLoanFirstDisbursementDate) {
-		this.termLoanFirstDisbursementDate = termLoanFirstDisbursementDate;
 	}
 
 	public Date getBusinessCommencementDate() {
@@ -134,14 +107,6 @@ public class BasicInput implements Serializable {
 		this.interestRateForCc = interestRateForCc;
 	}
 
-	public Integer getPaymentDate() {
-		return paymentDate;
-	}
-
-	public void setPaymentDate(Integer paymentDate) {
-		this.paymentDate = paymentDate;
-	}
-
 	public Integer getStatus() {
 		return status;
 	}
@@ -158,47 +123,12 @@ public class BasicInput implements Serializable {
 		this.cashCreditAmountRequired = cashCreditAmountRequired;
 	}
 
-	public Integer getFixedExpensesPerMonth() {
-		return fixedExpensesPerMonth;
-	}
-
-	public void setFixedExpensesPerMonth(Integer fixedExpensesPerMonth) {
-		this.fixedExpensesPerMonth = fixedExpensesPerMonth;
-	}
-
-	public Integer getNumberOfDaysInAMonth() {
-		return numberOfDaysInAMonth;
-	}
-
-	public void setNumberOfDaysInAMonth(Integer numberOfDaysInAMonth) {
-		this.numberOfDaysInAMonth = numberOfDaysInAMonth;
-	}
-
-	public Integer getProductionPerMonthInUnits() {
-		return productionPerMonthInUnits;
-	}
-
-	public void setProductionPerMonthInUnits(Integer productionPerMonthInUnits) {
-		this.productionPerMonthInUnits = productionPerMonthInUnits;
-	}
 
 	@Override
 	public String toString() {
 		return "BasicInput [basicInputId=" + basicInputId +  ", nameOfTheBusiness="
-				+ nameOfTheBusiness + ", termLoanFirstDisbursementDate=" + termLoanFirstDisbursementDate
-				+ ", businessCommencementDate=" + businessCommencementDate + ", tenureOfTermLoan=" + tenureOfTermLoan
-				+ ", moratorium=" + moratorium + ", interestRateForCc=" + interestRateForCc + ", paymentDate="
-				+ paymentDate + ", status=" + status + ", cashCreditAmountRequired=" + cashCreditAmountRequired
-				+ ", fixedExpensesPerMonth=" + fixedExpensesPerMonth + ", numberOfDaysInAMonth=" + numberOfDaysInAMonth
-				+ ", productionPerMonthInUnits=" + productionPerMonthInUnits + "]";
-	}
-
-	public String getTermLoanDisbursement() {
-		return termLoanDisbursement;
-	}
-
-	public void setTermLoanDisbursement(String termLoanDisbursement) {
-		this.termLoanDisbursement = termLoanDisbursement;
+				+ nameOfTheBusiness + ", businessCommencementDate=" + businessCommencementDate + ", tenureOfTermLoan=" + tenureOfTermLoan
+				+ ", moratorium=" + moratorium + ", interestRateForCc=" + interestRateForCc + ", status=" + status + ", cashCreditAmountRequired=" + cashCreditAmountRequired + "]";
 	}
 
 	public String getBusinessCommencement() {
