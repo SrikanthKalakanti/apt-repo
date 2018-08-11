@@ -61,7 +61,8 @@ public class ResultStatusConstants {
     public static final String STATUS_NOBASICINPUT_DETAILS ="No Basic Input details available";
     public static final String STATUS_NOGROWTHINFLATION_DETAILS ="No Growth & Inflation details available";
     public static final String STATUS_NOEXPENSES_DETAILS ="No Expenses details available";
-        
+    public static final String STATUS_NOSELLINGPRICE_DETAILS ="No Selling Price details available";
+    
     //failure constants
     public static final String STATUS_FAIL = "fail";
     

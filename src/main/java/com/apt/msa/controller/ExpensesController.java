@@ -39,7 +39,7 @@ public class ExpensesController {
 
 	 */		 
 	@RequestMapping(method=RequestMethod.POST, value ="create",consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Response creatBasicInput(RequestEntity<ExpensesInput> requestEntity) {
+	public Response creatExpensesInput(RequestEntity<ExpensesInput> requestEntity) {
 
 		logger.info("---- Start of create expensesinput API-------");
 
@@ -104,7 +104,7 @@ public class ExpensesController {
 
 				logger.info("---- getexpensesinputbyclient API no records-------");
 				return new Response(ResultStatusConstants.STATUS_FAIL,
-						ResultStatusConstants.ERROR_CODE_USER_NOT_EXISTS,
+						ResultStatusConstants.ERROR_CODE_EXPENSES_NOT_EXISTS,
 						ResultStatusConstants.STATUS_NOEXPENSES_DETAILS,null);
 			}
 
@@ -291,8 +291,8 @@ public class ExpensesController {
 
 				logger.info("---- getallbyclientsellingprice API no records-------");
 				return new Response(ResultStatusConstants.STATUS_FAIL,
-						ResultStatusConstants.ERROR_CODE_USER_NOT_EXISTS,
-						ResultStatusConstants.STATUS_NOEXPENSES_DETAILS,null);
+						ResultStatusConstants.ERROR_CODE_EXPENSES_NOT_EXISTS,
+						ResultStatusConstants.STATUS_NOSELLINGPRICE_DETAILS,null);
 			}
 
 		} catch (APTException aptException) {
