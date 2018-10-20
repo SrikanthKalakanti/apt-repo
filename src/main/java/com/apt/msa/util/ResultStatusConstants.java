@@ -55,13 +55,16 @@ public class ResultStatusConstants {
     public static final String STATUS_RETRIEVED_CUSTOMER_DETAILS ="Retrieved Customer details Successfully";
     public static final String STATUS_RETRIEVED_CLIENT_DETAILS ="Retrieved Client details Successfully";
     
-    public static final String STATUS_NOCLIENT_DETAILS ="No Client details available";
+    public static final String STATUS_NOCLIENT_DETAILS ="No Client details available, please create client and provide his finacial detais to generate report";
     
-    public static final String STATUS_NOASSETINPUT_DETAILS ="No Asset Input details available";
-    public static final String STATUS_NOBASICINPUT_DETAILS ="No Basic Input details available";
-    public static final String STATUS_NOGROWTHINFLATION_DETAILS ="No Growth & Inflation details available";
-    public static final String STATUS_NOEXPENSES_DETAILS ="No Expenses details available";
-    public static final String STATUS_NOSELLINGPRICE_DETAILS ="No Selling Price details available";
+    public static final String STATUS_NOASSETINPUT_DETAILS ="No Asset Input details available, please fill Asset Input details to generate report ";
+    public static final String STATUS_NOBASICINPUT_DETAILS ="No Basic Input details available,please fill Basic Input details to generate report";
+    public static final String STATUS_NOGROWTHINFLATION_DETAILS ="No Growth & Inflation details available, please fill Growth & Inflation details to generate report";
+    public static final String STATUS_NOEXPENSES_DETAILS ="No Expenses details available, please fill Expenses details to generate report";
+    public static final String STATUS_NOSELLINGPRICE_DETAILS ="No Selling Price details available, please fill Selling price details to generate report";
+    
+    public static final String STATUS_EDIT_CLIENT_DISABLED ="Already Report for this client is downloaded, so no edit option available for this client";
+    public static final String STATUS_EDIT_CLIENT_ENABLED ="Edit option available for this client";
     
     //failure constants
     public static final String STATUS_FAIL = "fail";

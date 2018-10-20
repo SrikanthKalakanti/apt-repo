@@ -34,18 +34,12 @@ public class CustomerService implements ICustomerService {
 	 */
 	public Customer login(final String userName, final String password) throws APTException {
 
-		System.out.println("::::::::::::: login username:"+userName+"  password:"+password);
-		
 		List<Customer>  customerList = customerRepository.fetchByEmail(userName);
 		
 		if(null!= customerList && customerList.size() > 0 ){
-			//Customer customer = customerList.iterator().next();
 			final Customer customer = customerList.get(0);
 			try {
-				
 				final String decryptedPwd = CryptoUtil.decrypt(customer.getPassword()).toString();
-				System.out.println("password::::"+decryptedPwd +" password:"+password);
-				System.out.println(decryptedPwd.equals(password));
 				if(userName.equals(customer.getEmail()) && (decryptedPwd.equals(password)) ) {
 					return customer;
 				}

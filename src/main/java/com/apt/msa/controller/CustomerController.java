@@ -12,12 +12,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.apt.msa.entity.AdminControl;
 import com.apt.msa.entity.Customer;
 import com.apt.msa.exception.APTException;
+import com.apt.msa.jpa.repository.AdminRespository;
 import com.apt.msa.mail.Mail;
 import com.apt.msa.mail.NotificationSender;
 import com.apt.msa.request.LoginRequest;
 import com.apt.msa.response.Response;
+import com.apt.msa.service.IAdminControlService;
 import com.apt.msa.service.ICustomerService;
 import com.apt.msa.util.CryptoUtil;
 import com.apt.msa.util.ResultStatusConstants;
@@ -44,6 +47,17 @@ public class CustomerController {
 	private String registrationMailFrom;
 	
 	
+	
+	
+	@Autowired
+	private IAdminControlService adminControlService;
+	
+	@Value("${customer.default.reports.amount}")
+	private Long reportsAmout;
+	
+	@Value("${customer.default.report.noofreports}")
+	private Integer noofReports;
+	
 	/**
 	 * author srikanth
 	 * 
@@ -56,12 +70,26 @@ public class CustomerController {
 	@RequestMapping(method=RequestMethod.POST, value ="register",consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@CrossOrigin(origins = { "http://localhost:9000" })
 	public Response createCustomer(RequestEntity<Customer> requestEntity) {
+		
+		logger.info("Start of createCustomer API");
 		try {
 			Customer customer = requestEntity.getBody();
+			logger.info(" createCustomer API Object created successfully");
 			final String encryptPwd = CryptoUtil.encrypt(customer.getPassword());
 			customer.setPassword(encryptPwd);
-					
+			
+			logger.info(" createCustomer API Service start");
 			customerService.createCustomer(customer);
+			logger.info(" createCustomer API Successfull");
+			
+			//insert customer reports purchase to the admin control table
+			AdminControl adminControl = new AdminControl();
+			adminControl.setAmount(reportsAmout);
+			adminControl.setNoofreportspurchased(noofReports);
+			adminControl.setCustomerId(customer.getCustomerId());
+			
+			adminControlService.createAdminControl(adminControl);
+			logger.info(" createCustomer API Insert default values to Admin Control Success");
 			
 			//send email for registered client
 			
@@ -71,16 +99,23 @@ public class CustomerController {
 	        mail.setTo(customer.getEmail());
 	        mail.setSubject(registrationMailSuccessSubject);
 	        mail.setContent("Hi "+customer.getFirstName() + ", "+registrationMailSuccessContent);
+	        logger.info(" createCustomer API email sending....");
 			
 	        //MailSender mailSender = new MailSender();
 			mailSender.sendSimpleMessage(mail);
+			logger.info(" createCustomer API email sent successfully");
+			
+			
 			
 			return new Response(ResultStatusConstants.STATUS_OK,ResultStatusConstants.SUCCESS_CODE,ResultStatusConstants.STATUS_CREATE_CUSTOMER_SUCCESS,null);
 			
 		} catch (APTException aptException) {
+			
+			logger.error("createCustomer API  APTexception"+ aptException.getMessage());
 			return new Response(aptException);
 		
 		} catch(Exception e){
+			logger.error("createCustomer API  Exception"+ e.getMessage());
 			return new Response(
 					ResultStatusConstants.STATUS_FAIL,
 					ResultStatusConstants.ERROR_CODE_UNKNOWN_ERROR,
