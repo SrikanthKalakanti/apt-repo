@@ -44,10 +44,7 @@ public class CustomerController {
 	private String registrationMailSuccessContent;
 	
 	@Value("${registration.mail.success.message.from}")
-	private String registrationMailFrom;
-	
-	
-	
+	private String registrationMailFrom;	
 	
 	@Autowired
 	private IAdminControlService adminControlService;

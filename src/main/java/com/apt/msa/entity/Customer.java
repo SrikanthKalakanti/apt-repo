@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -46,9 +47,28 @@ public class Customer implements Serializable {
 
 	private String email;
 	
-	/*private boolean emailValidationflag;
-	private boolean mobileValidationflag;*/
+	@Column(name="emailVerified")
+	private String emailVerified = "NOT COMPLETED";
 	
+	@Column(name="mobileVerified")
+	private String mobileVerified = "NOT COMPLETED";
+	
+	public String getEmailVerified() {
+		return emailVerified;
+	}
+
+	public void setEmailVerified(String emailVerified) {
+		this.emailVerified = emailVerified;
+	}
+
+	public String getMobileVerified() {
+		return mobileVerified;
+	}
+
+	public void setMobileVerified(String mobileVerified) {
+		this.mobileVerified = mobileVerified;
+	}
+
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "customer")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@JsonManagedReference
