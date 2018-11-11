@@ -32,6 +32,12 @@ public class ResultStatusConstants {
     public static final String STATUS_DELETE_GROWTHINPUT_FAILURE ="Client Growth and Inflation Delete Failed";
     
     
+    //planDetails
+    public static final String STATUS_RETRIEVED_PLAN_DETAILS ="Retrieved Plan details Successfully";
+    public static final String STATUS_NOPLAN_DETAILS ="No Plan Details are available, please contact Administrator";
+    public static final String ERROR_CODE_PLANS_NOT_EXISTS = "APT1010";
+    
+    //Asset constants
     public static final String STATUS_CREATE_ASSETINPUT_SUCCESS ="Client Asset Input Created Successfully";
     public static final String STATUS_CREATE_ASSETINPUT_FAILURE ="Client Asset Input Creation Failed";
     public static final String STATUS_RETRIEVED_ASSETINPUT_DETAILS ="Retrieved Asset Input details Successfully";
@@ -40,6 +46,7 @@ public class ResultStatusConstants {
     public static final String STATUS_DELETE_ASSETINPUT_SUCCESS ="Client Asset Input Deleted Successfully";
     public static final String STATUS_DELETE_ASSETINPUT_FAILURE ="Client Asset Input Delete Failed";
     
+    //Expenses Constants
     public static final String STATUS_CREATE_EXPENSESINPUT_SUCCESS ="Client Expenses Input Created Successfully";
     public static final String STATUS_CREATE_EXPENSESINPUT_FAILURE ="Client Expenses Input Creation Failed";
     public static final String STATUS_RETRIEVED_EXPENSESINPUT_DETAILS ="Retrieved Expenses Input details Successfully";
@@ -47,6 +54,13 @@ public class ResultStatusConstants {
     public static final String STATUS_UPDATE_EXPENSESINPUT_FAILURE ="Client Expenses Input Update Failed";
     public static final String STATUS_DELETE_EXPENSESINPUT_SUCCESS ="Client Expenses Input Deleted Successfully";
     public static final String STATUS_DELETE_EXPENSESINPUT_FAILURE ="Client Expenses Input Delete Failed";
+    
+    //Customer Transaction constants
+    public static final String STATUS_SUCCESS_CUSTOMER_TRANSACTION ="Transaction Successful";
+    public static final String STATUS_FAIL_CUSTOMER_TRANSACTION ="Transaction Failed";
+    
+    public static final String STATUS_CUSTOMER_PLAN_EXIST ="Customer Plan already selected";
+    public static final String STATUS_CUSTOMER_PLAN_NOT_EXIST ="NO Plan selected, so please select a plan to proceed";
     
     
     public static final String STATUS_SUCCESS_LOGIN ="Login Successful";
@@ -87,6 +101,8 @@ public class ResultStatusConstants {
 	public static final String ERROR_CODE_ASSETINPUT_NOT_EXISTS          = "APT1006";	  
 	public static final String ERROR_CODE_BASICINPUT_NOT_EXISTS          = "APT1007";	  
 	public static final String ERROR_CODE_GROWTHINFLATION_NOT_EXISTS     = "APT1008";	  
-	public static final String ERROR_CODE_EXPENSES_NOT_EXISTS          	 = "APT1009";	  
+	public static final String ERROR_CODE_EXPENSES_NOT_EXISTS          	 = "APT1009";
+	
+	
  
 }

@@ -28,10 +28,10 @@ import com.apt.msa.service.IAdminControlService;
 import com.apt.msa.service.IAssetInputService;
 import com.apt.msa.service.IBasicInputService;
 import com.apt.msa.service.IClientService;
+import com.apt.msa.service.ICustomerTransactionService;
 import com.apt.msa.service.IExpensesInputService;
 import com.apt.msa.service.IGrowthInflationInputService;
 import com.apt.msa.service.IReportControlService;
-import com.apt.msa.util.ExcelUtil;
 //import com.apt.msa.service.IReportControlService;
 import com.apt.msa.util.ResultStatusConstants;
 
@@ -62,6 +62,9 @@ public class ReportController {
 	
 	@Autowired
 	private IReportControlService reportControlService;
+	
+	@Autowired
+	private ICustomerTransactionService customerTranasactionService;
 
 	/**
 	 * 1 Generate Report API
@@ -178,11 +181,10 @@ public class ReportController {
 			logger.info("Report Successfully downloaded for customer :"+clientDetails.getCustomerId() + " for client:"+clientDetails.getClientId());
 
 
-			logger.info("Admin Control updation for customer :"+clientDetails.getCustomerId() + " for client:"+clientDetails.getClientId());
-			//Update admin control as on when the report is download by customer.
-			adminControlService.updateAdminControl(clientDetails.getCustomerId());
-
-			logger.info("Admin Control updated with increment in number of reports dowloaded by customer:"+clientDetails.getCustomerId());
+			logger.info("Customer Transaction updation for customer :"+clientDetails.getCustomerId() + " for client:"+clientDetails.getClientId());
+			customerTranasactionService.updateCustomerTransaction(clientDetails.getCustomerId());
+			
+			logger.info("Customer Transaction updated with increment in number of reports dowloaded by customer:"+clientDetails.getCustomerId());
 			
 			ReportAudit reportAudit = new ReportAudit();
 			

@@ -7,19 +7,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @Configuration
 @EnableWebMvc
-//@ComponentScan("com.apt.msa")
 public class AppConfig extends WebMvcConfigurerAdapter {
  
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
- 		 /*registry.addMapping("/apt/**")
-	   	  .allowedOrigins("http://localhost:9000", "http://localhost:8080")
-		 // .allowedMethods("POST", "GET",  "PUT", "OPTIONS", "DELETE")
-		//  .allowedHeaders("X-Auth-Token", "Content-Type")
-		    .allowCredentials(false)
-		  .maxAge(4800);*/
-		super.addCorsMappings(registry);
-       //LOGGER.info("WebMVC configuration : addCorsMappings");
+ 		super.addCorsMappings(registry);
         registry.addMapping("/apt/**").allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS");
     }
 }

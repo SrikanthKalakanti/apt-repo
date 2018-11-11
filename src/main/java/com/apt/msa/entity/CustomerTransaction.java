@@ -1,13 +1,14 @@
 package com.apt.msa.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity(name="customer_transaction")
 @Table(name="customer_transaction")
@@ -19,24 +20,29 @@ public class CustomerTransaction implements Serializable {
 	private Long id;	
 	private Long customerId;
 	private Long planId;
-	private Date purchase_date;
-	private Date validaity_date;	
+	
+	private String  purchase_date_time;
+	private String  validaity_date_time;	
+	
 	private int number_of_reportsremaining;
+	
+	@Transient
 	private int number_of_days_remaining;
 	
 	public CustomerTransaction(){
 		
 	}
 	
-	public CustomerTransaction(Long id, Long customerId, Long planId, Date purchase_date, Date validaity_date) {
+	public CustomerTransaction(Long id, Long customerId, Long planId, String purchase_date_time, String validaity_date_time) {
 		super();
 		this.id = id;
 		this.customerId = customerId;
 		this.planId = planId;
-		this.purchase_date = purchase_date;
-		this.validaity_date = validaity_date;
+		this.purchase_date_time = purchase_date_time;
+		this.validaity_date_time = validaity_date_time;
 	}
 
+	
 	public Long getId() {
 		return id;
 	}
@@ -70,20 +76,21 @@ public class CustomerTransaction implements Serializable {
 		this.planId = planId;
 	}
 
-	public Date getPurchase_date() {
-		return purchase_date;
+	public String getPurchase_date_time() {
+		return purchase_date_time;
 	}
 
-	public void setPurchase_date(Date purchase_date) {
-		this.purchase_date = purchase_date;
+	public void setPurchase_date_time(String purchase_date_time) {
+		this.purchase_date_time = purchase_date_time;
 	}
 
-	public Date getValidaity_date() {
-		return validaity_date;
+	public String getValidaity_date_time() {
+		return validaity_date_time;
 	}
 
-	public void setValidaity_date(Date validaity_date) {
-		this.validaity_date = validaity_date;
+	public void setValidaity_date_time(String validaity_date_time) {
+		this.validaity_date_time = validaity_date_time;
 	}
-	
+
+		
 }

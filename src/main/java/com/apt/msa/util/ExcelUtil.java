@@ -1,9 +1,14 @@
 package com.apt.msa.util;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.CreationHelper;
@@ -13,6 +18,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.util.ResourceUtils;
 
 import com.apt.msa.business.CostOfProjectRow;
 import com.apt.msa.business.CostOfProjectTable;
@@ -73,9 +79,9 @@ public class ExcelUtil {
 
 			row.createCell(4).setCellValue(coptRow.getPromoterMargin());
 		}
-		
+
 		//Print TOtal cost row
-		
+
 		Row totalRow = sheet.createRow(rowNum++);
 		totalRow.createCell(0).setCellValue((String)costOfProjectTable.totalsRow.get(0));
 
@@ -86,23 +92,23 @@ public class ExcelUtil {
 		totalRow.createCell(3).setCellValue((Double)costOfProjectTable.totalsRow.get(3));
 
 		totalRow.createCell(4).setCellValue((Double)costOfProjectTable.totalsRow.get(4));
-			
-		
+
+
 		// Resize all columns to fit the content size
 		for(int i = 0; i < costOfProjectTable.columnHeaders.length; i++) {
 			sheet.autoSizeColumn(i);
 		}
-		
+
 		/** End of Assets Work sheet **/
-		
-		
-		/** Start of Basic Input Work sheet **/
-		/** End of Basic Input Work sheet **/
-		
+
+
 		/** Start of Basic Input Work sheet **/
 		/** End of Basic Input Work sheet **/
 
-		
+		/** Start of Basic Input Work sheet **/
+		/** End of Basic Input Work sheet **/
+
+
 
 		// Write the output to a file
 		FileOutputStream fileOut;
@@ -117,7 +123,42 @@ public class ExcelUtil {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
+
 	}
+
+
+	public static void readAptInputsheet(){
+
+		try {
+
+			InputStream input = ExcelUtil.class.getClassLoader().getResourceAsStream("Input_for_Annaji.xlsx" );
+			//File file = ResourceUtils.getFile("classpath:resources/Input_for_Annaji.xlsx");
+					 
+			//File is found
+			//System.out.println("File Found : " + file.exists());
+			//POIFSFileSystem fs = new POIFSFileSystem( input );
+			HSSFWorkbook wb = new HSSFWorkbook(input);
+
+
+			for (int i = 0; i < wb.getNumberOfSheets(); i++) {
+				HSSFSheet sheet = wb.getSheetAt(i);
+				System.out.println(i);
+				// Do your stuff        
+			}
+			
+			input.close();
+
+		} catch ( IOException ex ) {
+			ex.printStackTrace();
+		}
+	}
+
+	
+	
+	public static void main(String[] args){
+	
+		readAptInputsheet();
+	}
+		
 }

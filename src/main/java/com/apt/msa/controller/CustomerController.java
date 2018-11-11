@@ -1,5 +1,8 @@
 package com.apt.msa.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,16 +15,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.apt.msa.entity.AdminControl;
 import com.apt.msa.entity.Customer;
+import com.apt.msa.entity.CustomerTransaction;
+import com.apt.msa.entity.PlanDetails;
 import com.apt.msa.exception.APTException;
-import com.apt.msa.jpa.repository.AdminRespository;
 import com.apt.msa.mail.Mail;
 import com.apt.msa.mail.NotificationSender;
+import com.apt.msa.request.CustomerPlanRequest;
+import com.apt.msa.request.CustomerRequest;
 import com.apt.msa.request.LoginRequest;
 import com.apt.msa.response.Response;
-import com.apt.msa.service.IAdminControlService;
 import com.apt.msa.service.ICustomerService;
+import com.apt.msa.service.IPlanDetailsService;
 import com.apt.msa.util.CryptoUtil;
 import com.apt.msa.util.ResultStatusConstants;
 
@@ -35,6 +40,9 @@ public class CustomerController {
 	private ICustomerService customerService;
 	
 	@Autowired
+	private IPlanDetailsService planDetailsService;
+	
+	@Autowired
 	private NotificationSender mailSender;
 	
 	@Value("${registration.mail.success.message.subject}")
@@ -45,9 +53,6 @@ public class CustomerController {
 	
 	@Value("${registration.mail.success.message.from}")
 	private String registrationMailFrom;	
-	
-	@Autowired
-	private IAdminControlService adminControlService;
 	
 	@Value("${customer.default.reports.amount}")
 	private Long reportsAmout;
@@ -79,18 +84,7 @@ public class CustomerController {
 			customerService.createCustomer(customer);
 			logger.info(" createCustomer API Successfull");
 			
-			//insert customer reports purchase to the admin control table
-			AdminControl adminControl = new AdminControl();
-			adminControl.setAmount(reportsAmout);
-			adminControl.setNoofreportspurchased(noofReports);
-			adminControl.setCustomerId(customer.getCustomerId());
-			
-			adminControlService.createAdminControl(adminControl);
-			logger.info(" createCustomer API Insert default values to Admin Control Success");
-			
 			//send email for registered client
-			
-			//registrationMailSuccessSubject registrationMailSuccessContent registrationMailFrom
 			Mail mail = new Mail();
 	        mail.setFrom(registrationMailFrom);
 	        mail.setTo(customer.getEmail());
@@ -155,17 +149,99 @@ public class CustomerController {
 		}
 
 	}
+	
+	
+	@RequestMapping(method=RequestMethod.POST, value ="createtransaction",consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@CrossOrigin(origins = { "http://localhost:9000" })
+	public Response customerTransaction(RequestEntity<CustomerPlanRequest> requestEntity) {
+		try {
+			
+			CustomerPlanRequest customerPlanRequest = requestEntity.getBody();
+			
+			if(customerPlanRequest!=null){
+				
+				PlanDetails planDetails = planDetailsService.fetchPlanById(customerPlanRequest.getPlanId());
+				
+				CustomerTransaction customerTransaction = new CustomerTransaction();
+				customerTransaction.setPlanId(customerPlanRequest.getPlanId());
+				customerTransaction.setCustomerId(customerPlanRequest.getCustomerId());
+				
+				Calendar cal = Calendar.getInstance();
+		        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss.SS");
+		        String purchaseDate = sdf.format(cal.getTime());				
+				customerTransaction.setPurchase_date_time(purchaseDate);
+				
+				// add the plan validaty to the expiry date
+				cal.add(Calendar.DATE, planDetails.getValidity());
+				String validityDate = sdf.format(cal.getTime());
+				customerTransaction.setValidaity_date_time(validityDate);
+				customerTransaction.setNumber_of_reportsremaining(planDetails.getNo_of_reports());
+				
+				customerService.createTransaction(customerTransaction);
+				return new Response(ResultStatusConstants.STATUS_OK,ResultStatusConstants.SUCCESS_CODE,
+						ResultStatusConstants.STATUS_SUCCESS_CUSTOMER_TRANSACTION,null,customerTransaction.getId());
+			} else{
+				return new Response(ResultStatusConstants.STATUS_FAIL,
+						ResultStatusConstants.STATUS_FAIL_CUSTOMER_TRANSACTION,
+						ResultStatusConstants.STATUS_FAIL_CUSTOMER_TRANSACTION,null,null);
+			}
+		}
+		 catch (APTException aptException) {
+			
+			return new Response(aptException);
+		}
+		 catch(Exception e){
+			 
+			 logger.error(e.getMessage());
+			
+			return new Response(
+					ResultStatusConstants.STATUS_FAIL,
+					ResultStatusConstants.ERROR_CODE_UNKNOWN_ERROR,
+					ResultStatusConstants.ERROR_MESSAGE_UNKNOWN_ERROR,null,null);
+		}
+
+	}
+	
+	@RequestMapping(method=RequestMethod.POST, value ="getcustomerPlandetails",consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@CrossOrigin(origins = { "http://localhost:9000" })
+	public Response getCustomerplandetails(RequestEntity<CustomerRequest> requestEntity) {
+		try {
+			
+			CustomerTransaction customerTransaction = customerService.findTransaction(requestEntity.getBody().getCustomerId());
+			
+			if(customerTransaction!=null){
+				
+				return new Response(ResultStatusConstants.STATUS_OK,ResultStatusConstants.SUCCESS_CODE,
+						ResultStatusConstants.STATUS_CUSTOMER_PLAN_EXIST,null,customerTransaction);
+			} else{
+				return new Response(ResultStatusConstants.STATUS_FAIL,
+						ResultStatusConstants.STATUS_CUSTOMER_PLAN_NOT_EXIST,
+						ResultStatusConstants.STATUS_CUSTOMER_PLAN_NOT_EXIST,null,null);
+			}
+		}
+		 catch (APTException aptException) {
+			
+			return new Response(aptException);
+		}
+		 catch(Exception e){
+			 
+			 e.printStackTrace();
+			 logger.error(e.getMessage());
+			
+			return new Response(
+					ResultStatusConstants.STATUS_FAIL,
+					ResultStatusConstants.ERROR_CODE_UNKNOWN_ERROR,
+					ResultStatusConstants.ERROR_MESSAGE_UNKNOWN_ERROR,null,null);
+		}
+
+	}
 		
-	//@GetMapping(value ="getcustomerdetails")
 	@RequestMapping(method=RequestMethod.GET, value ="getlistofclientdetails",consumes=MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@CrossOrigin(origins = { "http://localhost:9000" })
 	public Response getCustomer(final @RequestParam("customerId") Long customerId) {
 		try {
 			
-			System.out.println("======================================== 1"+customerId);
-			
 			Customer customer = customerService.findOne(customerId);
-			System.out.println("======================================== 2");
 			
 			if(customer!=null){
 				customer.setPassword("");
