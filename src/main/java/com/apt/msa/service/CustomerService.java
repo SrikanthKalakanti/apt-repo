@@ -64,7 +64,21 @@ public class CustomerService implements ICustomerService {
 	
 	@Override
 	public CustomerTransaction createTransaction(CustomerTransaction customerTransaction) throws APTException {
-		return customerTransactioRepository.saveAndFlush(customerTransaction);
+		
+		CustomerTransaction customerTransactionDB =  findTransaction(customerTransaction.getCustomerId());
+		
+		if(null!= customerTransactionDB) {
+			
+			customerTransactionDB.setPlanId(customerTransaction.getPlanId());
+			customerTransactionDB.setValidaity_date_time(customerTransaction.getValidaity_date_time());
+			customerTransactionDB.setPurchase_date_time(customerTransaction.getPurchase_date_time());
+			customerTransactionDB.setNumber_of_reportsremaining(customerTransaction.getNumber_of_reportsremaining());
+			
+			return customerTransactioRepository.save(customerTransactionDB);
+		
+		} else {
+			 return customerTransactioRepository.save(customerTransaction);
+		}
 	}
 
 	@Override

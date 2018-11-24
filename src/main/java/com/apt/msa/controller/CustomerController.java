@@ -1,7 +1,9 @@
 package com.apt.msa.controller;
 
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -210,6 +212,16 @@ public class CustomerController {
 			CustomerTransaction customerTransaction = customerService.findTransaction(requestEntity.getBody().getCustomerId());
 			
 			if(customerTransaction!=null){
+				
+			    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+			    Date purchaseDate = dateFormat.parse(customerTransaction.getPurchase_date_time());
+			    Date validityDate = dateFormat.parse(customerTransaction.getValidaity_date_time());
+			    
+			    //Timestamp purchaseTimestamp = new java.sql.Timestamp(purchaseDate.getTime());
+			    customerTransaction.setPurchaseTimestamp(purchaseDate.getTime());
+			    
+			    //Timestamp validityTimestamp = new java.sql.Timestamp(purchaseDate.getTime());
+			    customerTransaction.setPurchaseTimestamp(validityDate.getTime());
 				
 				return new Response(ResultStatusConstants.STATUS_OK,ResultStatusConstants.SUCCESS_CODE,
 						ResultStatusConstants.STATUS_CUSTOMER_PLAN_EXIST,null,customerTransaction);

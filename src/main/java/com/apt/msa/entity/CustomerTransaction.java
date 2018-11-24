@@ -29,6 +29,13 @@ public class CustomerTransaction implements Serializable {
 	@Transient
 	private int number_of_days_remaining;
 	
+	
+	@Transient
+	private long purchaseTimestamp;
+	
+	@Transient
+	private long validityTimestamp;
+	
 	public CustomerTransaction(){
 		
 	}
@@ -90,6 +97,22 @@ public class CustomerTransaction implements Serializable {
 
 	public void setValidaity_date_time(String validaity_date_time) {
 		this.validaity_date_time = validaity_date_time;
+	}
+
+	public long getPurchaseTimestamp() {
+		return purchaseTimestamp;
+	}
+
+	public void setPurchaseTimestamp(long purchaseTimestamp) {
+		this.purchaseTimestamp = purchaseTimestamp;
+	}
+
+	public long getValidityTimestamp() {
+		return validityTimestamp;
+	}
+
+	public void setValidityTimestamp(long validityTimestamp) {
+		this.validityTimestamp = validityTimestamp;
 	}
 
 		

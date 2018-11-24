@@ -16,7 +16,7 @@ public class PlanDetails implements Serializable {
 	
 	@Id
 	@Column(name="plan_id")
-	private Long plan_id;
+	private Long planId;
 
 	@Column(name="plan_name")
 	private String plan_name;
@@ -36,12 +36,20 @@ public class PlanDetails implements Serializable {
 	@Column(name="no_of_reports")
 	private Integer no_of_reports;
 	
+	public Long getPlanId() {
+		return planId;
+	}
+
+	public void setPlanId(Long planId) {
+		this.planId = planId;
+	}
+
 	public PlanDetails(){}
 	
 	public PlanDetails(Long planId, String plan_name, Date date_of_introduction, Double base_price, Double gst,
 			Integer validity, Integer no_of_reports) {
 		super();
-		this.plan_id = planId;
+		this.planId = planId;
 		this.plan_name = plan_name;
 		this.date_of_introduction = date_of_introduction;
 		this.base_price = base_price;
@@ -49,12 +57,7 @@ public class PlanDetails implements Serializable {
 		this.validity = validity;
 		this.no_of_reports = no_of_reports;
 	}
-	public Long getPlan_id() {
-		return plan_id;
-	}
-	public void setPlan_id(Long plan_id) {
-		this.plan_id = plan_id;
-	}
+	
 
 	public String getPlan_name() {
 		return plan_name;
