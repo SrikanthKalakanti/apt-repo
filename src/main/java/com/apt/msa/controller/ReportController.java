@@ -63,9 +63,6 @@ public class ReportController {
 	@Autowired
 	private IReportControlService reportControlService;
 	
-	@Autowired
-	private ICustomerTransactionService customerTranasactionService;
-
 	/**
 	 * 1 Generate Report API
 	 * 
@@ -179,13 +176,7 @@ public class ReportController {
 			logger.info("Before downloading the report");
 			//ExcelUtil.createAptReport(clientGlobalInput);
 			logger.info("Report Successfully downloaded for customer :"+clientDetails.getCustomerId() + " for client:"+clientDetails.getClientId());
-
-
-			logger.info("Customer Transaction updation for customer :"+clientDetails.getCustomerId() + " for client:"+clientDetails.getClientId());
-			customerTranasactionService.updateCustomerTransaction(clientDetails.getCustomerId());
-			
-			logger.info("Customer Transaction updated with increment in number of reports dowloaded by customer:"+clientDetails.getCustomerId());
-			
+		
 			ReportAudit reportAudit = new ReportAudit();
 			
 			reportAudit.setClientId(clientDetails.getClientId());

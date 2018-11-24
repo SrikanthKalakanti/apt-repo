@@ -18,6 +18,7 @@ import com.apt.msa.entity.Customer;
 import com.apt.msa.exception.APTException;
 import com.apt.msa.response.Response;
 import com.apt.msa.service.IClientService;
+import com.apt.msa.service.ICustomerTransactionService;
 import com.apt.msa.util.ResultStatusConstants;
 
 @RestController
@@ -30,6 +31,8 @@ public class ClientController {
 	@Autowired
 	private IClientService clientService;
 	
+	@Autowired
+	private ICustomerTransactionService customerTranasactionService;
 	/**
 	 * 
 	 * Create Client API
@@ -45,7 +48,12 @@ public class ClientController {
 		try {
 			Client clientDetails = requestEntity.getBody();
 			
-			clientService.createClient(clientDetails);
+			clientService.createClient(clientDetails);			
+			
+			logger.info("Customer Transaction updation for customer :"+clientDetails.getCustomerId() + " for client:"+clientDetails.getClientId());
+			customerTranasactionService.updateCustomerTransaction(clientDetails.getCustomerId());
+			
+			logger.info("Customer Transaction updated with increment in number of reports as new customer added:"+clientDetails.getCustomerId());
 			
 			return new Response(ResultStatusConstants.STATUS_OK,ResultStatusConstants.SUCCESS_CODE,
 								ResultStatusConstants.STATUS_CREATE_CLIENT_SUCCESS, null,clientDetails.getCustomerId());
