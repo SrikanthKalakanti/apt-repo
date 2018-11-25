@@ -3,6 +3,8 @@ package com.apt.msa.util;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
@@ -23,4 +25,18 @@ public class EmailValidator implements ConstraintValidator<ValidEmail, String> {
         matcher = pattern.matcher(email);
         return matcher.matches();
     }
+    
+    
+	public static boolean verifyEmail(String email) {
+		boolean isValid = false;
+		try {
+			InternetAddress internetAddress = new InternetAddress(email);
+			internetAddress.validate();
+			isValid = true;
+		} catch (AddressException e) {
+			System.out.println("You are in catch block -- Exception Occurred for: " + email);
+		}
+		return isValid;
+	}
+
 }

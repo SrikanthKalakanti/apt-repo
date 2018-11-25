@@ -30,6 +30,7 @@ import com.apt.msa.response.Response;
 import com.apt.msa.service.ICustomerService;
 import com.apt.msa.service.IPlanDetailsService;
 import com.apt.msa.util.CryptoUtil;
+import com.apt.msa.util.EmailValidator;
 import com.apt.msa.util.ResultStatusConstants;
 
 @RestController
@@ -82,9 +83,10 @@ public class CustomerController {
 			final String encryptPwd = CryptoUtil.encrypt(customer.getPassword());
 			customer.setPassword(encryptPwd);
 			
-			logger.info(" createCustomer API Service start");
-			customerService.createCustomer(customer);
-			logger.info(" createCustomer API Successfull");
+			
+			//validate email id..
+			if(EmailValidator.verifyEmail(customer.getEmail())) {
+				
 			
 			//send email for registered client
 			Mail mail = new Mail();
@@ -93,14 +95,21 @@ public class CustomerController {
 	        mail.setSubject(registrationMailSuccessSubject);
 	        mail.setContent("Hi "+customer.getFirstName() + ", "+registrationMailSuccessContent);
 	        logger.info(" createCustomer API email sending....");
-			
+	        
+	        logger.info(" createCustomer API Service start");
+			customerService.createCustomer(customer);
+			logger.info(" createCustomer API Successfull");
+	        
 	        //MailSender mailSender = new MailSender();
 			mailSender.sendSimpleMessage(mail);
 			logger.info(" createCustomer API email sent successfully");
 			
-			
-			
 			return new Response(ResultStatusConstants.STATUS_OK,ResultStatusConstants.SUCCESS_CODE,ResultStatusConstants.STATUS_CREATE_CUSTOMER_SUCCESS,null);
+			
+		  } else {
+			  
+			  return new Response(ResultStatusConstants.STATUS_FAIL,ResultStatusConstants.FAIL_CODE,ResultStatusConstants.STATUS_CREATE_CUSTOMER_EMAIL_FAILURE,null);
+		  }	
 			
 		} catch (APTException aptException) {
 			
@@ -194,7 +203,7 @@ public class CustomerController {
 		}
 		 catch(Exception e){
 			 
-			 logger.error(e.getMessage());
+ 			 logger.error(e.getMessage());
 			
 			return new Response(
 					ResultStatusConstants.STATUS_FAIL,
