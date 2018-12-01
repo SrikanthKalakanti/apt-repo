@@ -18,6 +18,6 @@ public interface CustomerRespository extends JpaRepository<Customer, Long> {
 	List<Customer> fetchByUserName(@Param("userName") String userName);
 	
 	@Query("SELECT c FROM Customer c where c.email=?1")
-	List<Customer> fetchByEmail(@Param("email") String email);
+	Customer fetchByEmail(@Param("email") String email);
 	
 }

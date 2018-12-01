@@ -137,7 +137,7 @@ public class CustomerController {
 			if(customer!=null){
 				
 				return new Response(ResultStatusConstants.STATUS_OK,ResultStatusConstants.SUCCESS_CODE,
-						ResultStatusConstants.STATUS_SUCCESS_LOGIN,null,customer.getCustomerId());
+						ResultStatusConstants.STATUS_SUCCESS_LOGIN,null,customer.getCustomerId(), customer.getUserName());
 			} else{
 				return new Response(ResultStatusConstants.STATUS_FAIL,
 						ResultStatusConstants.ERROR_CODE_USER_NOT_EXISTS,
@@ -222,7 +222,7 @@ public class CustomerController {
 			
 			if(customerTransaction!=null){
 				
-			    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+			    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss.SS");
 			    Date purchaseDate = dateFormat.parse(customerTransaction.getPurchase_date_time());
 			    Date validityDate = dateFormat.parse(customerTransaction.getValidaity_date_time());
 			    

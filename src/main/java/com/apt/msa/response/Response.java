@@ -15,12 +15,13 @@ public class Response implements Serializable{
     private String exceptionType;
     private Object result;
     private Long customerId;
+    private String userName;
     
     public Response() {
     }
     
     public Response(String status,String errorCode, String errorMessage, String exceptionType,Object result) {
-        this.status = ResultStatusConstants.STATUS_OK;
+        this.status = status;
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
         this.exceptionType = exceptionType;
@@ -40,12 +41,13 @@ public class Response implements Serializable{
         this.errorMessage = errorMessage;
     }
     
-    public Response(String status, String errorCode, String errorMessage,String exceptionType,Long customerId) {
+    public Response(String status, String errorCode, String errorMessage,String exceptionType,Long customerId,String userName) {
         this.status = status;
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
         this.exceptionType = exceptionType;
         this.customerId = customerId;
+        this.userName = userName;
     }
     
     public Response(APTException aptException) {
@@ -93,6 +95,14 @@ public class Response implements Serializable{
 
 	public void setCustomerId(Long customerId) {
 		this.customerId = customerId;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 }
