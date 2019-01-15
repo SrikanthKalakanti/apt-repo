@@ -137,8 +137,7 @@ public class ReportController {
 			 * get expenses for client
 			 */
 
-			List<ExpensesInput> expensesInputList = expensesService
-					.fetchByClientId(requestEntity.getBody().getClientId());
+			List<ExpensesInput> expensesInputList = expensesService.fetchAllByClient(requestEntity.getBody().getClientId());
 
 			if (null != expensesInputList && expensesInputList.size() > 0) {
 
