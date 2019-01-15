@@ -56,4 +56,9 @@ public class ExpensesInputService implements IExpensesInputService {
 		return expensesInput;
 	}
 
+	@Override
+	public List<ExpensesInput> fetchAllByClient(Long clientId) throws APTException {
+		List<ExpensesInput> expensesInputList = expensesInputRepository.fetchAllByClientId(clientId);
+		return expensesInputList;
+	}
 }

@@ -21,6 +21,9 @@ public interface ExpensesInputRespository extends JpaRepository<ExpensesInput, L
 	@Query("FROM expenses_input where client_id=?1 and cma_nomenclature like '%Selling Price%' ")
 	ExpensesInput fetchByClientIdAndSellingPrice(@Param("clientId") Long clientId);
 	
+	@Query("FROM expenses_input where client_id=?1")
+	List<ExpensesInput> fetchAllByClientId(@Param("clientId") Long clientId);
+	
 	@Modifying(clearAutomatically = true)
 	@Query("UPDATE expenses_input SET amount_ininr = :amountInINR, cma_nomenclature=:cmaNomenclature, expenditure_per=:expenditurePer, nomenclature=:nomenclature  WHERE client_id = :clientId and expenses_input_id =:expensesInputId")
 	int updateExpensesByIdClient( @Param("amountInINR") Double amountInINR, @Param("expenditurePer") String expenditurePer,

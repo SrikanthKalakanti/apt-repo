@@ -13,5 +13,6 @@ public interface IExpensesInputService {
 	int deleteExpensesInput(ExpensesInput expensesInput) throws APTException;
 	boolean createExpensesInput(ExpensesInput expensesInput)throws APTException;
 	ExpensesInput fetchByClientSellingPrice(Long clientId) throws APTException;
+	List<ExpensesInput> fetchAllByClient(Long clientId) throws APTException;
      
 }
